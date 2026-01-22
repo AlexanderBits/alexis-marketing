@@ -20,7 +20,7 @@ export default function Footer() {
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/13e39b337_LogdaAlexisMarketingeDevelopersemFUndo.png"
                 alt="Alexis Marketing & Dev"
-                className="h-[22px] w-auto"
+                className="h-[220px] w-auto"
               />
             </motion.div>
             <p className="text-gray-500 mb-6 max-w-sm">
