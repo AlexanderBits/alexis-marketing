@@ -1,28 +1,29 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Star, Monitor, Smartphone } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const cases = [
   {
-    company: "Arquitex Design",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-    testimonial: "Entrega rápida e qualidade excepcional. O site superou todas as expectativas.",
-    author: "Marina Silva",
-    role: "CEO"
+    company: "ABME",
+    fullName: "Associação Brasileira de Mídias Evangélicas",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/ef1a88a66_image.png",
+    description: "Conectando e fortalecendo veículos de comunicação cristãos em todo o Brasil.",
+    url: "https://abme.com.br/"
   },
   {
-    company: "Tech Startup",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    testimonial: "Performance incrível e design moderno. Nossa taxa de conversão triplicou.",
-    author: "Carlos Santos",
-    role: "Fundador"
+    company: "CEMAD-RJ",
+    fullName: "Convenção de Ministros das Assembleias de Deus - RJ",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/8daf6b135_image.png",
+    description: "Um lugar de amigos. Plataforma completa para a comunidade ministerial.",
+    url: "https://convencaocemad.com.br/"
   },
   {
-    company: "E-commerce Plus",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    testimonial: "Profissionalismo do início ao fim. Site seguro e extremamente rápido.",
-    author: "Ana Beatriz",
-    role: "Diretora"
+    company: "Boi Gordo",
+    fullName: "Boi Gordo Churrasqueiras",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/e2859294a_image.png",
+    description: "Tradição e qualidade em churrasqueiras. Fábrica especializada em produtos premium.",
+    url: "https://boigordochurrasqueiras.com.br/"
   }
 ];
 
@@ -62,78 +63,59 @@ export default function SuccessCasesSection() {
               className="group"
             >
               <div className="bg-slate-950 border border-gray-800/50 rounded-2xl overflow-hidden hover:border-gray-700/50 transition-all duration-500">
-                {/* Mockup container */}
-                <div className="relative p-6 bg-gradient-to-b from-slate-900/50 to-transparent">
-                  <div className="relative">
-                    {/* Browser mockup */}
-                    <div className="bg-slate-800 rounded-lg overflow-hidden shadow-2xl">
-                      {/* Browser bar */}
-                      <div className="flex items-center gap-2 px-4 py-3 bg-slate-900 border-b border-gray-800">
-                        <div className="flex gap-1.5">
-                          <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                        </div>
-                        <div className="flex-1 mx-4">
-                          <div className="bg-slate-800 rounded px-3 py-1 text-[10px] text-gray-500 text-center">
-                            www.{item.company.toLowerCase().replace(/\s/g, '')}.com
-                          </div>
-                        </div>
-                      </div>
-                      {/* Screen content */}
-                      <div className="aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.company}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
+                {/* Image preview - clickable */}
+                <a 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block relative p-6 bg-gradient-to-b from-slate-900/50 to-transparent overflow-hidden"
+                >
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="flex items-center gap-2 text-white text-sm font-medium">
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Visitar site</span>
                       </div>
                     </div>
-
-                    {/* Phone mockup - overlapping */}
-                    <div className="absolute -bottom-4 -right-2 w-16 bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                      <div className="w-full h-1.5 bg-slate-900 flex justify-center items-center">
-                        <div className="w-6 h-0.5 bg-gray-700 rounded-full" />
-                      </div>
-                      <div className="aspect-[9/16]">
-                        <img 
-                          src={item.image} 
-                          alt={item.company}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                    
+                    {/* Screenshot */}
+                    <div className="aspect-video bg-slate-800">
+                      <img 
+                        src={item.image} 
+                        alt={item.company}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                      />
                     </div>
                   </div>
-                </div>
+                </a>
 
                 {/* Content */}
                 <div className="p-6 pt-4">
-                  <h3 className="text-lg font-semibold text-white mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-1">
                     {item.company}
                   </h3>
-                  
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                    ))}
-                  </div>
-                  
-                  <p className="text-gray-400 text-sm mb-4 italic">
-                    "{item.testimonial}"
+                  <p className="text-xs text-gray-500 mb-4">
+                    {item.fullName}
                   </p>
                   
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-                      <span className="text-xs font-medium text-white">
-                        {item.author.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="text-sm text-white font-medium">{item.author}</p>
-                      <p className="text-xs text-gray-500">{item.role}</p>
-                    </div>
-                  </div>
+                  <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                    {item.description}
+                  </p>
+                  
+                  <a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-gray-800 text-white hover:bg-white/5 hover:border-gray-600 group/btn"
+                    >
+                      Conheça o site no ar
+                      <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </motion.div>
