@@ -7,6 +7,7 @@ import SuccessCasesSection from "@/components/landing/SuccessCasesSection";
 import SecondaryCTASection from "@/components/landing/SecondaryCTASection";
 import ContactFormSection from "@/components/landing/ContactFormSection";
 import Footer from "@/components/landing/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <SecondaryCTASection />
       <ContactFormSection />
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }
