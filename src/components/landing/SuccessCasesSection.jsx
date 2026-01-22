@@ -4,28 +4,28 @@ import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const cases = [
-  {
-    company: "ABME",
-    fullName: "Associação Brasileira de Mídias Evangélicas",
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/ef1a88a66_image.png",
-    description: "Conectando e fortalecendo veículos de comunicação cristãos em todo o Brasil.",
-    url: "https://abme.com.br/"
-  },
-  {
-    company: "CEMAD-RJ",
-    fullName: "Convenção de Ministros das Assembleias de Deus - RJ",
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/8daf6b135_image.png",
-    description: "Um lugar de amigos. Plataforma completa para a comunidade ministerial.",
-    url: "https://convencaocemad.com.br/"
-  },
-  {
-    company: "Boi Gordo",
-    fullName: "Boi Gordo Churrasqueiras",
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/e2859294a_image.png",
-    description: "Tradição e qualidade em churrasqueiras. Fábrica especializada em produtos premium.",
-    url: "https://boigordochurrasqueiras.com.br/"
-  }
-];
+{
+  company: "ABME",
+  fullName: "Associação Brasileira de Mídias Evangélicas",
+  image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/ef1a88a66_image.png",
+  description: "Conectando e fortalecendo veículos de comunicação cristãos em todo o Brasil.",
+  url: "https://abme.com.br/"
+},
+{
+  company: "CEMAD-RJ",
+  fullName: "Convenção de Ministros das Assembleias de Deus - RJ",
+  image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/8daf6b135_image.png",
+  description: "Um lugar de amigos. Plataforma completa para a comunidade ministerial.",
+  url: "https://convencaocemad.com.br/"
+},
+{
+  company: "Boi Gordo",
+  fullName: "Boi Gordo Churrasqueiras",
+  image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/e2859294a_image.png",
+  description: "Tradição e qualidade em churrasqueiras. Fábrica especializada em produtos premium.",
+  url: "https://boigordochurrasqueiras.com.br/"
+}];
+
 
 export default function SuccessCasesSection() {
   return (
@@ -39,8 +39,8 @@ export default function SuccessCasesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
+          className="text-center mb-20">
+
           <span className="text-xs font-medium tracking-widest text-gray-500 uppercase mb-4 block">
             Portfólio
           </span>
@@ -53,23 +53,23 @@ export default function SuccessCasesSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {cases.map((item, index) => (
-            <motion.div
-              key={item.company}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group"
-            >
+          {cases.map((item, index) =>
+          <motion.div
+            key={item.company}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.15 }}
+            className="group">
+
               <div className="bg-slate-950 border border-gray-800/50 rounded-2xl overflow-hidden hover:border-gray-700/50 transition-all duration-500">
                 {/* Image preview - clickable */}
-                <a 
-                  href={item.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block relative p-6 bg-gradient-to-b from-slate-900/50 to-transparent overflow-hidden"
-                >
+                <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block relative p-6 bg-gradient-to-b from-slate-900/50 to-transparent overflow-hidden">
+
                   <div className="relative rounded-lg overflow-hidden shadow-2xl">
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -81,11 +81,11 @@ export default function SuccessCasesSection() {
                     
                     {/* Screenshot */}
                     <div className="aspect-video bg-slate-800">
-                      <img 
-                        src={item.image} 
-                        alt={item.company}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                      />
+                      <img
+                      src={item.image}
+                      alt={item.company}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+
                     </div>
                   </div>
                 </a>
@@ -103,15 +103,15 @@ export default function SuccessCasesSection() {
                     {item.description}
                   </p>
                   
-                  <a 
-                    href={item.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-gray-800 text-white hover:bg-white/5 hover:border-gray-600 group/btn"
-                    >
+                  <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer">
+
+                    <Button
+                    variant="outline" className="bg-transparent text-white px-4 py-2 text-sm font-medium rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:text-accent-foreground h-9 w-full border-gray-800 hover:bg-white/5 hover:border-gray-600 group/btn">
+
+
                       Conheça o site no ar
                       <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
                     </Button>
@@ -119,9 +119,9 @@ export default function SuccessCasesSection() {
                 </div>
               </div>
             </motion.div>
-          ))}
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
