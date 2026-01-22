@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle } from "lucide-react";
+import { base44 } from "@/api/base44Client";
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -13,17 +14,44 @@ export default function ContactFormSection() {
     message: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({ name: "", email: "", company: "", message: "" });
+    setIsLoading(true);
+    
+    try {
+      const emailBody = `
+Nova mensagem recebida através do site Alexis Marketing & Dev
+
+Nome: ${formData.name}
+Email: ${formData.email}
+Empresa: ${formData.company || "Não informado"}
+
+Mensagem:
+${formData.message}
+      `;
+
+      await base44.integrations.Core.SendEmail({
+        from_name: "Alexis Marketing",
+        to: "pastoralexdocavaco@gmail.com",
+        subject: "Mensagem do Alexis Marketing",
+        body: emailBody
+      });
+
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 3000);
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+      alert("Erro ao enviar mensagem. Tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -112,7 +140,7 @@ export default function ContactFormSection() {
             <Button 
               type="submit"
               size="lg"
-              disabled={isSubmitted}
+              disabled={isSubmitted || isLoading}
               className="w-full bg-white text-black hover:bg-gray-200 rounded-lg h-14 text-base font-semibold group transition-all duration-300 disabled:opacity-50"
             >
               {isSubmitted ? (
@@ -120,6 +148,8 @@ export default function ContactFormSection() {
                   <CheckCircle className="mr-2 w-5 h-5 text-green-600" />
                   Mensagem Enviada!
                 </>
+              ) : isLoading ? (
+                <>Enviando...</>
               ) : (
                 <>
                   Enviar Mensagem
