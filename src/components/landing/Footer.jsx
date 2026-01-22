@@ -15,13 +15,13 @@ export default function Footer() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="mb-6"
-            >
-              <img 
+              className="mb-6">
+
+              <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/13e39b337_LogdaAlexisMarketingeDevelopersemFUndo.png"
                 alt="Alexis Marketing & Dev"
-                className="h-[220px] w-auto"
-              />
+                className="h-[220px] w-auto" />
+
             </motion.div>
             <p className="text-gray-500 mb-6 max-w-sm">
               Transformamos ideias em experiências digitais de alta performance. 
@@ -37,16 +37,16 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-6">Links Rápidos</h4>
             <ul className="space-y-3">
-              {["Início", "Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) => (
-                <li key={link}>
-                  <a 
-                    href="#" 
-                    className="text-gray-500 hover:text-white transition-colors text-sm"
-                  >
+              {["Início", "Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) =>
+              <li key={link}>
+                  <a
+                  href="#"
+                  className="text-gray-500 hover:text-white transition-colors text-sm">
+
                     {link}
                   </a>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -55,36 +55,36 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-6">Contato</h4>
             <ul className="space-y-4">
               <li>
-                <a 
-                  href="mailto:contato@alexismarketing.com" 
-                  className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm"
-                >
+                <a
+                  href="mailto:contato@alexismarketing.com"
+                  className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">
+
                   <Mail className="w-4 h-4" />
                   contato@alexismarketing.com
                 </a>
               </li>
               <li>
-                <a 
-                  href="tel:+5511999999999" 
-                  className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm"
-                >
-                  <Phone className="w-4 h-4" />
-                  +55 (11) 99999-9999
+                <a
+                  href="tel:+5511999999999" className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">+55 (32) 987037221
+
+
+
+
                 </a>
               </li>
             </ul>
 
             {/* Social */}
             <div className="flex gap-4 mt-6">
-              {[Instagram, Linkedin].map((Icon, i) => (
-                <a 
-                  key={i}
-                  href="#" 
-                  className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-gray-600 transition-all"
-                >
+              {[Instagram, Linkedin].map((Icon, i) =>
+              <a
+                key={i}
+                href="#"
+                className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-gray-600 transition-all">
+
                   <Icon className="w-4 h-4" />
                 </a>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -104,6 +104,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 }
