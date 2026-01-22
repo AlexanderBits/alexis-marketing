@@ -6,18 +6,9 @@ import { ArrowRight } from "lucide-react";
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden">
-        {/* Logo no topo direito */}
-        <div className="absolute top-8 right-8 z-20">
-          <img 
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/13e39b337_LogdaAlexisMarketingeDevelopersemFUndo.png"
-            alt="Alexis Marketing & Dev"
-            className="h-[220px] w-auto"
-          />
-        </div>
-
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-900/10 rounded-full blur-3xl" />
+      {/* Gradient orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-900/10 rounded-full blur-3xl" />
       
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
@@ -29,7 +20,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <span className="inline-block px-4 py-1.5 mb-8 text-xs font-medium tracking-widest text-gray-400 uppercase border border-gray-800 rounded-full">
-            Alexis Marketing & Dev
+            Alexis Marketing & Desenvolvimento
           </span>
         </motion.div>
 
