@@ -8,21 +8,21 @@ const cases = [
   company: "ABME",
   fullName: "Associação Brasileira de Mídias Evangélicas",
   image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/ef1a88a66_image.png",
-  description: "Conectando e fortalecendo veículos de comunicação cristãos em todo o Brasil.",
+  description: "Plataforma institucional completa desenvolvida para conectar e fortalecer veículos de comunicação cristãos em todo o Brasil. Sistema moderno que integra notícias, eventos, diretoria executiva e área de associados com recursos avançados de gestão e comunicação.",
   url: "https://abme.com.br/"
 },
 {
   company: "CEMAD-RJ",
   fullName: "Convenção de Ministros das Assembleias de Deus - RJ",
   image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/8daf6b135_image.png",
-  description: "Um lugar de amigos. Plataforma completa para a comunidade ministerial.",
+  description: "Portal institucional que integra diretórios regionais, departamentos e área ministerial completa. Um lugar de amigos onde a comunidade ministerial encontra recursos, notícias e ferramentas para fortalecer o trabalho evangélico no Rio de Janeiro.",
   url: "https://convencaocemad.com.br/"
 },
 {
   company: "Boi Gordo",
   fullName: "Boi Gordo Churrasqueiras",
   image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/e2859294a_image.png",
-  description: "Tradição e qualidade em churrasqueiras. Fábrica especializada em produtos premium.",
+  description: "E-commerce completo para fábrica de churrasqueiras premium. Site desenvolvido com catálogo de produtos, sistema de carrinho de compras e área de contato integrada. Tradição e qualidade em cada detalhe, atendendo toda a região com produtos de alto padrão.",
   url: "https://boigordochurrasqueiras.com.br/"
 }];
 
