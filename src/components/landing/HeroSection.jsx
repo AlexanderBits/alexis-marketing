@@ -20,7 +20,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <span className="inline-block px-4 py-1.5 mb-8 text-xs font-medium tracking-widest text-gray-400 uppercase border border-gray-800 rounded-full">
-            Alexis Marketing & Desenvolvimento
+            Alexis Marketing & Dev
           </span>
         </motion.div>
 

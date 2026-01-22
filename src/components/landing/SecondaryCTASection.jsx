@@ -36,7 +36,7 @@ export default function SecondaryCTASection() {
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-            Não aceite o comum. A tecnologia da Alexis coloca sua marca 
+            Não aceite o comum. A tecnologia da Alexis Marketing & Dev coloca sua marca 
             à frente da concorrência.
           </p>
 

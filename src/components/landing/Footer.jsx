@@ -15,15 +15,13 @@ export default function Footer() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 mb-6"
+              className="mb-6"
             >
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-lg">A</span>
-              </div>
-              <div>
-                <span className="text-white font-semibold text-lg">Alexis</span>
-                <span className="text-gray-500 text-lg ml-1">Marketing</span>
-              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/13e39b337_LogdaAlexisMarketingeDevelopersemFUndo.png"
+                alt="Alexis Marketing & Dev"
+                className="h-12 w-auto"
+              />
             </motion.div>
             <p className="text-gray-500 mb-6 max-w-sm">
               Transformamos ideias em experiências digitais de alta performance. 
@@ -94,7 +92,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-sm">
-            © {currentYear} Alexis Marketing. Todos os direitos reservados.
+            © {currentYear} Alexis Marketing & Dev. Todos os direitos reservados.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
