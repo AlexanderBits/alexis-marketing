@@ -8,11 +8,6 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden">
         {/* Logo centralizado no topo */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
-          <img 
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/13e39b337_LogdaAlexisMarketingeDevelopersemFUndo.png"
-            alt="Alexis Marketing & Dev"
-            className="h-[220px] w-auto"
-          />
         </div>
 
         {/* Gradient orbs */}
