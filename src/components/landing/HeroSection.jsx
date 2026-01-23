@@ -39,16 +39,16 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8"
         >
-          Seu site.
+          Criação de Site Profissional
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
-            Seguro. Veloz.
+            Seguro. Veloz. Exclusivo.
           </span>
           <br />
-          Desenvolvido com
+          Desenvolvimento de Sites
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            Tecnologia de Ponta.
+            com Tecnologia de Ponta
           </span>
         </motion.h1>
 
@@ -58,8 +58,9 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Experiência digital de alto nível. Criada para negócios que exigem 
-          performance, segurança e um design exclusivo.
+          Empresa especializada em criação de sites profissionais. Fazemos sites profissionais 
+          com design exclusivo, WordPress, tecnologia next-gen e alta performance. 
+          Criar site profissional nunca foi tão fácil.
         </motion.p>
 
         <motion.div

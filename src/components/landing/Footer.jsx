@@ -24,8 +24,9 @@ export default function Footer() {
 
             </motion.div>
             <p className="text-gray-500 mb-6 max-w-sm">
-              Transformamos ideias em experiências digitais de alta performance. 
-              Seu parceiro em tecnologia e inovação.
+              Criação de sites profissionais e desenvolvimento de sites profissionais. 
+              Empresa criar site profissional com WordPress, Wix profissional e tecnologias modernas. 
+              Construir um site profissional com melhor criador de site profissional do mercado.
             </p>
             <div className="flex items-center gap-2 text-xs text-gray-600">
               <Cpu className="w-3 h-3" />

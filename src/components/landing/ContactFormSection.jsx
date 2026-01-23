@@ -19,10 +19,12 @@ export default function ContactFormSection() {
           className="text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Vamos Conversar por mensagem
+            Profissional para Criar Site - Contato Direto
           </h2>
           <p className="text-gray-400 mb-8">
-            Fale sobre seu projeto. Retornamos com uma proposta técnica personalizada chame no whatsapp
+            Profissional que faz site e profissionais que criam sites. Fazemos sites profissionais 
+            e criação de site profissional preço competitivo. Entre em contato via WhatsApp para 
+            montar um site profissional ou criar site de vendas profissional.
           </p>
 
           <motion.div

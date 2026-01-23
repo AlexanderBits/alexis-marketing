@@ -28,16 +28,18 @@ export default function SecondaryCTASection() {
           </div>
 
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
-            Seu negócio merece um site
+            Criar Site Profissional
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-              no mais alto nível.
+              WordPress ou Customizado
             </span>
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-            Não aceite o comum. A tecnologia da Alexis Marketing & Dev coloca sua marca 
-            à frente da concorrência.
+            Criador de site profissional especializado em criar sites profissionais. 
+            Desenvolver site profissional com nosso construtor de sites profissional. 
+            Preço para criar um site profissional acessível. Crie sites profissionais com WordPress 
+            ou site profissional com hospedagem própria.
           </p>
 
           <motion.div
