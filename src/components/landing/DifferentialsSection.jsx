@@ -6,19 +6,19 @@ const differentials = [
   {
     icon: Zap,
     title: "Performance Acelerada",
-    description: "Carregamento instantâneo. Seu cliente não espera, seu site também não.",
+    description: "Criar site profissional com carregamento ultra-rápido. Sites profissionais otimizados para Google PageSpeed.",
     gradient: "from-yellow-500 to-orange-500"
   },
   {
     icon: Shield,
     title: "Segurança Blindada",
-    description: "Protocolos modernos de proteção de dados e estabilidade garantida.",
+    description: "Desenvolvimento de sites profissionais com protocolos de segurança avançados e hospedagem confiável.",
     gradient: "from-blue-500 to-cyan-500"
   },
   {
     icon: Diamond,
     title: "Design de Alto Padrão",
-    description: "Layouts exclusivos focados na experiência do usuário e conversão.",
+    description: "Criação de site profissional com layouts exclusivos. Fazer site profissional focado em conversão.",
     gradient: "from-purple-500 to-pink-500"
   }
 ];
@@ -38,10 +38,10 @@ export default function DifferentialsSection() {
           className="text-center mb-20"
         >
           <span className="text-xs font-medium tracking-widest text-gray-500 uppercase mb-4 block">
-            Por que nos escolher
+            Criação de Sites Profissionais
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Diferenciais que importam
+            Criar Site Profissional com Qualidade
           </h2>
         </motion.div>
 

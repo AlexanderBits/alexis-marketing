@@ -14,18 +14,19 @@ export default function ConceptSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Mais que código, criamos
+            Empresa que Faz Site Profissional
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
-              autoridade digital.
+              de Alta Performance
             </span>
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-            A Alexis utiliza metodologias de desenvolvimento de última geração para 
-            entregar sites robustos em tempo recorde. Combinamos design estratégico 
-            com tecnologia avançada para transformar sua presença online em uma 
-            máquina de resultados.
+            Somos empresas que fazem sites profissionais com metodologias avançadas. 
+            Fazer site profissional requer experiência em desenvolvimento de sites profissionais, 
+            design estratégico e tecnologia. Construir site profissional conosco garante 
+            sites profissionais em WordPress, criação de websites profissionais personalizados 
+            e montagem de site profissional com custo acessível.
           </p>
         </motion.div>
 
