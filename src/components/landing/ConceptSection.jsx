@@ -21,12 +21,12 @@ export default function ConceptSection() {
 
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">Sites profissionais desenvolvidos com metodologias avançadas e arquitetura digital inteligente.
-Criar um site profissional exige experiência em desenvolvimento web, design estratégico e uso de tecnologia moderna orientada à performance.
+          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">Sites profissionais desenvolvidos com metodologias avançadas e arquitetura digital inteligente. Criar um site profissional exige experiência em desenvolvimento web, design estratégico e uso de tecnologia moderna orientada à performance. Ao construir seu site conosco, você garante indexação avançada de palavras-chave relevantes para o seu negócio, posicionando seu site à frente de muitos concorrentes. Utilizamos tecnologia americana de última geração, preparada para indexação tanto nos motores de busca tradicionais (Google, Bing) quanto nas novas buscas por IA, como Google Gemini, Perplexity e mecanismos semânticos modernos. Desenvolvemos websites profissionais personalizados, com foco em velocidade, SEO, conversão e experiência do usuário, oferecendo montagem de site profissional com custo acessível.
 
-Ao construir seu site conosco, você garante indexação avançada de palavras-chave relevantes para o seu negócio, posicionando seu site à frente de muitos concorrentes. Utilizamos tecnologia americana de última geração, preparada para indexação tanto nos motores de busca tradicionais (Google, Bing) quanto nas novas buscas por IA, como Google Gemini, Perplexity e mecanismos semânticos modernos.
 
-Desenvolvemos websites profissionais personalizados, com foco em velocidade, SEO, conversão e experiência do usuário, oferecendo montagem de site profissional com custo acessível e alto padrão técnico.
+
+
+
           </p>
         </motion.div>
 
