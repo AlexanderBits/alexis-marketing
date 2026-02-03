@@ -21,8 +21,8 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+          transition={{ duration: 0.8, ease: "easeOut" }}>
+
           <span className="inline-block px-4 py-1.5 mb-8 text-xs font-medium tracking-widest text-gray-400 uppercase border border-gray-800 rounded-full">
             Alexis Marketing & Dev
           </span>
@@ -32,8 +32,8 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8"
-        >
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8">
+
           Criação de Site Profissional
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
@@ -50,24 +50,24 @@ export default function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          Empresa especializada em criação de sites profissionais. Fazemos sites profissionais 
-          com design exclusivo, WordPress, tecnologia next-gen e alta performance. 
-          Criar site profissional nunca foi tão fácil.
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">Especialista em criação de sites profissionais.
+Desenvolvo sites com design exclusivo e arquitetura digital de alta performance, utilizando Foundation Models next-gen e automação inteligente avançada.
+
+
+
+
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-        >
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}>
+
           <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
-            <Button 
+            <Button
               size="lg"
-              className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-semibold group transition-all duration-300"
-            >
+              className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-semibold group transition-all duration-300">
+
               Iniciar meu projeto
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -79,17 +79,17 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
+          className="absolute bottom-12 left-1/2 -translate-x-1/2">
+
           <div className="w-6 h-10 border-2 border-gray-700 rounded-full flex justify-center">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 bg-gray-500 rounded-full mt-2"
-            />
+              className="w-1.5 h-1.5 bg-gray-500 rounded-full mt-2" />
+
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
