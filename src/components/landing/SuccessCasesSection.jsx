@@ -47,8 +47,8 @@ export default function SuccessCasesSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Projetos mais recentes | Alexis Marketing & Dev
 
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Conheça alguns dos projetos que transformamos em cases de sucesso
+          <p className="text-gray-400 max-w-2xl mx-auto">Conheça os últimos projetos que que desenvolvi 
+
           </p>
         </motion.div>
 
