@@ -13,8 +13,8 @@ export default function ConceptSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">Seu Site ou Portal Profissional
-de Alta Performance
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">Sites e Portais de Alta Performance com Indexação Avançada no Google e Motores de Busca por IA
+
 
 
 
