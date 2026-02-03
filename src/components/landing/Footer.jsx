@@ -57,11 +57,11 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:contato@alexismarketing.com"
-                  className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">
+                  href="mailto:contato@alexismarketing.com" className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">contato@desenvolvimentodesites.dev.br
 
-                  <Mail className="w-4 h-4" />
-                  contato@alexismarketing.com
+
+
+
                 </a>
               </li>
               <li>
