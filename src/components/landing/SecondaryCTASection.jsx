@@ -27,7 +27,7 @@ export default function SecondaryCTASection() {
             <span className="text-sm text-gray-300">Tecnologia Next-Gen</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">Com Dashboard Administrativa e Banco de dados mais Hospedagem e Dominio 
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">Infraestrutura completa com dashboard administrativo, banco de dados dedicado, hospedagem otimizada e domínio .com.br - .org   incluso
 
 
 
