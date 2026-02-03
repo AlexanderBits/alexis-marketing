@@ -35,11 +35,11 @@ export default function SecondaryCTASection() {
 
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-            Criador de site profissional especializado em criar sites profissionais. 
-            Desenvolver site profissional com nosso construtor de sites profissional. 
-            Preço para criar um site profissional acessível. Crie sites profissionais com WordPress 
-            ou site profissional com hospedagem própria.
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">Infraestrutura completa com dashboard administrativo, banco de dados dedicado, hospedagem otimizada e domínio (.com.br ou .org) inclusos, com custo mensal apenas de hospedagem, sem burocracia e sem trabalho para você.
+
+
+
+
           </p>
 
           <motion.div
