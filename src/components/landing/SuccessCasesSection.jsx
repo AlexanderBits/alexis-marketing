@@ -44,8 +44,8 @@ export default function SuccessCasesSection() {
           <span className="text-xs font-medium tracking-widest text-gray-500 uppercase mb-4 block">
             Portfólio
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Empresas que confiam na Alexis Marketing & Dev
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Projetos mais recentes | Alexis Marketing & Dev
+
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Conheça alguns dos projetos que transformamos em cases de sucesso
