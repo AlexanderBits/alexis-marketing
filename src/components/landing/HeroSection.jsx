@@ -35,14 +35,14 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8">
 
-          Tenha Sua Presença Digital Premium
+          Tenha Presença Digital
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
             Criação de Sites de Alta Conversão
           </span>
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            com Estratégias de SEO e Marketing
+            com Estratégias de SEO e Marketing Aplicados no Código
           </span>
         </motion.h1>
 
