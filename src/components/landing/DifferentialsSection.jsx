@@ -1,25 +1,25 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Zap, Shield, Diamond } from "lucide-react";
+import { Layout, Database, CreditCard } from "lucide-react";
 
 const differentials = [
   {
-    icon: Zap,
-    title: "Performance Acelerada",
-    description: "Criação de sites profissionais com carregamento ultra-rápido. Otimização técnica para Google PageSpeed e Core Web Vitals.",
-    gradient: "from-yellow-500 to-orange-500"
+    icon: Layout,
+    title: "Sites & Portais",
+    description: "Desenvolvemos desde Landing Pages de alta conversão até portais e sistemas complexos de variados estilos e nichos.",
+    gradient: "from-blue-500 to-indigo-500"
   },
   {
-    icon: Shield,
-    title: "Segurança & Autoridade",
-    description: "Desenvolvimento de sites profissionais com protocolos HTTPS avançados e arquitetura focada em proteção de dados.",
-    gradient: "from-blue-500 to-cyan-500"
+    icon: Database,
+    title: "Bancos de Dados & APIs",
+    description: "Integramos seu projeto com bancos de dados robustos e APIs, garantindo uma infraestrutura escalável e dinâmica.",
+    gradient: "from-purple-500 to-fuchsia-500"
   },
   {
-    icon: Diamond,
-    title: "Presença Digital Premium",
-    description: "Layouts exclusivos focados em conversão. Estrategicamente desenhado por um Especialista Google Partner para sua marca brilhar.",
-    gradient: "from-purple-500 to-pink-500"
+    icon: CreditCard,
+    title: "Gateways de Pagamento",
+    description: "Implementamos sistemas de checkout e gateways de pagamento (Stripe, Asaas) para automatizar seu faturamento online.",
+    gradient: "from-emerald-500 to-teal-500"
   }
 ];
 
@@ -41,7 +41,7 @@ export default function DifferentialsSection() {
             Criação de Sites Profissionais
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Consultoria de Elite: Especialista Google Partner e Presença Digital Premium
+            Expertise Digital: De Landing Pages a Sistemas Complexos
           </h2>
         </motion.div>
 
