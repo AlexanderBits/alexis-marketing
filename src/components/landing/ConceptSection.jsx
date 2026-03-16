@@ -14,12 +14,11 @@ export default function ConceptSection() {
           transition={{ duration: 0.8 }}>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Consultoria de Elite: Especialista Google Partner e Presença Digital Premium
+            Domínio Local & Autoridade Digital: O Poder do Google Meu Negócio
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-            Sua jornada para o topo começa com uma estratégia de <strong>Especialista Google Partner</strong>. Aplicamos metodologias consagradas por Neil Patel para garantir que sua <strong>presença digital premium</strong> não seja apenas bonita, mas funcional e altamente indexável.
-            Utilizamos engenharia semântica para posicionar seu site tanto nos motores de busca tradicionais (Google, Bing) quanto nas novas interfaces de IA (Google Gemini, Perplexity). Se você busca desenvolvimento de sites profissionais com foco em ROI e autoridade, nossa arquitetura digital é a solução definitiva.
+            Estar no <strong>Google Meu Negócio</strong> é o primeiro passo para o sucesso local, mas um site profissional é o que consolida sua <strong>autoridade</strong>. Enquanto o GMN atrai o olhar imediato dos clientes no Maps, seu site oficial é onde a confiança é construída e o faturamento acontece. Como um <strong>Especialista Google Partner</strong>, garantimos que sua empresa não apenas apareça, mas domine a primeira página, unindo a visibilidade do mapa com a conversão de um site de alta performance.
           </p>
         </motion.div>
 
