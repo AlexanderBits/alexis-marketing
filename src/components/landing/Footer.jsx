@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu, Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { Cpu, Instagram, Linkedin, Mail, Phone, ExternalLink } from "lucide-react";
+import combinedLogo from "@/assets/combined-logo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,18 +17,15 @@ export default function Footer() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="mb-6">
-
-              <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/13e39b337_LogdaAlexisMarketingeDevelopersemFUndo.png"
-                alt="Alexis Marketing & Dev"
-                className="h-[220px] w-auto" />
-
+              className="flex flex-col gap-6"
+            >
+                <img
+                  src={combinedLogo}
+                  alt="Alexis Marketing • Dev - Especialista Google Partner"
+                  className="h-20 w-auto object-contain" />
             </motion.div>
             <p className="text-gray-500 mb-6 max-w-sm">
-              Criação de sites profissionais e desenvolvimento de sites profissionais. 
-              Empresa criar site profissional com WordPress, Wix profissional e tecnologias modernas. 
-              Construir um site profissional com melhor criador de site profissional do mercado.
+              Sua <strong>presença digital premium</strong> começa aqui. Como <strong>Especialista Google Partner</strong>, entregamos soluções de criação de sites profissionais e estratégias de SEO de alta performance para colocar seu negócio na primeira página.
             </p>
             <div className="flex items-center gap-2 text-xs text-gray-600">
               <Cpu className="w-3 h-3" />
@@ -38,12 +37,21 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-6">Links Rápidos</h4>
             <ul className="space-y-3">
-              {["Início", "Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) =>
-              <li key={link}>
+              <li>
+                <Link to="/" className="text-gray-500 hover:text-white transition-colors text-sm">
+                  Início
+                </Link>
+              </li>
+              <li>
+                <Link to="/google-meu-negocio" className="text-gray-500 hover:text-white transition-colors text-sm">
+                  Google Meu Negócio
+                </Link>
+              </li>
+              {["Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) =>
+                <li key={link}>
                   <a
-                  href="#"
-                  className="text-gray-500 hover:text-white transition-colors text-sm">
-
+                    href="#"
+                    className="text-gray-500 hover:text-white transition-colors text-sm">
                     {link}
                   </a>
                 </li>
@@ -57,11 +65,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:contato@alexismarketing.com"
-                  className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">
-
-                  <Mail className="w-4 h-4" />
-                  contato@alexismarketing.com
+                  href="mailto:contato@desenvolvimentodesites.dev.br" className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">contato@desenvolvimentodesites.dev.br
                 </a>
               </li>
               <li>
@@ -93,7 +97,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-sm">
-            © {currentYear} Alexis Marketing & Dev. Todos os direitos reservados.
+            © {currentYear} Desenvolvimento de Sites e Marketing Google. Todos os direitos reservados.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
