@@ -19,11 +19,11 @@ const cases = [
   url: "https://convencaocemad.com.br/"
 },
 {
-  company: "Boi Gordo",
-  fullName: "Boi Gordo Churrasqueiras",
-  image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6971f9afeb3f9dc786ab5347/e2859294a_image.png",
-  description: "E-commerce completo para fábrica de churrasqueiras premium. Site desenvolvido com catálogo de produtos, sistema de carrinho de compras e área de contato integrada. Tradição e qualidade em cada detalhe, atendendo toda a região com produtos de alto padrão.",
-  url: "https://boigordochurrasqueiras.com.br/"
+  company: "OMB-RJ",
+  fullName: "Ordem dos Músicos do Brasil • RJ",
+  image: "https://res.cloudinary.com/deivliasb/image/upload/v1772740800/Nova_ordem-removebg-preview_bbel4i.png",
+  description: "Autarquia Federal oficial de acompanhamento, fiscalização e valorização profissional dos músicos no Estado do Rio de Janeiro. Garantindo direitos, ética e regulamentação para a classe musical.",
+  url: "https://novaombrj.org.br"
 }];
 
 
