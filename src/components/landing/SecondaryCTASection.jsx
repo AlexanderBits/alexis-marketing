@@ -20,37 +20,37 @@ export default function SecondaryCTASection() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}>
-
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-8">
             <Sparkles className="w-4 h-4 text-yellow-500" />
             <span className="text-sm text-gray-300">Tecnologia Next-Gen</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">Infraestrutura completa com dashboard administrativo, banco de dados dedicado, hospedagem otimizada e domínio .com.br - .org   incluso
-
-
-
-
-
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
+            Criar Site Profissional
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+              WordPress ou Customizado
+            </span>
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">Seu site é entregue pronto, funcional e sem qualquer preocupação técnica.
-Inclui suporte contínuo, atualizações, monitoramento e hospedagem otimizada sem limites, tudo construído com arquitetura inteligente de alta performance. Você foca no negócio — nós cuidamos de todo o resto.
-
-
-
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+            Criador de site profissional especializado em criar sites profissionais. 
+            Desenvolver site profissional com nosso construtor de sites profissional. 
+            Preço para criar um site profissional acessível. Crie sites profissionais com WordPress 
+            ou site profissional com hospedagem própria.
           </p>
 
           <motion.div
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}>
-
+            whileTap={{ scale: 0.98 }}
+          >
             <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
-              <Button
+              <Button 
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-full px-10 py-7 text-lg font-semibold shadow-lg shadow-purple-500/20 group transition-all duration-300">
-
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-full px-10 py-7 text-lg font-semibold shadow-lg shadow-purple-500/20 group transition-all duration-300"
+              >
                 Quero um site agora
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -58,6 +58,6 @@ Inclui suporte contínuo, atualizações, monitoramento e hospedagem otimizada s
           </motion.div>
         </motion.div>
       </div>
-    </section>);
-
+    </section>
+  );
 }

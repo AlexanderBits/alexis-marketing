@@ -45,10 +45,10 @@ export default function SuccessCasesSection() {
             Portfólio
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Cases de Sucesso | Presença Digital Premium & Marketing Google
+            Empresas que confiam na Alexis Marketing & Dev
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore os últimos projetos desenvolvidos com foco em performance e resultados reais por um Especialista Google Partner.
+            Conheça alguns dos projetos que transformamos em cases de sucesso
           </p>
         </motion.div>
 
@@ -63,6 +63,33 @@ export default function SuccessCasesSection() {
             className="group">
 
               <div className="bg-slate-950 border border-gray-800/50 rounded-2xl overflow-hidden hover:border-gray-700/50 transition-all duration-500">
+                {/* Image preview - clickable */}
+                <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block relative p-6 bg-gradient-to-b from-slate-900/50 to-transparent overflow-hidden">
+
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="flex items-center gap-2 text-white text-sm font-medium">
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Visitar site</span>
+                      </div>
+                    </div>
+                    
+                    {/* Screenshot */}
+                    <div className="aspect-video bg-slate-800">
+                      <img
+                      src={item.image}
+                      alt={item.company}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+
+                    </div>
+                  </div>
+                </a>
+
                 {/* Content */}
                 <div className="p-6 pt-4">
                   <h3 className="text-xl font-semibold text-white mb-1">

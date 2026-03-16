@@ -11,15 +11,22 @@ export default function ConceptSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}>
-
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Consultoria de Elite: Especialista Google Partner e Presença Digital Premium
+            Empresa que Faz Site Profissional
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+              de Alta Performance
+            </span>
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-            Sua jornada para o topo começa com uma estratégia de <strong>Especialista Google Partner</strong>. Aplicamos metodologias consagradas por Neil Patel para garantir que sua <strong>presença digital premium</strong> não seja apenas bonita, mas funcional e altamente indexável.
-            Utilizamos engenharia semântica para posicionar seu site tanto nos motores de busca tradicionais (Google, Bing) quanto nas novas interfaces de IA (Google Gemini, Perplexity). Se você busca desenvolvimento de sites profissionais com foco em ROI e autoridade, nossa arquitetura digital é a solução definitiva.
+            Somos empresas que fazem sites profissionais com metodologias avançadas. 
+            Fazer site profissional requer experiência em desenvolvimento de sites profissionais, 
+            design estratégico e tecnologia. Construir site profissional conosco garante 
+            sites profissionais em WordPress, criação de websites profissionais personalizados 
+            e montagem de site profissional com custo acessível.
           </p>
         </motion.div>
 
@@ -29,9 +36,9 @@ export default function ConceptSection() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="w-24 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mx-auto mt-16" />
-
+          className="w-24 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mx-auto mt-16"
+        />
       </div>
-    </section>);
-
+    </section>
+  );
 }

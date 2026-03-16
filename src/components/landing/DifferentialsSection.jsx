@@ -6,19 +6,19 @@ const differentials = [
   {
     icon: Zap,
     title: "Performance Acelerada",
-    description: "Criação de sites profissionais com carregamento ultra-rápido. Otimização técnica para Google PageSpeed e Core Web Vitals.",
+    description: "Criar site profissional com carregamento ultra-rápido. Sites profissionais otimizados para Google PageSpeed.",
     gradient: "from-yellow-500 to-orange-500"
   },
   {
     icon: Shield,
-    title: "Segurança & Autoridade",
-    description: "Desenvolvimento de sites profissionais com protocolos HTTPS avançados e arquitetura focada em proteção de dados.",
+    title: "Segurança Blindada",
+    description: "Desenvolvimento de sites profissionais com protocolos de segurança avançados e hospedagem confiável.",
     gradient: "from-blue-500 to-cyan-500"
   },
   {
     icon: Diamond,
-    title: "Presença Digital Premium",
-    description: "Layouts exclusivos focados em conversão. Estrategicamente desenhado por um Especialista Google Partner para sua marca brilhar.",
+    title: "Design de Alto Padrão",
+    description: "Criação de site profissional com layouts exclusivos. Fazer site profissional focado em conversão.",
     gradient: "from-purple-500 to-pink-500"
   }
 ];
@@ -40,8 +40,8 @@ export default function DifferentialsSection() {
           <span className="text-xs font-medium tracking-widest text-gray-500 uppercase mb-4 block">
             Criação de Sites Profissionais
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Consultoria de Elite: Especialista Google Partner e Presença Digital Premium
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Criar Site Profissional com Qualidade
           </h2>
         </motion.div>
 
