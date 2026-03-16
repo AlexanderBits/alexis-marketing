@@ -100,9 +100,9 @@ export default function Footer() {
             © {currentYear} Desenvolvimento de Sites e Marketing Google. Todos os direitos reservados.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+            <Link to="/politica-de-privacidade" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Política de Privacidade
-            </a>
+            </Link>
             <a href="#" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Termos de Uso
             </a>
