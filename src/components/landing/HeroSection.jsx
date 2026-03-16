@@ -50,7 +50,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-          Não entregamos apenas um site; desenvolvemos soluções em tecnologia <strong>Next Gen</strong>, com código otimizado nativamente para máxima indexação no Google. Unimos <strong>SEO de alto impacto</strong> e campanhas de Google Ads desenhadas metodicamente para garantir que sua marca alcance o topo das buscas. Nosso foco é posicionar o seu negócio exatamente onde o seu cliente está.
+          Entregamos sites com tecnologia de ponta, desenvolvidos em <strong>Next Gen</strong> com código otimizado nativamente para máxima indexação no Google. Unimos <strong>SEO de alto impacto</strong> a campanhas de Google Ads desenhadas metodicamente para garantir que sua marca alcance o topo das buscas. Nosso foco é claro: posicionar o seu negócio exatamente onde o seu cliente está.
         </motion.p>
 
         <motion.div
