@@ -13,20 +13,13 @@ export default function ConceptSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">Alta Performance com Indexação Avançada no Google e Motores de Busca por IA
-
-
-
-
-
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
+            Consultoria de Elite: Especialista Google Partner e Presença Digital Premium
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">Desenvolvidos com metodologias avançadas e arquitetura digital inteligente. Criar um site profissional exige experiência em desenvolvimento web, design estratégico e uso de tecnologia moderna orientada à performance. Ao construir seu site conosco, você garante indexação avançada de palavras-chave relevantes para o seu negócio, posicionando seu site à frente de muitos concorrentes. Utilizamos tecnologia americana de última geração, preparada para indexação tanto nos motores de busca tradicionais (Google, Bing) quanto nas novas buscas por IA, como Google Gemini, Perplexity e mecanismos semânticos modernos. Desenvolvemos websites profissionais personalizados, com foco em velocidade, SEO, conversão e experiência do usuário, oferecendo montagem de site profissional com custo acessível.
-
-
-
-
-
+          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+            Sua jornada para o topo começa com uma estratégia de <strong>Especialista Google Partner</strong>. Aplicamos metodologias consagradas por Neil Patel para garantir que sua <strong>presença digital premium</strong> não seja apenas bonita, mas funcional e altamente indexável.
+            Utilizamos engenharia semântica para posicionar seu site tanto nos motores de busca tradicionais (Google, Bing) quanto nas novas interfaces de IA (Google Gemini, Perplexity). Se você busca desenvolvimento de sites profissionais com foco em ROI e autoridade, nossa arquitetura digital é a solução definitiva.
           </p>
         </motion.div>
 
