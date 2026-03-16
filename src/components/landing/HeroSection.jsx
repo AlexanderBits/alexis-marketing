@@ -74,7 +74,7 @@ export default function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 backdrop-blur-sm">
+              className="border-white/20 text-black hover:bg-white/5 hover:border-white/40 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 backdrop-blur-sm">
               Consultoria Google Meu Negócio
             </Button>
           </Link>
