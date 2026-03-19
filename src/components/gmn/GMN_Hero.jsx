@@ -47,10 +47,8 @@ export default function GMN_Hero() {
           <div className="flex flex-wrap gap-4 mb-20">
             <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-bold flex items-center gap-2 group transition-all duration-300 shadow-xl shadow-white/5">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                  Quero minha empresa no topo
-                </span>
-                <ArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                Quero minha empresa no topo
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
           </div>
