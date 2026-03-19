@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass, Cpu, Globe } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -19,6 +19,13 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Semantic Bridge Badge (SEO Gold) */}
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none z-30">
+          <span className="text-[10px] text-blue-400 font-mono tracking-[0.5em] uppercase">
+            Powered by Nortec Tech Legacy Infrastructure
+          </span>
+        </div>
+
         {/* Gradient orbsStatus */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-900/10 rounded-full blur-3xl" />
@@ -28,29 +35,47 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-60 md:mt-80">
 
+        {/* Regional Focus Badge */}
+        <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           className="inline-flex flex-wrap items-center justify-center gap-4 mb-8"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <Compass className="w-3 h-3" />
+            NOR (Direção & SEO)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <Cpu className="w-3 h-3" />
+            TEC (Performance & Código)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <Globe className="w-3 h-3" />
+            NET (Rede & Hospedagem)
+          </div>
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8">
-
-          Tenha Presença Digital
+          Alexis Digital: O seu
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
-            Criação de Sites de Alta Conversão
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-purple-400">
+            NORTE em Conversão
           </span>
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            com Estratégias de SEO e Marketing Aplicados no Código
+            com SEO e Marketing Nativo no Código
           </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-          Entregamos sites com tecnologia de ponta, desenvolvidos em <strong>Next Gen</strong> com código otimizado nativamente para máxima indexação no Google. Unimos <strong>SEO de alto impacto</strong> a campanhas de Google Ads desenhadas metodicamente para garantir que sua marca alcance o topo das buscas. Nosso foco é claro: posicionar você exatamente onde o seu cliente está.
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+          Unimos o legado tecnológico da Nortecnet à expertise da Alexis Marketing para entregar sites com <strong>máxima indexação</strong> no Google. Especialistas em impulsionar marcas na <strong>Zona Norte de BH, Rio de Janeiro e em todo o Norte do Brasil</strong>. Posicionamos você exatamente onde o seu cliente busca direção.
         </motion.p>
 
         <motion.div
@@ -64,8 +89,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-bold group transition-all duration-300 shadow-xl shadow-white/5">
-
-              Iniciar meu projeto
+              Encontrar meu Norte Digital
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>
@@ -74,8 +98,8 @@ export default function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/20 text-black hover:bg-white/5 hover:border-white/40 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 backdrop-blur-sm">
-              Consultoria Google Meu Negócio
+              className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 backdrop-blur-sm">
+              Dominar Buscas Locais (RJ • BH)
             </Button>
           </Link>
         </motion.div>
@@ -100,4 +124,4 @@ export default function HeroSection() {
       </motion.div>
     </section>);
 
-}
+}
