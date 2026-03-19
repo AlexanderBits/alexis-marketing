@@ -1,31 +1,58 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass, Cpu, Globe } from "lucide-react";
+import combinedLogo from "@/assets/combined-logo.png";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden">
-        {/* Logo centralizado no topo */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
+    <section className="relative min-h-[90vh] flex items-center justify-center bg-slate-950 overflow-hidden pt-32 md:pt-48">
+        {/* Unified Logo at Top Right (Reduced size) */}
+        <div className="absolute top-0 right-0 w-full px-6 md:px-12 py-8 flex justify-end items-center z-20">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img src={combinedLogo} alt="Alexis Marketing • Dev - Especialista Google Partner" className="w-[500px] h-auto object-contain" />
+          </motion.div>
         </div>
 
-        {/* Gradient orbs */}
+        {/* Semantic Bridge Badge (SEO Gold) */}
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none z-30">
+          <span className="text-[10px] text-blue-400 font-mono tracking-[0.5em] uppercase">
+            Powered by Nortec Tech Legacy Infrastructure
+          </span>
+        </div>
+
+        {/* Gradient orbsStatus */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-900/10 rounded-full blur-3xl" />
       
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
       
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-40">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}>
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-60 md:mt-80">
 
-          <span className="inline-block px-4 py-1.5 mb-8 text-xs font-medium tracking-widest text-gray-400 uppercase border border-gray-800 rounded-full">
-            Alexis Marketing & Dev
-          </span>
+        {/* Regional Focus Badge */}
+        <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           className="inline-flex flex-wrap items-center justify-center gap-4 mb-8"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <Compass className="w-3 h-3" />
+            NOR (Direção & SEO)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <Cpu className="w-3 h-3" />
+            TEC (Performance & Código)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <Globe className="w-3 h-3" />
+            NET (Rede & Hospedagem)
+          </div>
         </motion.div>
 
         <motion.h1
@@ -33,72 +60,68 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8">
-
-          Criação de Site Profissional
+          Alexis Digital: O seu
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
-            Seguro. Veloz. Exclusivo.
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-purple-400">
+            NORTE em Conversão
           </span>
           <br />
-          Desenvolvimento de Sites
-          <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            com Tecnologia de Ponta
+            com SEO e Marketing Nativo no Código
           </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">Especialista em criação de sites profissionais. Desenvolvo projetos com design exclusivo e arquitetura digital de alta performance, utilizando foundation models de última geração, automação inteligente avançada e data center com hospedagem ilimitada
-
-
-
-
-
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+          Unimos o legado tecnológico da Nortecnet à expertise da Alexis Marketing para entregar sites com <strong>máxima indexação</strong> no Google. Especialistas em impulsionar marcas na <strong>Zona Norte de BH, Rio de Janeiro e em todo o Norte do Brasil</strong>. Posicionamos você exatamente onde o seu cliente busca direção.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-4 justify-center">
+          className="flex flex-col md:flex-row items-center justify-center gap-6 mb-20"
+        >
 
           <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-semibold group transition-all duration-300">
-
+              className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-bold group transition-all duration-300 shadow-xl shadow-white/5">
               Encontrar meu Norte Digital
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>
 
-          <a href="#contato">
+          <Link to="/google-meu-negocio">
             <Button
+              variant="outline"
               size="lg"
-              className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300">
-              Ver Cases de Sucesso
+              className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 backdrop-blur-sm">
+              Dominar Buscas Locais (RJ • BH)
             </Button>
-          </a>
+          </Link>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2">
-
-          <div className="w-6 h-10 border-2 border-gray-700 rounded-full flex justify-center">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 bg-gray-500 rounded-full mt-2" />
-
-          </div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator - Pinned to bottom right of the section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-10 right-10 flex flex-col items-center gap-3 z-30 hidden md:flex">
+        
+        <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold rotate-90 translate-y-8 origin-right opacity-50">Scroll</span>
+        
+        <div className="w-5 h-8 border border-gray-800 rounded-full flex justify-center p-1">
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            className="w-1 h-2 bg-blue-500/50 rounded-full" />
+        </div>
+      </motion.div>
     </section>);
 
-}
+}
