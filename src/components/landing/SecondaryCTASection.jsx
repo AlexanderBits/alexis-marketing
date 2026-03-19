@@ -49,10 +49,12 @@ Inclui suporte contínuo, atualizações, monitoramento e hospedagem otimizada s
             <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-full px-10 py-7 text-lg font-semibold shadow-lg shadow-purple-500/20 group transition-all duration-300">
+                className="bg-white hover:bg-gray-200 rounded-full px-10 py-7 text-lg font-semibold shadow-lg shadow-purple-500/20 group transition-all duration-300">
 
-                Quero um site agora
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+                  Quero um site agora
+                </span>
+                <ArrowRight className="ml-2 w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
           </motion.div>
