@@ -8,6 +8,8 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import CookieConsent from '@/components/landing/CookieConsent';
+import ContractPage from './pages/ContractPage';
+import AdminContractsDashboard from './pages/AdminContractsDashboard';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -59,6 +61,8 @@ const AuthenticatedApp = () => {
           }
         />
       ))}
+      <Route path="/contrato" element={<ContractPage />} />
+      <Route path="/admin-contratos" element={<AdminContractsDashboard />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

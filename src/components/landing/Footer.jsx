@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu, Instagram, Linkedin, Mail, Phone, ExternalLink, Compass } from "lucide-react";
+import { Cpu, Instagram, Linkedin, Mail, Phone, ExternalLink, Compass, Shield } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -48,6 +48,11 @@ export default function Footer() {
               <li>
                 <Link to="/google-meu-negocio" className="text-gray-500 hover:text-white transition-colors text-sm">
                   Google Meu Negócio
+                </Link>
+              </li>
+              <li>
+                <Link to="/contrato" className="text-gray-500 hover:text-white transition-colors text-sm">
+                  Contrato 1
                 </Link>
               </li>
               {["Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) =>
@@ -108,12 +113,15 @@ export default function Footer() {
           <p className="text-gray-600 text-sm">
             © {currentYear} Alexis Dev • Especialista em Desenvolvimento de Sites e SEO.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <Link to="/politica-de-privacidade" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Privacidade
             </Link>
             <Link to="/termos-de-uso" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Termos
+            </Link>
+            <Link to="/admin-contratos" className="text-gray-600 hover:text-blue-500 transition-colors" title="Dashboard Admin">
+              <Shield className="w-4 h-4" />
             </Link>
           </div>
         </div>
