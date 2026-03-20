@@ -186,7 +186,7 @@ export default function AdminContractsDashboard() {
           </div>
 
           <Input
-            placeholder="Buscar por nome, e-mail ou CPF..."
+            placeholder="Buscar por nome, e-mail, CPF ou CNPJ..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="bg-slate-900 border-slate-800 text-white"
