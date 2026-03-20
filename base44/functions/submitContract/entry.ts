@@ -71,43 +71,6 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
             contract_full_text: contractFullText
         });
 
-        // Enviar e-mail para o cliente
-        await base44.asServiceRole.integrations.Core.SendEmail({
-            from_name: "Alexis Marketing & Dev",
-            to: client_email,
-            subject: "Confirmação de Contrato - Alexis Marketing & Dev",
-            body: `
-<h2>Contrato Aceito com Sucesso!</h2>
-<p>Olá ${client_name},</p>
-<p>Seu contrato foi registrado com sucesso. Segue abaixo uma cópia:</p>
-<pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-size: 12px; white-space: pre-wrap;">
-${contractFullText}
-</pre>
-<p>Obrigado por confiar em nossos serviços!</p>
-<p><strong>Alexis Marketing & Dev</strong></p>
-            `
-        });
-
-        // Enviar e-mail para o administrador
-        await base44.asServiceRole.integrations.Core.SendEmail({
-            from_name: "Sistema de Contratos",
-            to: "pastoralexdocavaco@gmail.com",
-            subject: `Novo Contrato: ${client_name} - Plano ${selected_plan.toUpperCase()}`,
-            body: `
-<h2>Novo Contrato Registrado</h2>
-<p><strong>Cliente:</strong> ${client_name}</p>
-<p><strong>CPF:</strong> ${client_cpf}</p>
-<p><strong>E-mail:</strong> ${client_email}</p>
-<p><strong>Plano:</strong> ${selected_plan.toUpperCase()}</p>
-<p><strong>Valor:</strong> R$ ${plan_value.toFixed(2)}/mês</p>
-<p><strong>Endereço:</strong> ${client_street}, ${client_number} - ${client_neighborhood}, ${client_city}/${client_state}, CEP: ${client_cep}</p>
-<hr>
-<pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-size: 12px; white-space: pre-wrap;">
-${contractFullText}
-</pre>
-            `
-        });
-
         return Response.json({ 
             success: true, 
             contract_id: contract.id 

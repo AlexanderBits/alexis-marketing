@@ -60,7 +60,7 @@ export default function ContractPage() {
         setSubmitted(true);
         toast({
           title: "Contrato Aceito com Sucesso!",
-          description: "Uma cópia foi enviada para seu e-mail.",
+          description: "Seu contrato foi registrado e pode ser visualizado no dashboard administrativo.",
         });
       }
     } catch (error) {
@@ -85,7 +85,7 @@ export default function ContractPage() {
           <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto mb-6" />
           <h1 className="text-3xl font-bold text-white mb-4">Contrato Aceito!</h1>
           <p className="text-gray-400 mb-8">
-            Seu contrato foi registrado com sucesso. Você receberá uma cópia por e-mail em instantes.
+            Seu contrato foi registrado com sucesso no sistema.
           </p>
           <Button onClick={() => window.location.href = "/"} className="bg-blue-600 hover:bg-blue-700">
             Voltar ao Início
