@@ -15,8 +15,10 @@ export default function ContractPage() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
   const [formData, setFormData] = useState({
+    client_type: "cpf",
     client_name: "",
     client_cpf: "",
+    client_cnpj: "",
     client_email: "",
     client_cep: "",
     client_street: "",
@@ -245,9 +247,39 @@ export default function ContractPage() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <Label className="text-white mb-3 block">Tipo de Cliente *</Label>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="client_type"
+                    value="cpf"
+                    checked={formData.client_type === "cpf"}
+                    onChange={handleInputChange}
+                    className="w-4 h-4"
+                  />
+                  <span className="text-white">Pessoa Física (CPF)</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="client_type"
+                    value="cnpj"
+                    checked={formData.client_type === "cnpj"}
+                    onChange={handleInputChange}
+                    className="w-4 h-4"
+                  />
+                  <span className="text-white">Pessoa Jurídica (CNPJ)</span>
+                </label>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <Label htmlFor="client_name" className="text-white">Nome Completo *</Label>
+                <Label htmlFor="client_name" className="text-white">
+                  {formData.client_type === "cpf" ? "Nome Completo" : "Razão Social"} *
+                </Label>
                 <Input
                   id="client_name"
                   name="client_name"
@@ -258,14 +290,16 @@ export default function ContractPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="client_cpf" className="text-white">CPF *</Label>
+                <Label htmlFor="client_identifier" className="text-white">
+                  {formData.client_type === "cpf" ? "CPF" : "CNPJ"} *
+                </Label>
                 <Input
-                  id="client_cpf"
-                  name="client_cpf"
-                  value={formData.client_cpf}
+                  id="client_identifier"
+                  name={formData.client_type === "cpf" ? "client_cpf" : "client_cnpj"}
+                  value={formData.client_type === "cpf" ? formData.client_cpf : formData.client_cnpj}
                   onChange={handleInputChange}
                   required
-                  placeholder="000.000.000-00"
+                  placeholder={formData.client_type === "cpf" ? "000.000.000-00" : "00.000.000/0000-00"}
                   className="bg-slate-800 border-slate-700 text-white"
                 />
               </div>
