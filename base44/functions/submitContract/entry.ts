@@ -6,8 +6,10 @@ Deno.serve(async (req) => {
         const body = await req.json();
 
         const {
+            client_type,
             client_name,
             client_cpf,
+            client_cnpj,
             client_email,
             client_cep,
             client_street,
@@ -20,7 +22,7 @@ Deno.serve(async (req) => {
         } = body;
 
         // Validação básica
-        if (!client_name || !client_cpf || !client_email || !client_cep || !client_street || 
+        if (!client_type || !client_name || !client_email || !client_cep || !client_street || 
             !client_number || !client_neighborhood || !client_city || !client_state || !selected_plan) {
             return Response.json({ 
                 success: false, 
@@ -28,7 +30,23 @@ Deno.serve(async (req) => {
             }, { status: 400 });
         }
 
+        // Validar CPF ou CNPJ conforme tipo
+        if (client_type === 'cpf' && !client_cpf) {
+            return Response.json({ 
+                success: false, 
+                error: 'CPF é obrigatório para pessoa física' 
+            }, { status: 400 });
+        }
+
+        if (client_type === 'cnpj' && !client_cnpj) {
+            return Response.json({ 
+                success: false, 
+                error: 'CNPJ é obrigatório para pessoa jurídica' 
+            }, { status: 400 });
+        }
+
         // Gerar texto completo do contrato
+        const clientIdentifier = client_type === 'cpf' ? `CPF: ${client_cpf}` : `CNPJ: ${client_cnpj}`;
         const contractFullText = `
 CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE CONSULTORIA TÉCNICA E TREINAMENTO EM INFORMÁTICA
 
@@ -37,7 +55,7 @@ CNPJ: 65.739.462/0001-70
 Endereço: RUA A4, nº 400, Bairro PARADA IDEAL, GUAPIMIRIM/RJ, CEP 25942-716
 
 CONTRATANTE: ${client_name}
-CPF: ${client_cpf}
+${clientIdentifier}
 E-mail: ${client_email}
 Endereço: ${client_street}, ${client_number} - ${client_neighborhood}, ${client_city}/${client_state}, CEP: ${client_cep}
 
@@ -56,8 +74,10 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
 
         // Salvar contrato no banco de dados
         const contract = await base44.asServiceRole.entities.Contract.create({
+            client_type,
             client_name,
             client_cpf,
+            client_cnpj,
             client_email,
             client_cep,
             client_street,
