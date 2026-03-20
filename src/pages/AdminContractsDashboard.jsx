@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin, Lock } from "lucide-react";
+import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin, Lock, Trash2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function AdminContractsDashboard() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,6 +21,30 @@ export default function AdminContractsDashboard() {
     queryFn: () => base44.entities.Contract.list('-created_date'),
     enabled: isAuthenticated
   });
+
+  const deleteContractMutation = useMutation({
+    mutationFn: (contractId) => base44.entities.Contract.delete(contractId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['contracts'] });
+      toast({
+        title: "Contrato Excluído",
+        description: "O contrato foi removido com sucesso.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Erro ao Excluir",
+        description: error.message || "Não foi possível excluir o contrato.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleDeleteContract = (contractId) => {
+    if (window.confirm("Tem certeza que deseja excluir este contrato? Esta ação não pode ser desfeita.")) {
+      deleteContractMutation.mutate(contractId);
+    }
+  };
 
   const planNames = {
     bronze: "Bronze",
@@ -194,9 +221,19 @@ export default function AdminContractsDashboard() {
                         </CardTitle>
                         <p className="text-sm text-gray-400 mt-1">CPF: {contract.client_cpf}</p>
                       </div>
-                      <Badge className={planColors[contract.selected_plan]}>
-                        {planNames[contract.selected_plan]}
-                      </Badge>
+                      <div className="flex items-center gap-2">
+                        <Badge className={planColors[contract.selected_plan]}>
+                          {planNames[contract.selected_plan]}
+                        </Badge>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleDeleteContract(contract.id)}
+                          className="text-red-400 hover:text-red-300 hover:bg-red-900/20"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </Button>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>

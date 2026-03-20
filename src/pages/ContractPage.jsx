@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,10 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
-import { FileText, CheckCircle2 } from "lucide-react";
+import { FileText, CheckCircle2, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ContractPage() {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
   const [formData, setFormData] = useState({
     client_name: "",
     client_cpf: "",
@@ -25,6 +29,30 @@ export default function ContractPage() {
   const [accepted, setAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const user = await base44.auth.me();
+        if (!user) {
+          navigate('/');
+          return;
+        }
+        setCurrentUser(user);
+        setFormData(prev => ({
+          ...prev,
+          client_email: user.email || '',
+          client_name: user.full_name || ''
+        }));
+      } catch (error) {
+        console.error("Erro ao verificar autenticação:", error);
+        navigate('/');
+      } finally {
+        setIsLoadingAuth(false);
+      }
+    };
+    checkAuth();
+  }, [navigate]);
 
   const planValues = {
     bronze: 49.90,
@@ -73,6 +101,17 @@ export default function ContractPage() {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoadingAuth) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="flex items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+          <p className="text-white">Verificando autenticação...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (submitted) {
     return (
@@ -239,10 +278,15 @@ export default function ContractPage() {
                 name="client_email"
                 type="email"
                 value={formData.client_email}
-                onChange={handleInputChange}
-                required
-                className="bg-slate-800 border-slate-700 text-white"
+                readOnly
+                className="bg-slate-800 border-slate-700 text-white opacity-75 cursor-not-allowed"
               />
+              <div className="mt-2 p-3 bg-blue-900/30 border border-blue-700 rounded-md">
+                <p className="text-blue-300 text-sm flex items-start gap-2">
+                  <span>ℹ️</span>
+                  <span>Seu e-mail foi preenchido automaticamente com sua conta Google.</span>
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
