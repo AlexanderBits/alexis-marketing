@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin, Lock } from "lucide-react";
 
 export default function AdminContractsDashboard() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-
-  React.useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const currentUser = await base44.auth.me();
-        setUser(currentUser);
-      } catch (error) {
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-    checkAuth();
-  }, []);
 
   const { data: contracts = [], isLoading } = useQuery({
     queryKey: ['contracts'],
     queryFn: () => base44.entities.Contract.list('-created_date'),
-    enabled: user?.role === 'admin'
+    enabled: isAuthenticated
   });
 
   const planNames = {
@@ -44,28 +31,49 @@ export default function AdminContractsDashboard() {
     ouro: "bg-yellow-100 text-yellow-800"
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === "siterio2019") {
+      setIsAuthenticated(true);
+    } else {
+      alert("Senha incorreta!");
+      setPassword("");
+    }
+  };
+
   const filteredContracts = contracts.filter(contract => 
     contract.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contract.client_email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contract.client_cpf?.includes(searchTerm)
   );
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (!user || user.role !== 'admin') {
+  if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6">
         <Card className="max-w-md w-full bg-slate-900 border-slate-800">
-          <CardContent className="pt-6 text-center">
-            <Shield className="w-16 h-16 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">Acesso Negado</h2>
-            <p className="text-gray-400">Você não tem permissão para acessar esta página.</p>
+          <CardHeader>
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center">
+                <Lock className="w-8 h-8 text-blue-500" />
+              </div>
+            </div>
+            <CardTitle className="text-white text-center text-2xl">Dashboard de Contratos</CardTitle>
+            <p className="text-gray-400 text-center text-sm">Digite a senha para acessar</p>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <Input
+                type="password"
+                placeholder="Senha de acesso"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="bg-slate-800 border-slate-700 text-white"
+                autoFocus
+              />
+              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                Acessar Dashboard
+              </Button>
+            </form>
           </CardContent>
         </Card>
       </div>
