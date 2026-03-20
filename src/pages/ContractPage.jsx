@@ -1,0 +1,363 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { base44 } from "@/api/base44Client";
+import { useToast } from "@/components/ui/use-toast";
+import { FileText, CheckCircle2 } from "lucide-react";
+
+export default function ContractPage() {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    client_name: "",
+    client_cpf: "",
+    client_email: "",
+    client_cep: "",
+    client_street: "",
+    client_number: "",
+    client_neighborhood: "",
+    client_city: "",
+    client_state: "",
+    selected_plan: "bronze"
+  });
+  const [accepted, setAccepted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const planValues = {
+    bronze: 49.90,
+    prata: 99.90,
+    ouro: 199.99
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!accepted) {
+      toast({
+        title: "Aceite Necessário",
+        description: "Você precisa aceitar os termos do contrato para continuar.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await base44.functions.invoke('submitContract', {
+        ...formData,
+        plan_value: planValues[formData.selected_plan]
+      });
+
+      if (response.data.success) {
+        setSubmitted(true);
+        toast({
+          title: "Contrato Aceito com Sucesso!",
+          description: "Uma cópia foi enviada para seu e-mail.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Erro ao processar contrato",
+        description: error.message || "Tente novamente mais tarde.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-md text-center"
+        >
+          <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto mb-6" />
+          <h1 className="text-3xl font-bold text-white mb-4">Contrato Aceito!</h1>
+          <p className="text-gray-400 mb-8">
+            Seu contrato foi registrado com sucesso. Você receberá uma cópia por e-mail em instantes.
+          </p>
+          <Button onClick={() => window.location.href = "/"} className="bg-blue-600 hover:bg-blue-700">
+            Voltar ao Início
+          </Button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-950 py-20 px-6">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-slate-900 rounded-2xl shadow-2xl p-8 md:p-12"
+        >
+          <div className="flex items-center gap-4 mb-8">
+            <FileText className="w-10 h-10 text-blue-500" />
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
+              Contrato de Prestação de Serviços
+            </h1>
+          </div>
+
+          {/* Contract Text */}
+          <div className="bg-slate-800 rounded-xl p-6 mb-8 max-h-96 overflow-y-auto text-gray-300 text-sm leading-relaxed">
+            <h2 className="text-xl font-bold text-white mb-4">
+              CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE CONSULTORIA TÉCNICA E TREINAMENTO EM INFORMÁTICA
+            </h2>
+            
+            <p className="mb-4">Pelo presente instrumento particular de contrato de prestação de serviços, de um lado:</p>
+            
+            <p className="mb-4">
+              <strong className="text-white">CONTRATADO:</strong> ISRAEL DE OLIVEIRA PINHEIRO, pessoa física, inscrito no CNPJ sob o nº 65.739.462/0001-70, 
+              com sede na RUA A4, nº 400, Bairro PARADA IDEAL, no Município de GUAPIMIRIM, Estado do Rio de Janeiro, CEP 25942-716.
+            </p>
+
+            <p className="mb-4">E, de outro lado:</p>
+            
+            <p className="mb-4">
+              <strong className="text-white">CONTRATANTE:</strong> Os dados serão preenchidos abaixo.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA PRIMEIRA – DO OBJETO DO CONTRATO</h3>
+            <p className="mb-4">
+              1.1. O presente contrato tem como objeto a prestação de serviços de consultoria técnica e treinamento em informática, 
+              focados na gestão e otimização de conteúdo digital em ambiente web, a serem realizados pelo CONTRATADO em favor do CONTRATANTE.
+            </p>
+            <p className="mb-4">
+              1.2. Os serviços incluem, mas não se limitam a: otimização de sites, estratégias de conteúdo, análise de performance, 
+              treinamento em ferramentas de gerenciamento de conteúdo.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA SEGUNDA – DO PLANO E VALOR MENSAL</h3>
+            <p className="mb-4">2.1. O CONTRATANTE opta por um dos seguintes planos de serviços, com o valor mensal correspondente:</p>
+            <ul className="list-disc ml-8 mb-4">
+              <li><strong>Plano Bronze:</strong> R$ 49,90 (Quarenta e nove reais e noventa centavos)</li>
+              <li><strong>Plano Prata:</strong> R$ 99,90 (Noventa e nove reais e noventa centavos)</li>
+              <li><strong>Plano Ouro:</strong> R$ 199,99 (Cento e noventa e nove reais e noventa e nove centavos)</li>
+            </ul>
+            <p className="mb-4">
+              2.2. O CONTRATANTE declara ter ciência e aceita o plano e o valor mensal selecionado, que será pago recorrentemente.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA TERCEIRA – DA FIDELIDADE</h3>
+            <p className="mb-4">
+              3.1. As partes acordam um período de fidelidade de 2 (dois) anos, a contar da data de aceite deste contrato.
+            </p>
+            <p className="mb-4">
+              3.2. Em caso de rescisão antecipada por parte do CONTRATANTE antes do término do período de fidelidade, 
+              será aplicada multa equivalente a 30% (trinta por cento) do valor remanescente das mensalidades até o fim do período de fidelidade.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA QUARTA – DO BÔNUS DE CRIAÇÃO DE SITE</h3>
+            <p className="mb-4">
+              4.1. Como benefício pela contratação e adesão ao período de fidelidade, o CONTRATADO oferece ao CONTRATANTE 
+              um serviço de criação de site sem custos adicionais.
+            </p>
+            <p className="mb-4">
+              4.2. Este serviço de criação de site gratuito está diretamente vinculado ao cumprimento integral do período de fidelidade 
+              estabelecido na Cláusula Terceira. A rescisão antecipada implicará na cobrança proporcional do valor de mercado do serviço 
+              de criação do site, além da multa de fidelidade.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA QUINTA – DAS OBRIGAÇÕES DO CONTRATADO</h3>
+            <p className="mb-4">5.1. Prestar os serviços objeto deste contrato com diligência e de acordo com as boas práticas de mercado.</p>
+            <p className="mb-4">
+              5.2. Manter sigilo sobre todas as informações confidenciais do CONTRATANTE de que venha a ter conhecimento 
+              em razão da prestação dos serviços.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA SEXTA – DAS OBRIGAÇÕES DO CONTRATANTE</h3>
+            <p className="mb-4">6.1. Fornecer todas as informações, acessos e materiais necessários para a adequada prestação dos serviços.</p>
+            <p className="mb-4">6.2. Efetuar o pagamento dos valores mensais na forma e prazos acordados.</p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA SÉTIMA – DA CONFIRMAÇÃO E ACEITE</h3>
+            <p className="mb-4">
+              7.1. Ao clicar no botão "Aceitar Contrato", o CONTRATANTE declara ter lido, compreendido e concordado 
+              com todos os termos e condições deste contrato.
+            </p>
+            <p className="mb-4">
+              7.2. O aceite eletrônico, juntamente com o registro dos dados do CONTRATANTE, constituirá prova legal 
+              da contratação e aceitação das condições aqui estabelecidas.
+            </p>
+
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA OITAVA – DO FORO</h3>
+            <p className="mb-4">
+              8.1. Fica eleito o foro da comarca de Guapimirim/RJ para dirimir quaisquer dúvidas oriundas deste contrato, 
+              renunciando as partes a qualquer outro, por mais privilegiado que seja.
+            </p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <Label htmlFor="client_name" className="text-white">Nome Completo *</Label>
+                <Input
+                  id="client_name"
+                  name="client_name"
+                  value={formData.client_name}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+              <div>
+                <Label htmlFor="client_cpf" className="text-white">CPF *</Label>
+                <Input
+                  id="client_cpf"
+                  name="client_cpf"
+                  value={formData.client_cpf}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="000.000.000-00"
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="client_email" className="text-white">E-mail *</Label>
+              <Input
+                id="client_email"
+                name="client_email"
+                type="email"
+                value={formData.client_email}
+                onChange={handleInputChange}
+                required
+                className="bg-slate-800 border-slate-700 text-white"
+              />
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <div>
+                <Label htmlFor="client_cep" className="text-white">CEP *</Label>
+                <Input
+                  id="client_cep"
+                  name="client_cep"
+                  value={formData.client_cep}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="00000-000"
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <Label htmlFor="client_street" className="text-white">Logradouro *</Label>
+                <Input
+                  id="client_street"
+                  name="client_street"
+                  value={formData.client_street}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-6">
+              <div>
+                <Label htmlFor="client_number" className="text-white">Número *</Label>
+                <Input
+                  id="client_number"
+                  name="client_number"
+                  value={formData.client_number}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <Label htmlFor="client_neighborhood" className="text-white">Bairro *</Label>
+                <Input
+                  id="client_neighborhood"
+                  name="client_neighborhood"
+                  value={formData.client_neighborhood}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+              <div>
+                <Label htmlFor="client_state" className="text-white">Estado *</Label>
+                <Input
+                  id="client_state"
+                  name="client_state"
+                  value={formData.client_state}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="RJ"
+                  maxLength={2}
+                  className="bg-slate-800 border-slate-700 text-white"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="client_city" className="text-white">Cidade *</Label>
+              <Input
+                id="client_city"
+                name="client_city"
+                value={formData.client_city}
+                onChange={handleInputChange}
+                required
+                className="bg-slate-800 border-slate-700 text-white"
+              />
+            </div>
+
+            <div>
+              <Label className="text-white mb-3 block">Selecione o Plano *</Label>
+              <div className="grid md:grid-cols-3 gap-4">
+                {["bronze", "prata", "ouro"].map((plan) => (
+                  <div
+                    key={plan}
+                    onClick={() => setFormData({ ...formData, selected_plan: plan })}
+                    className={`cursor-pointer p-4 rounded-lg border-2 transition-all ${
+                      formData.selected_plan === plan
+                        ? "border-blue-500 bg-blue-500/10"
+                        : "border-slate-700 bg-slate-800 hover:border-slate-600"
+                    }`}
+                  >
+                    <h3 className="text-lg font-bold text-white capitalize mb-2">{plan}</h3>
+                    <p className="text-2xl font-bold text-blue-400">R$ {planValues[plan].toFixed(2)}</p>
+                    <p className="text-sm text-gray-400 mt-1">por mês</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3 pt-4">
+              <Checkbox
+                id="accept"
+                checked={accepted}
+                onCheckedChange={setAccepted}
+                className="mt-1"
+              />
+              <Label htmlFor="accept" className="text-white cursor-pointer">
+                Li e aceito todos os termos e condições deste contrato, incluindo o período de fidelidade de 2 anos.
+              </Label>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={!accepted || isSubmitting}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg font-semibold"
+            >
+              {isSubmitting ? "Processando..." : "Aceitar Contrato"}
+            </Button>
+          </form>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
