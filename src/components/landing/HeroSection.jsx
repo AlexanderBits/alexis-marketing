@@ -103,7 +103,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               className="border-indigo-500/50 text-white hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 rounded-none px-10 py-7 text-base font-semibold transition-all duration-300 backdrop-blur-sm uppercase tracking-widest border-b-4 border-transparent hover:border-white/20">
-              EXPLORAR BUSCAS LOCAIS
+              GOOGLE MEU NEGÓCIO
             </Button>
           </Link>
         </motion.div>
