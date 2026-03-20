@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { base44 } from "@/api/base44Client";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -84,14 +86,35 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}>
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+          <motion.button
+            onClick={handleContractClick}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}>
+            <Button
+              size="lg"
+              className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-base font-semibold group transition-all duration-300 flex items-center gap-2">
+              {isAuthenticated ? (
+                <>
+                  Acessar Contrato
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </>
+              ) : (
+                <>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png" alt="Google" className="h-5 w-5" />
+                  Entrar com Google para Contratar
+                </>
+              )}
+            </Button>
+          </motion.button>
 
           <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
               className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-semibold group transition-all duration-300">
-
-              Iniciar meu projeto
+              Solicitar Orçamento
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>
