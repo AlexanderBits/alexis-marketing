@@ -5,20 +5,20 @@ import { Compass, Cpu, Globe } from "lucide-react";
 const differentials = [
   {
     icon: Compass,
-    title: "NORTE (Estratégia & Foco)",
-    description: "Direcionamos sua marca para o topo. Especialistas em SEO para a Zona Norte (RJ/BH) e mercados nacionais, garantindo que seu negócio tenha o rumo certo para converter.",
+    title: "ESTRATÉGIA (SEO de Elite)",
+    description: "Direcionamos seu Desenvolvimento de Sites para o topo. Especialistas em SEO que garantem que seu projeto de Criação de Sites tenha a visibilidade necessária para converter visitantes em clientes.",
     gradient: "from-blue-600 to-indigo-600"
   },
   {
     icon: Cpu,
-    title: "TEC (Tecnologia & Performance)",
-    description: "Desenvolvimento técnico de elite utilizando tecnologias Next-Gen. Código limpo, rápido e otimizado nativamente para Google Vitals e máxima performance.",
+    title: "DESENVOLVIMENTO (Código Mobile)",
+    description: "Criação de Sites profissionais com tecnologias Next-Gen. Foco total em desenvolvimento de sites rápidos, responsivos e otimizados nativamente para Google Vitals.",
     gradient: "from-purple-600 to-fuchsia-600"
   },
   {
     icon: Globe,
-    title: "NET (Rede & Infraestrutura)",
-    description: "Sua rede sempre online. Hospedagem premium com servidores estáveis, segurança avançada e infraestrutura de rede global para garantir que seu site nunca pare.",
+    title: "INFRAESTRUTURA (Hospedagem)",
+    description: "Hospedagem premium de alta autoridade. Garantimos que sua Criação de Site tenha a infraestrutura estável necessária para suportar milhares de acessos com segurança avançada.",
     gradient: "from-cyan-600 to-blue-600"
   }
 ];
@@ -38,13 +38,13 @@ export default function DifferentialsSection() {
           className="text-center mb-20"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-blue-500 uppercase mb-4 block">
-            Os Pilares Nortec + Alexis
+            Especialistas em Criação de Sites
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Nossa Metodologia Integrada
+            Metodologia em Desenvolvimento de Sites
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto italic">
-            Transformamos a autoridade do domínio Nortecnet em uma estrutura de sucesso para o seu negócio.
+            Transformamos a alta autoridade do nosso domínio em resultados reais para o seu projeto digital.
           </p>
         </motion.div>
 

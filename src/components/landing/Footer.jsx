@@ -25,11 +25,11 @@ export default function Footer() {
                   className="h-20 w-auto object-contain" />
             </motion.div>
             <p className="text-gray-500 mb-6 max-w-sm mx-auto md:mx-0">
-              Sua <strong>presença digital premium</strong> começa aqui. Como <strong>Especialista Google Partner</strong>, entregamos soluções de criação de sites profissionais e estratégias de SEO de alta performance para colocar seu negócio na primeira página.
+              Sua <strong>presença digital premium</strong> começa aqui. Como <strong>Especialista em Desenvolvimento de Sites</strong>, entregamos soluções de criação de sites profissionais e estratégias de SEO de alta performance para colocar seu negócio no topo.
             </p>
             <div className="flex items-center gap-2 text-xs text-gray-600 justify-center md:justify-start">
               <Cpu className="w-3 h-3" />
-              <span>Desenvolvido com Tecnologia Next-Gen • Alexis & Nortec</span>
+              <span>Especialistas em Criação de Sites • Alexis Dev Authority</span>
             </div>
           </div>
 
@@ -96,9 +96,9 @@ export default function Footer() {
         {/* Regional SEO Presence Section */}
         <div className="mt-16 pt-12 border-t border-gray-900/50">
           <div className="text-center max-w-3xl mx-auto">
-            <h5 className="text-white text-xs font-bold uppercase tracking-widest mb-4 opacity-50">Localidade & Presença Regional</h5>
+            <h5 className="text-white text-xs font-bold uppercase tracking-widest mb-4 opacity-50">Abrangência & Presença Nacional</h5>
             <p className="text-gray-600 text-[11px] leading-relaxed italic">
-              Estrategicamente posicionados para dominar a presença digital na <strong>Zona Norte do Rio de Janeiro</strong>, <strong>Zona Norte de Belo Horizonte</strong>, <strong>Norte de Minas Gerais (Janaúba • Montes Claros)</strong> e em toda a <strong>Região Norte do Brasil</strong>. Alexis Digital: O seu Norte para resultados extraordinários no Google.
+              Liderança tecnológica com atendimento em <strong>todo o território nacional</strong>. Consolidamos nossa autoridade digital através de resultados extraordinários na Zona Norte do Rio, Zona Norte de BH e em todo o Norte do Brasil, operando hoje com infraestrutura de elite para clientes em qualquer parte do país e do mundo.
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-sm">
-            © {currentYear} Alexis Digital • Desenvolvimento de Sites e Marketing Google.
+            © {currentYear} Alexis Dev • Especialista em Desenvolvimento de Sites e SEO.
           </p>
           <div className="flex gap-6">
             <Link to="/politica-de-privacidade" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">

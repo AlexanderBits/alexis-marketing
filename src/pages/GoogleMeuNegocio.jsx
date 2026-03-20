@@ -13,7 +13,7 @@ export default function GoogleMeuNegocio() {
   }, []);
 
   return (
-    <div className="bg-slate-950 min-h-screen">
+    <div className="dark bg-slate-950 min-h-screen">
       <GMN_Hero />
       <GMN_Cycle />
       <GMN_Authority />

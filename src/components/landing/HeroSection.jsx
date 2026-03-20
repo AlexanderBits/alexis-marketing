@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Cpu, Globe } from "lucide-react";
+import { ArrowRight, Compass, Cpu, Globe, ShieldCheck } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -39,7 +39,7 @@ export default function HeroSection() {
         <motion.div
            initial={{ opacity: 0, scale: 0.9 }}
            animate={{ opacity: 1, scale: 1 }}
-           className="inline-flex flex-wrap items-center justify-center gap-4 mb-8"
+           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
         >
           <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
             <Compass className="w-3 h-3" />
@@ -53,6 +53,10 @@ export default function HeroSection() {
             <Globe className="w-3 h-3" />
             NET (Rede & Hospedagem)
           </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/10 text-green-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
+            <ShieldCheck className="w-3 h-3" />
+            ABRANGÊNCIA NACIONAL
+          </div>
         </motion.div>
 
         <motion.h1
@@ -60,14 +64,14 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8">
-          Alexis Digital: O seu
+          Alexis Dev: Líder em
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-purple-400">
-            NORTE em Conversão
+            Desenvolvimento de Sites
           </span>
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            com SEO e Marketing Nativo no Código
+            Profissionais com SEO Nativo
           </span>
         </motion.h1>
 
@@ -75,7 +79,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-          Unimos o legado tecnológico da Nortecnet à expertise da Alexis Marketing para entregar sites com <strong>máxima indexação</strong> no Google. Especialistas em impulsionar marcas na <strong>Zona Norte de BH, Rio de Janeiro e em todo o Norte do Brasil</strong>. Posicionamos você exatamente onde o seu cliente busca direção.
+          Lideramos o <strong>Desenvolvimento de Sites Profissionais</strong> com abrangência em todo o território nacional. Unimos o legado tecnológico da Nortecnet à expertise da Alexis Marketing para entregar soluções de alta autoridade para empresas no <strong>Brasil e no mundo</strong>, mantendo a excelência estratégica consolidada na Zona Norte de BH, Rio de Janeiro e em todo o Norte brasileiro.
         </motion.p>
 
         <motion.div
@@ -88,8 +92,8 @@ export default function HeroSection() {
           <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-bold group transition-all duration-300 shadow-xl shadow-white/5">
-              Encontrar meu Norte Digital
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 rounded-none px-10 py-7 text-base font-bold group transition-all duration-300 shadow-2xl shadow-indigo-500/20 uppercase tracking-widest border-b-4 border-white/20">
+              CRIAR MEU SITE AGORA
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>
@@ -98,8 +102,8 @@ export default function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 backdrop-blur-sm">
-              Dominar Buscas Locais (RJ • BH)
+              className="border-indigo-500/50 text-white hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 rounded-none px-10 py-7 text-base font-semibold transition-all duration-300 backdrop-blur-sm uppercase tracking-widest border-b-4 border-transparent hover:border-white/20">
+              EXPLORAR BUSCAS LOCAIS
             </Button>
           </Link>
         </motion.div>

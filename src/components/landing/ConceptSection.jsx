@@ -14,11 +14,11 @@ export default function ConceptSection() {
           transition={{ duration: 0.8 }}>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Autoridade Digital & Liderança Regional: O Legado Nortec + Alexis
+            Autoridade em Desenvolvimento de Sites: O Legado Nortec + Alexis
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-            Com raízes profundas no <strong>Norte de Minas Gerais</strong> e uma trajetória de inovação tecnológica, unimos a tradição da Nortecnet com a expertise em marketing da Alexis Digital. Nossa missão é clara: garantir que empresas da <strong>Zona Norte do Rio, Belo Horizonte e de todo o Norte brasileiro</strong> dominem a primeira página do Google. Como <strong>Especialistas Google Partner</strong>, transformamos visibilidade em faturamento real, unindo a força do Google Meu Negócio com sites de conversão cirúrgica.
+            Com uma trajetória de mais de 20 anos na web, somos especialistas em <strong>Desenvolvimento de Sites</strong> que não apenas impressionam visualmente, mas dominam o Google em <strong>todo o Brasil e no mundo</strong>. Nosso trabalho com empresas de <strong>Belo Horizonte, Rio de Janeiro e de todo o Norte brasileiro</strong> se expande para resultados globais com foco em performance extrema e SEO nativo. Como <strong>Especialistas Google Partner</strong>, garantimos a <strong>Criação de Sites</strong> profissionais com a máxima autoridade técnica disponível no mercado hoje.
           </p>
         </motion.div>
 

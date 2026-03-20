@@ -82,10 +82,8 @@ export default function SuccessCasesSection() {
                   rel="noopener noreferrer">
 
                     <Button
-                    variant="outline" className="bg-transparent text-white px-4 py-2 text-sm font-medium rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:text-accent-foreground h-9 w-full border-gray-800 hover:bg-white/5 hover:border-gray-600 group/btn">
-
-
-                      Conheça o site no ar
+                      className="bg-slate-900/50 hover:bg-white/10 text-white border-gray-800 hover:border-gray-600 px-4 py-2 text-sm font-medium rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 w-full shadow-sm hover:scale-[1.02] active:scale-[0.98] group/btn">
+                      Acesse o site
                       <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
                     </Button>
                   </a>

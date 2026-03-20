@@ -27,19 +27,13 @@ export default function SecondaryCTASection() {
             <span className="text-sm text-gray-300">Tecnologia Next-Gen</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">Infraestrutura completa com dashboard administrativo, banco de dados dedicado, hospedagem otimizada e domínio .com.br - .org   incluso
-
-
-
-
-
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
+            Infraestrutura completa para seu Desenvolvimento de Sites Profissional
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">Seu site é entregue pronto, funcional e sem qualquer preocupação técnica.
-Inclui suporte contínuo, atualizações, monitoramento e hospedagem otimizada sem limites, tudo construído com arquitetura inteligente de alta performance. Você foca no negócio — nós cuidamos de todo o resto.
-
-
-
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+            Entregamos a Criação de Sites completa: dashboard administrativo, banco de dados dedicado e hospedagem otimizada. 
+            Você foca no seu negócio enquanto nós cuidamos de toda a arquitetura inteligente de alta performance.
           </p>
 
           <motion.div
@@ -49,10 +43,9 @@ Inclui suporte contínuo, atualizações, monitoramento e hospedagem otimizada s
             <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-full px-10 py-7 text-lg font-semibold shadow-lg shadow-purple-500/20 group transition-all duration-300">
-
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 rounded-none px-12 py-7 text-lg font-bold shadow-2xl transition-all duration-300 uppercase tracking-widest border-b-4 border-white/20">
                 Quero um site agora
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </a>
           </motion.div>

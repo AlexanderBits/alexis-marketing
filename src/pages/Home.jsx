@@ -11,7 +11,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export default function Home() {
   return (
-    <div className="bg-slate-950 min-h-screen">
+    <div className="dark bg-slate-950 min-h-screen">
       <HeroSection />
       <ConceptSection />
       <DifferentialsSection />
