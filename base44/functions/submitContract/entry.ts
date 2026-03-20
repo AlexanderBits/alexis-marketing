@@ -47,7 +47,9 @@ VALOR MENSAL: R$ ${plan_value.toFixed(2)}
 O CONTRATANTE declara ter lido e aceito todas as cláusulas deste contrato, incluindo:
 - Período de fidelidade de 2 (dois) anos
 - Multa de 30% do valor remanescente em caso de rescisão antecipada
-- Bônus de criação de site gratuito vinculado ao cumprimento da fidelidade
+- Disponibilização de plataforma digital (site institucional padrão) em regime de comodato
+- Gratuidade vinculada à manutenção do contrato por 12 meses
+- Indenização de R$ 1.500,00 em caso de rescisão antecipada (implementação técnica)
 
 Data de Aceite: ${new Date().toLocaleString('pt-BR')}
 `;

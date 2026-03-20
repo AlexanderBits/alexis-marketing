@@ -159,15 +159,21 @@ export default function ContractPage() {
               será aplicada multa equivalente a 30% (trinta por cento) do valor remanescente das mensalidades até o fim do período de fidelidade.
             </p>
 
-            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA QUARTA – DO BÔNUS DE CRIAÇÃO DE SITE</h3>
+            <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA QUARTA – DA DISPONIBILIZAÇÃO DE PLATAFORMA DIGITAL (BÔNUS)</h3>
             <p className="mb-4">
-              4.1. Como benefício pela contratação e adesão ao período de fidelidade, o CONTRATADO oferece ao CONTRATANTE 
-              um serviço de criação de site sem custos adicionais.
+              4.1. Como benefício pela adesão ao período de fidelidade, o CONTRATADO disponibilizará ao CONTRATANTE, em regime de comodato de uso, 
+              uma interface digital (site institucional padrão), configurada para fins de divulgação dos serviços objeto deste contrato.
             </p>
             <p className="mb-4">
-              4.2. Este serviço de criação de site gratuito está diretamente vinculado ao cumprimento integral do período de fidelidade 
-              estabelecido na Cláusula Terceira. A rescisão antecipada implicará na cobrança proporcional do valor de mercado do serviço 
-              de criação do site, além da multa de fidelidade.
+              4.2. A gratuidade da configuração e hospedagem desta interface está estritamente vinculada à manutenção do contrato pelo prazo de 12 (doze) meses.
+            </p>
+            <p className="mb-4">
+              4.3. Em caso de rescisão antecipada por iniciativa do CONTRATANTE, este deverá indenizar o CONTRATADO pelo serviço de implementação técnica 
+              no valor de R$ 1.500,00 (mil e quinhentos reais), sem prejuízo da multa rescisória prevista na Cláusula Terceira.
+            </p>
+            <p className="mb-4">
+              4.4. O CONTRATANTE declara estar ciente de que a referida interface é de propriedade intelectual do CONTRATADO, sendo interrompido o acesso 
+              e a exibição desta em caso de rescisão contratual, salvo se houver negociação à parte para a migração de arquivos e banco de dados.
             </p>
 
             <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA QUINTA – DAS OBRIGAÇÕES DO CONTRATADO</h3>
