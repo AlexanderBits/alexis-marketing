@@ -347,7 +347,7 @@ export default function ContractPage() {
                 id="accept"
                 checked={accepted}
                 onCheckedChange={setAccepted}
-                className="mt-1"
+                className="mt-1 border-white data-[state=checked]:bg-white data-[state=checked]:text-slate-900"
               />
               <Label htmlFor="accept" className="text-white cursor-pointer">
                 Li e aceito todos os termos e condições deste contrato, incluindo o período de fidelidade de 2 anos.
