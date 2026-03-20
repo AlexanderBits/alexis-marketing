@@ -71,7 +71,8 @@ export default function AdminContractsDashboard() {
   const filteredContracts = contracts.filter(contract => 
     contract.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contract.client_email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contract.client_cpf?.includes(searchTerm)
+    contract.client_cpf?.includes(searchTerm) ||
+    contract.client_cnpj?.includes(searchTerm)
   );
 
   if (!isAuthenticated) {
@@ -219,7 +220,9 @@ export default function AdminContractsDashboard() {
                           <User className="w-5 h-5 text-blue-500" />
                           {contract.client_name}
                         </CardTitle>
-                        <p className="text-sm text-gray-400 mt-1">CPF: {contract.client_cpf}</p>
+                        <p className="text-sm text-gray-400 mt-1">
+                          {contract.client_type === "cnpj" ? "CNPJ" : "CPF"}: {contract.client_type === "cnpj" ? contract.client_cnpj : contract.client_cpf}
+                        </p>
                       </div>
                       <div className="flex items-center gap-2">
                         <Badge className={planColors[contract.selected_plan]}>
