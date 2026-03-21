@@ -23,6 +23,13 @@ if (localStorage.getItem('app_cache_busted') !== CACHE_BUSTER_KEY) {
   console.log('React Query cache cleared for new version');
 }
 
+// Força invalidação de cache em Service Workers
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    registrations.forEach(registration => registration.unregister())
+  })
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App />
 )
