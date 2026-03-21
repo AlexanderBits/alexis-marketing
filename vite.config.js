@@ -22,4 +22,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Force empty outDir to ensure no old artifacts remain
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        // Add a build-time timestamp to facilitate tracking and cache invalidation
+        chunkFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        entryFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        assetFileNames: `assets/[name]-[hash]-${Date.now()}.[ext]`,
+      },
+    },
+  },
 });
