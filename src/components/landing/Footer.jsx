@@ -1,10 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-<<<<<<< HEAD
 import { Cpu, Mail, Phone, ExternalLink, Compass } from "lucide-react";
-=======
-import { Cpu, Instagram, Linkedin, Mail, Phone, ExternalLink, Compass, Shield } from "lucide-react";
->>>>>>> 2dfd918d03e7804c1d8f5c0683c17bf51274af01
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -56,7 +52,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/contrato" className="text-gray-500 hover:text-white transition-colors text-sm">
-                  Contrato 1
+                  Contrato
                 </Link>
               </li>
               {["Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) =>
@@ -95,7 +91,7 @@ export default function Footer() {
           <div className="text-center max-w-3xl mx-auto">
             <h5 className="text-white text-xs font-bold uppercase tracking-widest mb-4 opacity-50">Abrangência & Presença Nacional</h5>
             <p className="text-gray-600 text-[11px] leading-relaxed italic">
-              Liderança tecnológica com atendimento em <strong>todo o território nacional</strong>. Consolidamos nossa autoridade digital através de resultados extraordinários na Zona Norte do Rio, Zona Norte de BH e em todo o Norte do Brasil, operando hoje com infraestrutura de elite para clientes em qualquer parte do país e do mundo.
+              Liderança tecnológica com atendimento em <strong>todo o território nacional</strong>. Consolidamos nossa autoridade digital através de resultados extraordinários na Zona Norte de Rio, Zona Norte de BH e em todo o Norte do Brasil, operando hoje com infraestrutura de elite para clientes em qualquer parte do país e do mundo.
             </p>
           </div>
         </div>
@@ -105,20 +101,15 @@ export default function Footer() {
           <p className="text-gray-600 text-sm">
             © {currentYear} Alexis Dev • Especialista em Desenvolvimento de Sites e SEO.
           </p>
-          <div className="flex gap-6 items-center">
+          <div className="flex gap-6">
             <Link to="/politica-de-privacidade" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Privacidade
             </Link>
             <Link to="/termos-de-uso" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Termos
             </Link>
-<<<<<<< HEAD
             <Link to="/contrato" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Contratos
-=======
-            <Link to="/admin-contratos" className="text-gray-600 hover:text-blue-500 transition-colors" title="Dashboard Admin">
-              <Shield className="w-4 h-4" />
->>>>>>> 2dfd918d03e7804c1d8f5c0683c17bf51274af01
             </Link>
           </div>
         </div>

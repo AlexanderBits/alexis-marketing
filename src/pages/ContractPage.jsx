@@ -37,11 +37,7 @@ export default function ContractPage() {
       try {
         const user = await base44.auth.me();
         if (!user) {
-<<<<<<< HEAD
           navigate('/login');
-=======
-          navigate('/');
->>>>>>> 2dfd918d03e7804c1d8f5c0683c17bf51274af01
           return;
         }
         setCurrentUser(user);
@@ -52,11 +48,7 @@ export default function ContractPage() {
         }));
       } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
-<<<<<<< HEAD
         navigate('/login');
-=======
-        navigate('/');
->>>>>>> 2dfd918d03e7804c1d8f5c0683c17bf51274af01
       } finally {
         setIsLoadingAuth(false);
       }
@@ -134,7 +126,7 @@ export default function ContractPage() {
           <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto mb-6" />
           <h1 className="text-3xl font-bold text-white mb-4">Contrato Aceito!</h1>
           <p className="text-gray-400 mb-8">
-            Seu contrato foi registrado com sucesso no sistema.
+            Seu contrato fue registrado con sucesso no sistema.
           </p>
           <Button onClick={() => window.location.href = "/"} className="bg-blue-600 hover:bg-blue-700">
             Voltar ao Início
