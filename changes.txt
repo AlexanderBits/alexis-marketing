@@ -1,0 +1,8 @@
+﻿base44/functions/submitContract/entry.ts
+src/App.jsx
+src/components/landing/Footer.jsx
+src/components/landing/HeroSection.jsx
+src/components/ui/toast.jsx
+src/components/ui/toaster.jsx
+src/pages/AdminContractsDashboard.jsx
+src/pages/ContractPage.jsx

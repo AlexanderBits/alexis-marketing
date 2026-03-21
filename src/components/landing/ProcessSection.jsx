@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MessageSquare, PenTool, Code2, Rocket } from "lucide-react";
+import { MessageSquare, PenTool, Code2, Rocket, Compass, Cpu, Globe, ShieldCheck } from "lucide-react";
 
 const steps = [
   {
@@ -92,6 +92,31 @@ export default function ProcessSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Regional Focus Badges - Non-rounded */}
+        <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           whileInView={{ opacity: 1, scale: 1 }}
+           viewport={{ once: true }}
+           className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20"
+        >
+          <div className="flex items-center gap-2 px-4 py-3 rounded-none border border-blue-500/20 bg-blue-500/10 text-blue-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest justify-center">
+            <Compass className="w-3 h-3" />
+            NOR (Direção & SEO)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-3 rounded-none border border-purple-500/20 bg-purple-500/10 text-purple-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest justify-center">
+            <Cpu className="w-3 h-3" />
+            TEC (Performance & Código)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-3 rounded-none border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest justify-center">
+            <Globe className="w-3 h-3" />
+            NET (Rede & Hospedagem)
+          </div>
+          <div className="flex items-center gap-2 px-4 py-3 rounded-none border border-green-500/20 bg-green-500/10 text-green-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest justify-center">
+            <ShieldCheck className="w-3 h-3" />
+            ABRANGÊNCIA NACIONAL
+          </div>
+        </motion.div>
       </div>
     </section>
   );

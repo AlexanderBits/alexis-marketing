@@ -124,8 +124,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const navigateToLogin = () => {
-    // Use the SDK's redirectToLogin method
-    base44.auth.redirectToLogin(window.location.href);
+    // Redireciona para a página de login local para passar pelo CAPTCHA
+    window.location.href = '/login';
   };
 
   return (

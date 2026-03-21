@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu, Instagram, Linkedin, Mail, Phone, ExternalLink, Compass } from "lucide-react";
+import { Cpu, Mail, Phone, ExternalLink, Compass } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -78,18 +78,6 @@ export default function Footer() {
               </li>
             </ul>
 
-            {/* Social */}
-            <div className="flex gap-4 mt-6 justify-center md:justify-start">
-              {[Instagram, Linkedin].map((Icon, i) =>
-              <a
-                key={i}
-                href="#"
-                className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-gray-600 transition-all">
-
-                  <Icon className="w-4 h-4" />
-                </a>
-              )}
-            </div>
           </div>
         </div>
 
@@ -114,6 +102,9 @@ export default function Footer() {
             </Link>
             <Link to="/termos-de-uso" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Termos
+            </Link>
+            <Link to="/contrato" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+              Contratos
             </Link>
           </div>
         </div>

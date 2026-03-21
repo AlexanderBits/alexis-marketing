@@ -3,9 +3,34 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Compass, Cpu, Globe, ShieldCheck } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { base44 } from "@/api/base44Client";
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const authStatus = await base44.auth.isAuthenticated();
+        setIsAuthenticated(authStatus);
+      } catch (error) {
+        console.error("Erro ao verificar autenticação:", error);
+      }
+    };
+    checkAuth();
+  }, []);
+
+  const handleContractClick = async () => {
+    if (isAuthenticated) {
+      navigate('/contrato');
+    } else {
+      // Navega para a página de login local que contém o CAPTCHA
+      navigate('/login');
+    }
+  };
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center bg-slate-950 overflow-hidden pt-32 md:pt-48">
         {/* Unified Logo at Top Right (Reduced size) */}
@@ -35,29 +60,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-60 md:mt-80">
 
-        {/* Regional Focus Badge */}
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
-        >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
-            <Compass className="w-3 h-3" />
-            NOR (Direção & SEO)
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
-            <Cpu className="w-3 h-3" />
-            TEC (Performance & Código)
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
-            <Globe className="w-3 h-3" />
-            NET (Rede & Hospedagem)
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/10 text-green-400 text-[10px] font-bold backdrop-blur-md uppercase tracking-widest">
-            <ShieldCheck className="w-3 h-3" />
-            ABRANGÊNCIA NACIONAL
-          </div>
-        </motion.div>
+
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -106,6 +109,14 @@ export default function HeroSection() {
               GOOGLE MEU NEGÓCIO
             </Button>
           </Link>
+
+          <Button
+            onClick={handleContractClick}
+            size="lg"
+            className="bg-gradient-to-r from-emerald-600 to-green-600 text-white hover:from-emerald-500 hover:to-green-500 rounded-none px-10 py-7 text-base font-bold group transition-all duration-300 shadow-2xl shadow-green-500/20 uppercase tracking-widest border-b-4 border-white/20">
+            {isAuthenticated ? "ACESSAR CONTRATO" : "ASSINAR CONTRATO"}
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
         </motion.div>
 
       </div>
