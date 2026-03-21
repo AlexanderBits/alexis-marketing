@@ -37,7 +37,11 @@ export default function ContractPage() {
       try {
         const user = await base44.auth.me();
         if (!user) {
+<<<<<<< HEAD
           navigate('/login');
+=======
+          navigate('/');
+>>>>>>> 2dfd918d03e7804c1d8f5c0683c17bf51274af01
           return;
         }
         setCurrentUser(user);
@@ -48,7 +52,11 @@ export default function ContractPage() {
         }));
       } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
+<<<<<<< HEAD
         navigate('/login');
+=======
+        navigate('/');
+>>>>>>> 2dfd918d03e7804c1d8f5c0683c17bf51274af01
       } finally {
         setIsLoadingAuth(false);
       }
