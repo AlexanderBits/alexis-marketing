@@ -8,6 +8,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden">
         {/* Logo centralizado no topo */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
+          <img src="https://media.base44.com/images/public/6971f9afeb3f9dc786ab5347/8f20b116d_logo-removebg-preview.png" alt="Google Partners" width={350} className="h-auto" />
         </div>
 
         {/* Gradient orbs */}
@@ -17,7 +18,7 @@ export default function HeroSection() {
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
       
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-64">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-40">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
