@@ -1,4 +1,6 @@
 import React from "react";
+import { useSEO } from "@/hooks/useSEO";
+import { SEO_Head } from "@/components/seo/SEO_Head";
 import HeroSection from "@/components/landing/HeroSection";
 import ConceptSection from "@/components/landing/ConceptSection";
 import DifferentialsSection from "@/components/landing/DifferentialsSection";
@@ -11,8 +13,15 @@ import Footer from "@/components/landing/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export default function Home() {
+  const { seoData } = useSEO("/");
+
   return (
     <div className="dark bg-slate-950 min-h-screen">
+      <SEO_Head 
+        title={seoData?.title} 
+        description={seoData?.description || "A maior do Rio e Juiz de Fora. Especialista em Redes Sociais e Google Meu Negócio."}
+        canonical="/"
+      />
       <HeroSection />
       <ConceptSection />
       <DifferentialsSection />

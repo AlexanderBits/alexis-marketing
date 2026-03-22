@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { MessageCircle, Loader2 } from "lucide-react";
+import { MessageCircle, Loader2, X, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -52,67 +49,81 @@ export default function LeadModal({ isOpen, onOpenChange }) {
     }
   };
 
+  if (!isOpen) return null;
+
   return (
-    <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-slate-900 border-slate-800 text-white">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold flex items-center gap-2">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden"
+      >
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500" />
+        
+        <button 
+          onClick={() => onOpenChange(false)}
+          className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 bg-green-500/10 rounded-lg">
             <MessageCircle className="w-6 h-6 text-green-500" />
-            Quase lá!
-          </DialogTitle>
-          <DialogDescription className="text-slate-400 pt-2 text-base">
-            Preencha seus dados para que nossa equipe possa te oferecer o melhor atendimento personalizado via WhatsApp.
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-6 py-4">
+          </div>
+          <h2 className="text-2xl font-bold text-white tracking-tight">Quase lá!</h2>
+        </div>
+
+        <p className="text-slate-400 mb-8 leading-relaxed">
+          Preencha seus dados para que nossa equipe possa oferecer o melhor atendimento personalizado via WhatsApp.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-slate-300">
-              E-mail Comercial *
-            </Label>
-            <Input
-              id="email"
+            <label className="text-sm font-medium text-slate-300 ml-1">E-mail Comercial *</label>
+            <input
               name="email"
               type="email"
               placeholder="seu@email.com"
               required
               value={formData.email}
               onChange={handleInputChange}
-              className="bg-slate-800 border-slate-700 focus:ring-blue-500 focus:border-blue-500 text-white"
+              className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
             />
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="whatsapp" className="text-sm font-medium text-slate-300">
-              WhatsApp *
-            </Label>
-            <Input
-              id="whatsapp"
+            <label className="text-sm font-medium text-slate-300 ml-1">WhatsApp *</label>
+            <input
               name="whatsapp"
               type="tel"
               placeholder="(00) 00000-0000"
               required
               value={formData.whatsapp}
               onChange={handleInputChange}
-              className="bg-slate-800 border-slate-700 focus:ring-blue-500 focus:border-blue-500 text-white"
+              className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
             />
           </div>
-          <DialogFooter className="pt-4">
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg font-bold shadow-lg shadow-green-600/20"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Salvando...
-                </>
-              ) : (
-                "Prosseguir para o WhatsApp"
-              )}
-            </Button>
-          </DialogFooter>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Salvando informações...
+              </>
+            ) : (
+              <>
+                Prosseguir para o WhatsApp
+                <ArrowRight className="w-5 h-5" />
+              </>
+            )}
+          </button>
         </form>
-      </DialogContent>
-    </Dialog>
+      </motion.div>
+    </div>
   );
 }

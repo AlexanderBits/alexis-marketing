@@ -9,14 +9,14 @@ const services = [
     title: "Gestão de Redes Sociais",
     description: "Estratégias completas para Instagram, Facebook e LinkedIn. Conteúdo profissional que converte.",
     icon: Share2,
-    path: "/GestaoRedesSociais",
+    path: "/gestao-de-redes-sociais",
     gradient: "from-pink-600 to-purple-600"
   },
   {
     title: "Google Meu Negócio",
     description: "Domine as buscas locais. Apareça no Google Maps e atraia mais clientes para seu negócio.",
     icon: MapPin,
-    path: "/GoogleMeuNegocio",
+    path: "/google-meu-negocio",
     gradient: "from-blue-600 to-cyan-600"
   }
 ];

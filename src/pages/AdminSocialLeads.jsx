@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, Trash2, Mail, MessageCircle, Calendar, Download } from "lucide-react";
+import { Shield, Trash2, Download, Search, X, Loader2, ArrowLeft, LogOut, Lock, Mail, MessageCircle, Calendar } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function AdminSocialLeads() {
@@ -111,20 +112,30 @@ export default function AdminSocialLeads() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 py-12 px-6">
+    <div className="min-h-screen bg-[#020617] text-slate-100 p-4 md:p-8 font-sans transition-all duration-500">
       <div className="max-w-7xl mx-auto">
+        {/* Navigation / Exit */}
+        <div className="flex justify-between items-center mb-8">
+          <Link to="/">
+            <button className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/50 px-4 py-2 rounded-xl border border-slate-800">
+              <LogOut className="w-4 h-4" />
+              <span>Sair do Painel</span>
+            </button>
+          </Link>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-500/10 rounded-2xl border border-blue-500/20">
+            <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
               <Shield className="w-8 h-8 text-blue-500" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Leads Redes Sociais</h1>
-              <p className="text-slate-400 text-sm">Gerenciamento de prospectos capturados</p>
+              <h1 className="text-3xl font-bold text-white tracking-tight">Gestão Administrativa de Leads</h1>
+              <p className="text-slate-400 text-sm">Controle e gerenciamento de prospectos capturados</p>
             </div>
           </div>
           

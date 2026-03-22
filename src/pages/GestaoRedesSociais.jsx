@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Check, X, Instagram, Facebook, Youtube, Video, MessageSquare, History, Users, Calendar, BarChart3, Presentation } from "lucide-react";
+import { Check, X, Instagram, Facebook, Youtube, Video, MessageSquare, History, Users, Calendar, BarChart3, Presentation, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import ContactFormSection from "@/components/landing/ContactFormSection";
 import Footer from "@/components/landing/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import LeadModal from "@/components/social/LeadModal";
+import { useSEO } from "@/hooks/useSEO";
+import { SEO_Head } from "@/components/seo/SEO_Head";
 
 const PlanCard = ({ title, originalPrice = null, price, subtitle, features, badge = null, highlighted = false, onCTA }) => (
   <motion.div
@@ -72,6 +75,7 @@ const PlanCard = ({ title, originalPrice = null, price, subtitle, features, badg
 );
 
 const GestaoRedesSociais = () => {
+  const { seoData } = useSEO("/gestao-de-redes-sociais");
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   useEffect(() => {
@@ -139,6 +143,26 @@ const GestaoRedesSociais = () => {
 
   return (
     <div className="dark bg-slate-950 min-h-screen font-sans selection:bg-blue-500/30 selection:text-blue-200 overflow-x-hidden">
+      <SEO_Head 
+        title={seoData?.title} 
+        description={seoData?.description || "Domine o posicionamento da sua marca no Instagram, YouTube, TikTok e Facebook."}
+        canonical="/gestao-de-redes-sociais"
+      />
+      {/* Home Button */}
+      <div className="fixed top-8 left-8 z-50">
+        <Link to="/">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            whileHover={{ x: -2 }}
+            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/50 backdrop-blur-md px-4 py-2 rounded-full border border-slate-800"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="text-sm font-medium">Voltar para Home</span>
+          </motion.div>
+        </Link>
+      </div>
+
       {/* Background decoration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-blue-600/10 blur-[120px] rounded-full" />
@@ -182,7 +206,14 @@ const GestaoRedesSociais = () => {
 
           <div className="grid md:grid-cols-3 gap-8 items-stretch">
             {plans.map((plan, index) => (
-              <PlanCard key={index} {...plan} onCTA={() => setIsLeadModalOpen(true)} />
+              <PlanCard 
+                key={index} 
+                {...plan} 
+                onCTA={() => {
+                  console.log("Abrindo modal para o plano:", plan.title);
+                  setIsLeadModalOpen(true);
+                }} 
+              />
             ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster"
+import { GlobalSEO } from "@/components/seo/GlobalSEO"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import NavigationTracker from '@/lib/NavigationTracker'
@@ -75,6 +76,7 @@ function App() {
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
+          <GlobalSEO />
           <NavigationTracker />
           <AuthenticatedApp />
           <CookieConsent />

@@ -5,7 +5,13 @@ import { ArrowRight, MapPin, ShieldCheck, Globe } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import consultantImg from "@/assets/consultant-new.jpg";
 
-export default function GMN_Hero() {
+export default function GMN_Hero({ onCTA }) {
+  const handleClick = (e) => {
+    if (onCTA) {
+      e.preventDefault();
+      onCTA();
+    }
+  };
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center bg-slate-950 overflow-hidden pt-40 md:pt-56">
       {/* Unified Logo at Top Right */}
@@ -45,7 +51,7 @@ export default function GMN_Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 mb-20">
-            <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer" onClick={handleClick}>
               <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-bold flex items-center gap-2 group transition-all duration-300 shadow-xl shadow-white/5">
                 Quero minha empresa no topo
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
