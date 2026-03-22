@@ -3,6 +3,7 @@ import HeroSection from "@/components/landing/HeroSection";
 import ConceptSection from "@/components/landing/ConceptSection";
 import DifferentialsSection from "@/components/landing/DifferentialsSection";
 import ProcessSection from "@/components/landing/ProcessSection";
+import ServicesNavSection from "@/components/landing/ServicesNavSection";
 import SuccessCasesSection from "@/components/landing/SuccessCasesSection";
 import SecondaryCTASection from "@/components/landing/SecondaryCTASection";
 import ContactFormSection from "@/components/landing/ContactFormSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <ConceptSection />
       <DifferentialsSection />
       <ProcessSection />
+      <ServicesNavSection />
       <SuccessCasesSection />
       <SecondaryCTASection />
       <ContactFormSection />
