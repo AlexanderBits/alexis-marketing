@@ -3,7 +3,13 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 
-export default function ContactFormSection() {
+export default function ContactFormSection({ onCTA }) {
+  const handleClick = (e) => {
+    if (onCTA) {
+      e.preventDefault();
+      onCTA();
+    }
+  };
 
   return (
     <section id="contato" className="py-32 bg-black relative overflow-hidden">
@@ -31,7 +37,7 @@ export default function ContactFormSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer" onClick={handleClick}>
               <Button 
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg group transition-all duration-300"

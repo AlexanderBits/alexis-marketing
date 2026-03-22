@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu, Mail, Phone, ExternalLink, Compass } from "lucide-react";
+import { Cpu, Mail, Phone, ExternalLink, Compass, Shield } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -101,7 +101,7 @@ export default function Footer() {
           <p className="text-gray-600 text-sm">
             © {currentYear} Alexis Dev • Especialista em Desenvolvimento de Sites e SEO.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <Link to="/politica-de-privacidade" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Privacidade
             </Link>
@@ -110,6 +110,9 @@ export default function Footer() {
             </Link>
             <Link to="/contrato" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Contratos
+            </Link>
+            <Link to="/admin-leads" className="text-gray-800 hover:text-blue-500 transition-colors" title="Admin">
+              <Shield className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

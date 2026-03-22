@@ -1,12 +1,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function WhatsAppFloat() {
+export default function WhatsAppFloat({ onCTA }) {
+  const handleClick = (e) => {
+    if (onCTA) {
+      e.preventDefault();
+      onCTA();
+    }
+  };
+
   return (
     <motion.a
       href="https://wa.me/5532987037221"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className="fixed bottom-8 right-8 z-50"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
