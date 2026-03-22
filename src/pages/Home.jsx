@@ -19,7 +19,7 @@ export default function Home() {
     <div className="dark bg-slate-950 min-h-screen">
       <SEO_Head 
         title={seoData?.title} 
-        description={seoData?.description || "A maior do Rio e Juiz de Fora. Especialista em Redes Sociais e Google Meu Negócio."}
+        description={seoData?.description || "Especialista em Redes Sociais e Google Meu Negócio."}
         canonical="/"
       />
       <HeroSection />

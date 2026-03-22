@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+
 import GMN_Hero from "@/components/gmn/GMN_Hero";
 import GMN_Cycle from "@/components/gmn/GMN_Cycle";
 import GMN_Authority from "@/components/gmn/GMN_Authority";
@@ -22,8 +23,13 @@ export default function GoogleMeuNegocio() {
   }, []);
 
   return (
-    <div className="dark bg-slate-950 min-h-screen font-sans selection:bg-blue-500/30 selection:text-blue-200 overflow-x-hidden">
-      {/* Home Button */}
+    <div className="dark bg-slate-950 min-h-screen font-sans selection:bg-blue-500/30 overflow-x-hidden">
+      <SEO_Head 
+        title={seoData?.title} 
+        description={seoData?.description || "Especialista em Google Meu Negócio."}
+        canonical="/google-meu-negocio"
+      />
+      
       <div className="fixed top-8 left-8 z-50">
         <Link to="/">
           <motion.div
@@ -33,7 +39,7 @@ export default function GoogleMeuNegocio() {
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/50 backdrop-blur-md px-4 py-2 rounded-full border border-slate-800"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Voltar para Home</span>
+            <span className="text-sm font-medium">Home</span>
           </motion.div>
         </Link>
       </div>
