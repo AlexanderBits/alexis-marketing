@@ -7,8 +7,6 @@ import ContactFormSection from "@/components/landing/ContactFormSection";
 import Footer from "@/components/landing/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import LeadModal from "@/components/social/LeadModal";
-import { useSEO } from "@/hooks/useSEO";
-import { SEO_Head } from "@/components/seo/SEO_Head";
 
 const PlanCard = ({ title, originalPrice = null, price, subtitle, features, badge = null, highlighted = false, onCTA }) => (
   <motion.div
@@ -113,7 +111,6 @@ const PLANS = [
 ];
 
 export default function GestaoRedesSociais() {
-  const { seoData } = useSEO("/gestao-de-redes-sociais");
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   useEffect(() => {
@@ -122,12 +119,6 @@ export default function GestaoRedesSociais() {
 
   return (
     <div className="dark bg-slate-950 min-h-screen font-sans selection:bg-blue-500/30 overflow-x-hidden">
-      <SEO_Head 
-        title={seoData?.title} 
-        description={seoData?.description || "Domine o posicionamento da sua marca no Instagram, YouTube, TikTok e Facebook."}
-        canonical="/gestao-de-redes-sociais"
-      />
-      
       <div className="fixed top-8 left-8 z-50">
         <Link to="/">
           <motion.div

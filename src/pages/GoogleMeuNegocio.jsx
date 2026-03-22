@@ -11,11 +11,8 @@ import ContactFormSection from "@/components/landing/ContactFormSection";
 import Footer from "@/components/landing/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import LeadModal from "@/components/social/LeadModal";
-import { useSEO } from "@/hooks/useSEO";
-import { SEO_Head } from "@/components/seo/SEO_Head";
 
 export default function GoogleMeuNegocio() {
-  const { seoData } = useSEO("/google-meu-negocio");
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   useEffect(() => {
@@ -24,12 +21,6 @@ export default function GoogleMeuNegocio() {
 
   return (
     <div className="dark bg-slate-950 min-h-screen font-sans selection:bg-blue-500/30 overflow-x-hidden">
-      <SEO_Head 
-        title={seoData?.title} 
-        description={seoData?.description || "Especialista em Google Meu Negócio."}
-        canonical="/google-meu-negocio"
-      />
-      
       <div className="fixed top-8 left-8 z-50">
         <Link to="/">
           <motion.div
