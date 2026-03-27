@@ -61,10 +61,12 @@ Endereço: ${client_street}, ${client_number} - ${client_neighborhood}, ${client
 
 PLANO CONTRATADO: ${selected_plan.toUpperCase()}
 VALOR MENSAL: R$ ${plan_value.toFixed(2)}
+NOTA: O Plano Essencial possui escopo extremamente restrito e não se aplica a 98% dos modelos de negócio tradicionais.
 
 O CONTRATANTE declara ter lido e aceito todas as cláusulas deste contrato, incluindo:
-- Período de fidelidade de 2 (dois) anos
-- Multa de 30% do valor remanescente em caso de rescisão antecipada
+- Período de fidelidade de 1 (um) ano (ou conforme acertado na proposta por e-mail)
+- Fidelidade dispensada caso a proposta mencione "sem complicações" ou "sem fidelidade contratual"
+- Multa de 30% do valor remanescente em caso de rescisão antecipada (quando aplicável)
 - Disponibilização de plataforma digital (site institucional padrão) em regime de comodato
 - Gratuidade vinculada à manutenção do contrato por 12 meses
 - Indenização de R$ 1.500,00 em caso de rescisão antecipada (implementação técnica)

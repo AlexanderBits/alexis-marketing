@@ -47,12 +47,14 @@ export default function AdminContractsDashboard() {
   };
 
   const planNames = {
+    simple: "Essencial",
     bronze: "Bronze",
     prata: "Prata",
     ouro: "Ouro"
   };
 
   const planColors = {
+    simple: "bg-amber-100 text-amber-800",
     bronze: "bg-orange-100 text-orange-800",
     prata: "bg-gray-100 text-gray-800",
     ouro: "bg-yellow-100 text-yellow-800"
@@ -123,15 +125,31 @@ export default function AdminContractsDashboard() {
             </h1>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-4 mb-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
             <Card className="bg-slate-900 border-slate-800">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Total de Contratos</p>
+                    <p className="text-sm text-gray-400">Total</p>
                     <p className="text-3xl font-bold text-white">{contracts.length}</p>
                   </div>
                   <FileText className="w-10 h-10 text-blue-500" />
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-slate-900 border-slate-800">
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Essencial</p>
+                    <p className="text-3xl font-bold text-white">
+                      {contracts.filter(c => c.selected_plan === 'simple').length}
+                    </p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+                    <span className="text-amber-800 font-bold">E</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -140,7 +158,7 @@ export default function AdminContractsDashboard() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Plano Bronze</p>
+                    <p className="text-sm text-gray-400">Bronze</p>
                     <p className="text-3xl font-bold text-white">
                       {contracts.filter(c => c.selected_plan === 'bronze').length}
                     </p>
@@ -156,7 +174,7 @@ export default function AdminContractsDashboard() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Plano Prata</p>
+                    <p className="text-sm text-gray-400">Prata</p>
                     <p className="text-3xl font-bold text-white">
                       {contracts.filter(c => c.selected_plan === 'prata').length}
                     </p>
@@ -172,7 +190,7 @@ export default function AdminContractsDashboard() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Plano Ouro</p>
+                    <p className="text-sm text-gray-400">Ouro</p>
                     <p className="text-3xl font-bold text-white">
                       {contracts.filter(c => c.selected_plan === 'ouro').length}
                     </p>

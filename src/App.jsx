@@ -13,6 +13,8 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import CookieConsent from '@/components/landing/CookieConsent';
 import ContractPage from './pages/ContractPage';
 import AdminContractsDashboard from './pages/AdminContractsDashboard';
+import BriefingForm from './pages/BriefingForm';
+import AdminBriefing from './pages/AdminBriefing';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -61,6 +63,8 @@ const AuthenticatedApp = () => {
       ))}
       <Route path="/contrato" element={<ContractPage />} />
       <Route path="/admin-contratos" element={<AdminContractsDashboard />} />
+      <Route path="/briefing" element={<BriefingForm />} />
+      <Route path="/admin-briefing" element={<AdminBriefing />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

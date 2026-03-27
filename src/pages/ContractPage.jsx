@@ -57,6 +57,7 @@ export default function ContractPage() {
   }, [navigate]);
 
   const planValues = {
+    simple: 29.90,
     bronze: 49.90,
     prata: 99.90,
     ouro: 199.99
@@ -86,13 +87,19 @@ export default function ContractPage() {
         plan_value: planValues[formData.selected_plan]
       });
 
-      if (response.data.success) {
-        setSubmitted(true);
-        toast({
-          title: "Contrato Aceito com Sucesso!",
-          description: "Seu contrato foi registrado e pode ser visualizado no dashboard administrativo.",
-        });
-      }
+        if (response.data.success) {
+          setSubmitted(true);
+          toast({
+            title: "Contrato Aceito com Sucesso!",
+            description: "Seu contrato foi registrado e pode ser visualizado no dashboard administrativo.",
+          });
+        } else {
+          toast({
+            title: "Erro ao Aceitar",
+            description: response.data.error || "Ocorreu um erro ao processar o contrato.",
+            variant: "destructive"
+          });
+        }
     } catch (error) {
       toast({
         title: "Erro ao processar contrato",
@@ -126,7 +133,7 @@ export default function ContractPage() {
           <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto mb-6" />
           <h1 className="text-3xl font-bold text-white mb-4">Contrato Aceito!</h1>
           <p className="text-gray-400 mb-8">
-            Seu contrato fue registrado con sucesso no sistema.
+            Seu contrato foi registrado com sucesso no sistema.
           </p>
           <Button onClick={() => window.location.href = "/"} className="bg-blue-600 hover:bg-blue-700">
             Voltar ao Início
@@ -183,6 +190,7 @@ export default function ContractPage() {
             <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA SEGUNDA – DO PLANO E VALOR MENSAL</h3>
             <p className="mb-4">2.1. O CONTRATANTE opta por um dos seguintes planos de serviços, com o valor mensal correspondente:</p>
             <ul className="list-disc ml-8 mb-4">
+              <li><strong>Plano Essencial (Landing Page Simplificada):</strong> R$ 29,90 (Vinte e nove reais e noventa centavos). <em>Este plano possui escopo extremamente restrito e não se aplica a 98% dos modelos de negócio tradicionais.</em></li>
               <li><strong>Plano Bronze:</strong> R$ 49,90 (Quarenta e nove reais e noventa centavos)</li>
               <li><strong>Plano Prata:</strong> R$ 99,90 (Noventa e nove reais e noventa centavos)</li>
               <li><strong>Plano Ouro:</strong> R$ 199,99 (Cento e noventa e nove reais e noventa e nove centavos)</li>
@@ -193,11 +201,14 @@ export default function ContractPage() {
 
             <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA TERCEIRA – DA FIDELIDADE</h3>
             <p className="mb-4">
-              3.1. As partes acordam um período de fidelidade de 2 (dois) anos, a contar da data de aceite deste contrato.
+              3.1. As partes acordam um período de fidelidade de 1 (um) ano, a contar da data de aceite deste contrato, conforme o que for acertado na proposta comercial enviada por e-mail.
             </p>
             <p className="mb-4">
-              3.2. Em caso de rescisão antecipada por parte do CONTRATANTE antes do término do período de fidelidade, 
-              será aplicada multa equivalente a 30% (trinta por cento) do valor remanescente das mensalidades até o fim do período de fidelidade.
+              3.2. Caso a proposta comercial tenha sido apresentada com os termos "sem complicações" ou "sem fidelidade contratual", a fidelidade fica dispensada, podendo a rescisão ocorrer a qualquer momento sem o pagamento de multa rescisória.
+            </p>
+            <p className="mb-4">
+              3.3. Em caso de rescisão antecipada por parte do CONTRATANTE antes do término do período de fidelidade (quando aplicável conforme a proposta), 
+              será aplicada multa equivalente a 30% (trinta por cento) do valor remanescente das mensalidades até o fim do período.
             </p>
 
             <h3 className="text-lg font-bold text-white mt-6 mb-2">CLÁUSULA QUARTA – DA DISPONIBILIZAÇÃO DE PLATAFORMA DIGITAL (BÔNUS)</h3>
@@ -401,18 +412,25 @@ export default function ContractPage() {
 
             <div>
               <Label className="text-white mb-3 block">Selecione o Plano *</Label>
-              <div className="grid md:grid-cols-3 gap-4">
-                {["bronze", "prata", "ouro"].map((plan) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {["simple", "bronze", "prata", "ouro"].map((plan) => (
                   <div
                     key={plan}
                     onClick={() => setFormData({ ...formData, selected_plan: plan })}
-                    className={`cursor-pointer p-4 rounded-lg border-2 transition-all ${
+                    className={`relative cursor-pointer p-4 rounded-lg border-2 transition-all ${
                       formData.selected_plan === plan
                         ? "border-blue-500 bg-blue-500/10"
                         : "border-slate-700 bg-slate-800 hover:border-slate-600"
-                    }`}
+                    } ${plan === "simple" ? "border-amber-500/30" : ""}`}
                   >
-                    <h3 className="text-lg font-bold text-white capitalize mb-2">{plan}</h3>
+                    {plan === "simple" && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-600 text-[10px] font-bold px-2 py-0.5 rounded text-white whitespace-nowrap">
+                        NÃO SE APLICA A 98% DOS NEGÓCIOS
+                      </div>
+                    )}
+                    <h3 className="text-lg font-bold text-white capitalize mb-2">
+                      {plan === "simple" ? "Essencial" : plan}
+                    </h3>
                     <p className="text-2xl font-bold text-blue-400">R$ {planValues[plan].toFixed(2)}</p>
                     <p className="text-sm text-gray-400 mt-1">por mês</p>
                   </div>
@@ -428,7 +446,7 @@ export default function ContractPage() {
                 className="mt-1 border-white data-[state=checked]:bg-white data-[state=checked]:text-slate-900"
               />
               <Label htmlFor="accept" className="text-white cursor-pointer">
-                Li e aceito todos os termos e condições deste contrato, incluindo o período de fidelidade de 2 anos.
+                Li e aceito todos os termos e condições deste contrato, conforme as condições de fidelidade acertadas na proposta comercial.
               </Label>
             </div>
 

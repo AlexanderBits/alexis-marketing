@@ -95,3 +95,57 @@
 .animate-shine {
   animation: shine 3s infinite;
 }
+
+/* ── React Quill Dark Mode ── */
+.quill-dark .ql-toolbar {
+  background-color: #1e293b; /* slate-800 */
+  border-color: #334155 !important; /* slate-700 */
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.quill-dark .ql-toolbar button,
+.quill-dark .ql-toolbar .ql-picker-label {
+  color: #94a3b8; /* slate-400 */
+}
+
+.quill-dark .ql-toolbar button:hover,
+.quill-dark .ql-toolbar button.ql-active {
+  color: #60a5fa !important; /* blue-400 */
+}
+
+.quill-dark .ql-toolbar .ql-stroke {
+  stroke: #94a3b8;
+}
+
+.quill-dark .ql-toolbar button:hover .ql-stroke,
+.quill-dark .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #60a5fa;
+}
+
+.quill-dark .ql-toolbar .ql-fill {
+  fill: #94a3b8;
+}
+
+.quill-dark .ql-container {
+  background-color: #1e293b; /* slate-800 */
+  border-color: #334155 !important;
+  border-radius: 0 0 0.5rem 0.5rem;
+  min-height: 160px;
+}
+
+.quill-dark .ql-editor {
+  color: #f1f5f9; /* slate-100 */
+  min-height: 160px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.quill-dark .ql-editor.ql-blank::before {
+  color: #64748b; /* slate-500 */
+  font-style: normal;
+}
+
+.quill-dark .ql-picker-options {
+  background-color: #1e293b;
+  border-color: #334155;
+}
