@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Cpu, Mail, Phone, ExternalLink, Compass, Shield, Instagram, Facebook } from "lucide-react";
-import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -20,7 +19,7 @@ export default function Footer() {
               className="flex flex-col gap-6 items-center md:items-start"
             >
                 <img
-                  src={combinedLogo}
+                  src="https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png"
                   alt="Alexis Marketing • Dev - Especialista Google Partner"
                   className="h-20 w-auto object-contain" />
             </motion.div>

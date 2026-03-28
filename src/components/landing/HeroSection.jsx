@@ -8,7 +8,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden">
         {/* Logo centralizado no topo */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
-          <img src="https://media.base44.com/images/public/6971f9afeb3f9dc786ab5347/8f20b116d_logo-removebg-preview.png" alt="Google Partners" width={350} className="h-auto" />
+          <img src="https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png" alt="Google Partners" width={350} className="h-auto" />
         </div>
 
         {/* Gradient orbs */}
