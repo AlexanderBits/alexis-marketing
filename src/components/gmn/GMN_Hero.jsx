@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, ShieldCheck, Globe } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
-import consultantImg from "@/assets/consultant-new.jpg";
 
 export default function GMN_Hero({ onCTA }) {
   const handleClick = (e) => {
@@ -67,7 +66,7 @@ export default function GMN_Hero({ onCTA }) {
           className="relative"
         >
           <div className="relative z-10 rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-500/20">
-            <img src={consultantImg} alt="Alexis Marketing • Dev - Especialista Google Partner" className="w-full h-auto" />
+            <img src="https://res.cloudinary.com/deivliasb/image/upload/v1774740376/foto_quadrada_cwelxp.png" alt="Alexis Marketing • Dev - Especialista Google Partner" className="w-full h-auto" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
             
             {/* Floating badges */}
