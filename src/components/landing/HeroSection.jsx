@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Instagram, Facebook } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -9,6 +9,16 @@ export default function HeroSection() {
         {/* Logo centralizado no topo */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
           <img src="https://media.base44.com/images/public/6971f9afeb3f9dc786ab5347/8f20b116d_logo-removebg-preview.png" alt="Google Partners" width={350} className="h-auto" />
+        </div>
+
+        {/* Redes Sociais no topo direito */}
+        <div className="absolute top-8 right-4 md:right-8 z-20 flex gap-4">
+          <a href="https://instagram.com/alexismarketingedev" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 hover:scale-110 transition-all duration-300 hover:border-transparent group hover:shadow-[0_0_20px_rgba(219,39,119,0.4)]">
+            <Instagram className="w-5 h-5 text-gray-400 group-hover:text-white" />
+          </a>
+          <a href="https://www.facebook.com/alexdevmarketingIA/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 hover:border-transparent group hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+            <Facebook className="w-5 h-5 text-gray-400 group-hover:text-white" />
+          </a>
         </div>
 
         {/* Gradient orbs */}

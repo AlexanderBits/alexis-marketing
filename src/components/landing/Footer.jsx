@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu, Mail, Phone, ExternalLink, Compass, Shield } from "lucide-react";
+import { Cpu, Mail, Phone, ExternalLink, Compass, Shield, Instagram, Facebook } from "lucide-react";
 import combinedLogo from "@/assets/combined-logo.png";
 import { Link } from "react-router-dom";
 
@@ -83,6 +83,14 @@ export default function Footer() {
               </li>
             </ul>
 
+            <div className="mt-8 flex gap-4">
+              <a href="https://instagram.com/alexismarketingedev" target="_blank" rel="noopener noreferrer" title="Siga no Instagram" className="p-2.5 bg-gray-900 border border-gray-800 rounded-lg hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 hover:border-transparent transition-all duration-300 group hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(219,39,119,0.4)]">
+                <Instagram className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+              </a>
+              <a href="https://www.facebook.com/alexdevmarketingIA/" target="_blank" rel="noopener noreferrer" title="Siga no Facebook" className="p-2.5 bg-gray-900 border border-gray-800 rounded-lg hover:bg-blue-600 hover:border-transparent transition-all duration-300 group hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                <Facebook className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+              </a>
+            </div>
           </div>
         </div>
 
