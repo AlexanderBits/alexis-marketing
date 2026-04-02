@@ -62,7 +62,7 @@ export default function AdminContractsDashboard() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "siterio2019") {
+    if (password === "@Alex7550") {
       setIsAuthenticated(true);
     } else {
       alert("Senha incorreta!");

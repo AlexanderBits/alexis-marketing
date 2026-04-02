@@ -132,7 +132,7 @@ export default function AdminBriefing() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "alexisrio2019") {
+    if (password === "@Alex7550") {
       setIsAuthenticated(true);
     } else {
       toast({ title: "Senha incorreta", variant: "destructive" });

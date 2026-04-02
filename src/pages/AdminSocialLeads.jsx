@@ -48,7 +48,7 @@ export default function AdminSocialLeads() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "alexisrio2019") { // USER specifically requested this password
+    if (password === "@Alex7550") { // USER specifically requested this password
       setIsAuthenticated(true);
     } else {
       alert("Senha incorreta!");

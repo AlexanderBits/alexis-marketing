@@ -45,7 +45,7 @@ export default function AdminSEO() {
 
   const onLogin = (e) => {
     e.preventDefault();
-    if (pass === "alexisrio2019") setAuthed(true);
+    if (pass === "@Alex7550") setAuthed(true);
     else toast({ title: "Erro de autenticação", variant: "destructive" });
   };
 
