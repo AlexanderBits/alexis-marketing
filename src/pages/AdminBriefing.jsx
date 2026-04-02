@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
@@ -119,7 +120,7 @@ function exportCSV(briefings) {
 
 export default function AdminBriefing() {
   const { toast } = useToast();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, login } = useAdminAuth();
   const [password, setPassword] = useState("");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
@@ -133,10 +134,17 @@ export default function AdminBriefing() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "@Alex7550") {
-      setIsAuthenticated(true);
+    if (login(password)) {
+      toast({
+        title: "Acesso Autorizado",
+        description: "Bem-vindo ao painel de briefings.",
+      });
     } else {
-      toast({ title: "Senha incorreta", variant: "destructive" });
+      toast({
+        title: "Erro de Acesso",
+        description: "Senha incorreta!",
+        variant: "destructive",
+      });
       setPassword("");
     }
   };

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
-import { FileText, CheckCircle2, Loader2 } from "lucide-react";
+import { FileText, CheckCircle2, Loader2, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function ContractPage() {
@@ -31,6 +31,15 @@ export default function ContractPage() {
   const [accepted, setAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        window.location.href = "/briefing";
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -124,20 +133,33 @@ export default function ContractPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6">
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md text-center"
+          className="max-w-md"
         >
-          <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto mb-6" />
+          <div className="w-20 h-20 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-green-500" />
+          </div>
           <h1 className="text-3xl font-bold text-white mb-4">Contrato Aceito!</h1>
           <p className="text-gray-400 mb-8">
-            Seu contrato foi registrado com sucesso no sistema.
+            Seu contrato foi registrado com sucesso. Para iniciarmos sua estratégia, precisamos que você preencha o **Briefing de Campanha**.
           </p>
-          <Button onClick={() => window.location.href = "/"} className="bg-blue-600 hover:bg-blue-700">
-            Voltar ao Início
-          </Button>
+          
+          <div className="space-y-4">
+            <Button 
+              onClick={() => window.location.href = "/briefing"} 
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg font-bold group"
+            >
+              Ir para o Briefing
+              <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            
+            <p className="text-slate-500 text-xs mt-4">
+              Você será redirecionado automaticamente em alguns segundos...
+            </p>
+          </div>
         </motion.div>
       </div>
     );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Shield, Search, Layout, LogOut, CheckCircle2, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { base44 } from "@/api/base44Client";
 import { SEO_Editor } from "@/components/seo/SEO_Editor";
 import { Input } from "@/components/ui/input";
@@ -20,15 +21,16 @@ const ROUTES = [
 
 export default function AdminSEO() {
   const { toast } = useToast();
+  const { isAuthenticated, login } = useAdminAuth();
   const [selectedRoute, setSelectedRoute] = useState("Home");
   const [seoMap, setSeoMap] = useState({});
   const [loading, setLoading] = useState(true);
-  const [authed, setAuthed] = useState(false);
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (authed) fetchData();
-  }, [authed]);
+    if (isAuthenticated) fetchData();
+    else setLoading(false);
+  }, [isAuthenticated]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -46,8 +48,19 @@ export default function AdminSEO() {
 
   const onLogin = (e) => {
     e.preventDefault();
-    if (pass === "@Alex7550") setAuthed(true);
-    else toast({ title: "Erro de autenticação", variant: "destructive" });
+    if (login(password)) {
+      toast({
+        title: "Acesso Autorizado",
+        description: "Bem-vindo ao painel de SEO.",
+      });
+    } else {
+      toast({
+        title: "Erro de Acesso",
+        description: "Senha incorreta!",
+        variant: "destructive",
+      });
+      setPassword("");
+    }
   };
 
   const handleSave = async (payload) => {

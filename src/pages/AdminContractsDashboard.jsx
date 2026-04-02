@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -13,7 +14,7 @@ import { AdminNavbar } from "@/components/AdminNavbar";
 export default function AdminContractsDashboard() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, login } = useAdminAuth();
   const [password, setPassword] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -63,10 +64,17 @@ export default function AdminContractsDashboard() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "@Alex7550") {
-      setIsAuthenticated(true);
+    if (login(password)) {
+      toast({
+        title: "Acesso Autorizado",
+        description: "Bem-vindo ao dashboard de contratos.",
+      });
     } else {
-      alert("Senha incorreta!");
+      toast({
+        title: "Erro de Acesso",
+        description: "Senha incorreta!",
+        variant: "destructive",
+      });
       setPassword("");
     }
   };

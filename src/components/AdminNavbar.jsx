@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Users, FileText, Target, Search, LogOut, Shield } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 const NAV_ITEMS = [
   { label: "Leads", path: "/admin-leads", icon: Users },
@@ -12,6 +13,7 @@ const NAV_ITEMS = [
 
 export function AdminNavbar() {
   const location = useLocation();
+  const { logout } = useAdminAuth();
 
   return (
     <nav className="w-full bg-slate-900/50 border-b border-slate-800 backdrop-blur-xl sticky top-0 z-50">
@@ -54,13 +56,13 @@ export function AdminNavbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link
-              to="/"
+            <button
+              onClick={logout}
               className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-slate-800/50 text-sm"
             >
               <LogOut className="w-4 h-4" />
               <span className="hidden sm:inline">Sair</span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>
