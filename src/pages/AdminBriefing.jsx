@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
+import { AdminNavbar } from "@/components/AdminNavbar";
 
 // ─────────────────────────────────────────────
 // Helpers
@@ -338,7 +339,9 @@ export default function AdminBriefing() {
 
   // ── Dashboard principal ──
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
+      <AdminNavbar />
+      
       {/* Header */}
       <div className="bg-slate-900 border-b border-slate-800 px-4 py-5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -352,9 +355,9 @@ export default function AdminBriefing() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Card className="bg-slate-800 border-slate-700 px-5 py-2 flex items-center gap-2">
+            <Card className="bg-slate-800 border-slate-700 px-5 py-2 flex items-center gap-2 text-white">
               <Star className="w-4 h-4 text-yellow-400" />
-              <span className="text-white font-bold">{briefings.length}</span>
+              <span className="font-bold">{briefings.length}</span>
               <span className="text-slate-400 text-sm">briefings</span>
             </Card>
             <Button
@@ -364,11 +367,6 @@ export default function AdminBriefing() {
             >
               <Download className="w-4 h-4 mr-2" /> CSV
             </Button>
-            <Link to="/">
-              <Button variant="ghost" className="text-slate-400 hover:text-white">
-                <ArrowLeft className="w-4 h-4 mr-2" /> Sair
-              </Button>
-            </Link>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { AdminNavbar } from "@/components/AdminNavbar";
 
 const ROUTES = [
   { id: "Home", path: "/", label: "Página Inicial" },
@@ -91,8 +92,9 @@ export default function AdminSEO() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-12 font-sans selection:bg-blue-500">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-blue-500">
+      <AdminNavbar />
+      <div className="max-w-6xl mx-auto p-6 md:p-12">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-blue-500/10 rounded-2xl border border-blue-500/20 shadow-lg shadow-blue-500/10">
@@ -103,10 +105,6 @@ export default function AdminSEO() {
               <p className="text-slate-400 text-sm">JSON-LD & Meta Management</p>
             </div>
           </div>
-          <Button variant="ghost" onClick={() => window.location.href = "/"} className="text-slate-400 hover:text-white">
-            <LogOut className="w-4 h-4 mr-2" />
-            Sair
-          </Button>
         </header>
 
         <div className="grid lg:grid-cols-[250px_1fr] gap-12">

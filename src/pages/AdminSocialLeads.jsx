@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Shield, Trash2, Download, Search, X, Loader2, ArrowLeft, LogOut, Lock, Mail, MessageCircle, Calendar } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { AdminNavbar } from "@/components/AdminNavbar";
 
 export default function AdminSocialLeads() {
   const { toast } = useToast();
@@ -112,17 +113,9 @@ export default function AdminSocialLeads() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-100 p-4 md:p-8 font-sans transition-all duration-500">
-      <div className="max-w-7xl mx-auto">
-        {/* Navigation / Exit */}
-        <div className="flex justify-between items-center mb-8">
-          <Link to="/">
-            <button className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/50 px-4 py-2 rounded-xl border border-slate-800">
-              <LogOut className="w-4 h-4" />
-              <span>Sair do Painel</span>
-            </button>
-          </Link>
-        </div>
+    <div className="min-h-screen bg-[#020617] text-slate-100 font-sans">
+      <AdminNavbar />
+      <div className="max-w-7xl mx-auto p-4 md:p-8">
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
