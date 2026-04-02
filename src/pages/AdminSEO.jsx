@@ -78,7 +78,7 @@ export default function AdminSEO() {
     }
   };
 
-  if (!authed) {
+  if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
         <Card className="max-w-md w-full bg-slate-900 border-slate-800 text-white p-8">
@@ -90,8 +90,8 @@ export default function AdminSEO() {
             <Input 
               type="password" 
               placeholder="Master Pass" 
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="bg-slate-950 border-slate-800 py-6"
               autoFocus
             />
