@@ -90,12 +90,12 @@ export default function AdminSocialLeads() {
         <Card className="max-w-md w-full bg-slate-900 border-slate-800 backdrop-blur-xl">
           <CardHeader>
             <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                <Shield className="w-8 h-8 text-blue-500" />
+              <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+                <Shield className="w-8 h-8 text-indigo-500" />
               </div>
             </div>
-            <CardTitle className="text-white text-center text-2xl">Área Administrativa</CardTitle>
-            <p className="text-gray-400 text-center text-sm">Controle de Leads de Redes Sociais</p>
+            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter">Área de Captura</CardTitle>
+            <p className="text-slate-500 text-center text-[10px] font-black uppercase tracking-widest">Leads de Canais Sociais</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
@@ -110,7 +110,7 @@ export default function AdminSocialLeads() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 font-bold py-6 text-lg tracking-wide shadow-lg shadow-blue-500/20">
+              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 text-lg tracking-wide shadow-lg shadow-indigo-500/20">
                 Acessar Dashboard <Lock className="ml-2 w-4 h-4" />
               </Button>
             </form>
@@ -131,12 +131,12 @@ export default function AdminSocialLeads() {
           className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
-              <Shield className="w-8 h-8 text-blue-500" />
+            <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
+              <Shield className="w-8 h-8 text-indigo-500" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Gestão Administrativa de Leads</h1>
-              <p className="text-slate-400 text-sm">Controle e gerenciamento de prospectos capturados</p>
+              <h1 className="text-3xl font-black text-white tracking-tighter">Gestão de Leads</h1>
+              <p className="text-slate-500 text-[10px] uppercase font-black tracking-widest">Prospectos Capturados via Social</p>
             </div>
           </div>
           
@@ -144,13 +144,13 @@ export default function AdminSocialLeads() {
             <Button 
                onClick={exportLeads}
                variant="outline" 
-               className="bg-slate-900 border-slate-800 hover:bg-slate-800 text-slate-200 border-2"
+               className="bg-slate-900/50 border-slate-800 hover:bg-slate-800 text-slate-200 border rounded-xl backdrop-blur-sm"
             >
               <Download className="mr-2 w-4 h-4" /> Exportar CSV
             </Button>
-            <Card className="bg-slate-900 border-slate-800 flex items-center px-6 py-2 shadow-xl">
-               <span className="text-sm text-gray-400 mr-3">Total:</span>
-               <span className="text-xl font-bold text-blue-500">{leads.length}</span>
+            <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm flex items-center px-6 py-2 shadow-xl rounded-xl">
+               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mr-3">Total:</span>
+               <span className="text-xl font-black text-indigo-500">{leads.length}</span>
             </Card>
           </div>
         </motion.div>
@@ -161,7 +161,7 @@ export default function AdminSocialLeads() {
                   placeholder="Filtrar por e-mail ou número de contato..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-slate-900/50 border-slate-800 text-white pl-12 py-7 rounded-2xl focus:ring-blue-500 focus:border-blue-500"
+                  className="bg-slate-900/50 border-slate-800 text-white pl-12 py-7 rounded-2xl focus:ring-indigo-500/20"
                 />
                 <Shield className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
             </div>
@@ -170,7 +170,7 @@ export default function AdminSocialLeads() {
         <div className="space-y-4">
           {isLoading ? (
             <div className="text-center py-20 bg-slate-900/10 rounded-3xl border border-slate-800 border-dashed">
-              <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
               <p className="text-slate-400 font-medium tracking-wide">Buscando leads na nuvem...</p>
             </div>
           ) : filteredLeads.length === 0 ? (
@@ -189,7 +189,7 @@ export default function AdminSocialLeads() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card className="bg-slate-900/40 border-slate-800 hover:border-slate-700 transition-all group overflow-hidden relative">
+                  <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-sm hover:border-indigo-500/30 transition-all group overflow-hidden relative rounded-2xl">
                     <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Button
                           variant="ghost"
@@ -202,8 +202,8 @@ export default function AdminSocialLeads() {
                     </div>
                     <CardHeader className="pb-3 border-b border-slate-800/50 mb-4 bg-slate-800/10">
                       <div className="flex items-center gap-3">
-                         <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/10">
-                            <Mail className="w-5 h-5 text-blue-400" />
+                         <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/10">
+                            <Mail className="w-5 h-5 text-indigo-400" />
                          </div>
                          <CardTitle className="text-white text-base truncate pr-8" title={lead.email}>
                            {lead.email}

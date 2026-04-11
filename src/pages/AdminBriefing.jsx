@@ -172,13 +172,13 @@ export default function AdminBriefing() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-        <Card className="max-w-md w-full bg-slate-900 border-slate-800">
+        <Card className="max-w-md w-full bg-slate-900 border-slate-800 backdrop-blur-xl">
           <CardHeader className="text-center pb-2">
-            <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-blue-500" />
+            <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8 text-indigo-500" />
             </div>
-            <CardTitle className="text-white text-2xl">Painel de Briefings</CardTitle>
-            <p className="text-slate-400 text-sm">Gestão de Blueprints de Campanha</p>
+            <CardTitle className="text-white text-2xl font-black tracking-tighter">Área de Inteligência</CardTitle>
+            <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Gestão de Blueprints de Campanha</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4 mt-4">
@@ -191,8 +191,8 @@ export default function AdminBriefing() {
                 autoFocus
                 required
               />
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 py-6 text-lg font-semibold">
-                Acessar <Lock className="ml-2 w-4 h-4" />
+              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 py-6 text-lg font-bold shadow-lg shadow-indigo-500/20">
+                Acessar Painel <Lock className="ml-2 w-4 h-4" />
               </Button>
             </form>
           </CardContent>
@@ -219,7 +219,7 @@ export default function AdminBriefing() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-slate-950 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -245,10 +245,10 @@ export default function AdminBriefing() {
             {/* Modal Body */}
             <div className="p-6 space-y-5">
               {/* Pilar 1 */}
-              <div className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/20">
+              <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <Target className="w-4 h-4 text-blue-400" />
-                  <span className="text-blue-400 text-xs font-bold uppercase tracking-wider">Pilar 1 — Objetivo</span>
+                  <Target className="w-4 h-4 text-indigo-400" />
+                  <span className="text-indigo-400 text-xs font-bold uppercase tracking-wider">Pilar 1 — Objetivo</span>
                 </div>
                 <p className="text-white font-medium">{OBJECTIVE_LABELS[b.pillar_1_objective] || b.pillar_1_objective}</p>
               </div>
@@ -351,27 +351,27 @@ export default function AdminBriefing() {
       <AdminNavbar />
       
       {/* Header */}
-      <div className="bg-slate-900 border-b border-slate-800 px-4 py-5">
+      <div className="bg-slate-900/50 backdrop-blur-sm border-b border-slate-800 px-4 py-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
-              <Shield className="w-7 h-7 text-blue-400" />
+            <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
+              <Shield className="w-7 h-7 text-indigo-500" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Painel de Blueprints</h1>
-              <p className="text-slate-400 text-sm">Briefings Estratégicos de Campanha</p>
+              <h1 className="text-3xl font-black text-white tracking-tighter">Briefings Estratégicos</h1>
+              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Blueprints de Campanha Auditados</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Card className="bg-slate-800 border-slate-700 px-5 py-2 flex items-center gap-2 text-white">
-              <Star className="w-4 h-4 text-yellow-400" />
-              <span className="font-bold">{briefings.length}</span>
-              <span className="text-slate-400 text-sm">briefings</span>
+            <Card className="bg-slate-900 border-slate-800 px-5 py-2 flex items-center gap-2 text-white rounded-xl backdrop-blur-sm">
+              <Star className="w-4 h-4 text-amber-500" />
+              <span className="font-black text-xl">{briefings.length}</span>
+              <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Total</span>
             </Card>
             <Button
               variant="outline"
               onClick={() => exportCSV(briefings)}
-              className="border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700"
+              className="border-slate-800 bg-slate-900/50 text-slate-300 hover:bg-slate-800 rounded-xl backdrop-blur-sm"
             >
               <Download className="w-4 h-4 mr-2" /> CSV
             </Button>
@@ -386,9 +386,9 @@ export default function AdminBriefing() {
             placeholder="Buscar por cliente, empresa ou nicho..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-slate-900 border-slate-800 text-white pl-12 py-6 rounded-2xl"
+            className="bg-slate-900/50 border-slate-800 text-white pl-12 py-7 rounded-2xl focus:ring-indigo-500/20"
           />
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500/50" />
           {search && (
             <button onClick={() => setSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
               <X className="w-4 h-4" />
@@ -399,8 +399,8 @@ export default function AdminBriefing() {
         {/* Grid de briefings */}
         {isLoading ? (
           <div className="text-center py-20">
-            <Loader2 className="w-10 h-10 animate-spin text-blue-500 mx-auto mb-4" />
-            <p className="text-slate-500">Carregando briefings...</p>
+            <Loader2 className="w-10 h-10 animate-spin text-indigo-500 mx-auto mb-4" />
+            <p className="text-slate-500 font-bold uppercase text-[10px] tracking-widest">Sincronizando Briefings...</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-20 border border-dashed border-slate-800 rounded-3xl">
@@ -421,19 +421,19 @@ export default function AdminBriefing() {
                   transition={{ duration: 0.3 }}
                 >
                   <Card
-                    className="bg-slate-900 border-slate-800 hover:border-slate-600 transition-all cursor-pointer group"
+                    className="bg-slate-900/40 border-slate-800 backdrop-blur-sm hover:border-indigo-500/30 transition-all cursor-pointer group rounded-2xl overflow-hidden"
                     onClick={() => setSelected(b)}
                   >
-                    <CardHeader className="pb-3 border-b border-slate-800">
+                    <CardHeader className="pb-3 border-b border-slate-800 bg-slate-800/10">
                       <div className="flex justify-between items-start">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                            <User className="w-5 h-5 text-blue-400" />
+                          <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+                            <User className="w-5 h-5 text-indigo-400" />
                           </div>
                           <div>
-                            <CardTitle className="text-white text-base">{b.client_name}</CardTitle>
-                            <p className="text-slate-400 text-xs flex items-center gap-1">
-                              <Building2 className="w-3 h-3" /> {b.company_name}
+                            <CardTitle className="text-white text-base font-bold">{b.client_name}</CardTitle>
+                            <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+                              <Building2 className="w-3 h-3 text-indigo-500/50" /> {b.company_name}
                             </p>
                           </div>
                         </div>
@@ -444,12 +444,12 @@ export default function AdminBriefing() {
                     </CardHeader>
                     <CardContent className="pt-4 space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="text-slate-500 text-xs">Nicho:</span>
-                        <span className="text-slate-300 text-xs font-medium">{b.niche}</span>
+                        <span className="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Nicho:</span>
+                        <span className="text-slate-300 text-xs font-bold">{b.niche}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Target className="w-3 h-3 text-blue-400" />
-                        <span className="text-slate-300 text-xs">{OBJECTIVE_LABELS[b.pillar_1_objective] || b.pillar_1_objective}</span>
+                        <Target className="w-3 h-3 text-indigo-500" />
+                        <span className="text-slate-300 text-xs font-medium">{OBJECTIVE_LABELS[b.pillar_1_objective] || b.pillar_1_objective}</span>
                       </div>
                       <div className="flex gap-2">
                         <div className="flex-1 bg-slate-800 rounded-lg p-2 text-center">
@@ -461,12 +461,12 @@ export default function AdminBriefing() {
                           <p className="text-emerald-400 font-bold text-sm">{b.pillar_2_roi_target}%</p>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-slate-600 text-xs flex items-center gap-1">
+                      <div className="flex justify-between items-center bg-slate-950/50 -mx-4 -mb-4 p-4 mt-4 border-t border-slate-800/50">
+                        <span className="text-slate-600 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
                           <Clock className="w-3 h-3" /> {new Date(b.created_date).toLocaleDateString("pt-BR")}
                         </span>
-                        <span className="text-blue-400 text-xs font-medium group-hover:text-blue-300 transition-colors">
-                          Ver detalhes →
+                        <span className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.2em] group-hover:text-indigo-400 transition-colors">
+                          Blueprint →
                         </span>
                       </div>
                     </CardContent>

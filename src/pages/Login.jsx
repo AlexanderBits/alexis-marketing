@@ -35,7 +35,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white p-6 text-center overflow-hidden">
       
       {/* Background orbs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-sm w-full bg-slate-900/50 border border-gray-800 p-8 pt-10 backdrop-blur-xl shadow-2xl">
         
@@ -49,8 +49,8 @@ export default function LoginPage() {
               className="space-y-6"
             >
               <div className="flex justify-center mb-2">
-                <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-none flex items-center justify-center">
-                  <ShieldCheck className="w-8 h-8 text-blue-500" />
+                <div className="w-16 h-16 bg-indigo-500/10 border border-indigo-500/20 rounded-none flex items-center justify-center">
+                  <ShieldCheck className="w-8 h-8 text-indigo-500" />
                 </div>
               </div>
               
@@ -60,7 +60,7 @@ export default function LoginPage() {
               </div>
 
               <form onSubmit={handleVerify} className="space-y-4">
-                <div className="bg-slate-950 border border-gray-800 p-6 text-2xl font-mono tracking-tighter text-blue-400">
+                <div className="bg-slate-950 border border-gray-800 p-6 text-2xl font-mono tracking-tighter text-indigo-400">
                   {question.a} + {question.b} = ?
                 </div>
                 
@@ -70,7 +70,7 @@ export default function LoginPage() {
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
                     placeholder="Sua resposta"
-                    className={`w-full bg-slate-950 border ${error ? 'border-red-500/50' : 'border-gray-800'} p-4 text-center focus:outline-none focus:border-blue-500 transition-colors rounded-none text-lg font-bold`}
+                    className={`w-full bg-slate-950 border ${error ? 'border-red-500/50' : 'border-gray-800'} p-4 text-center focus:outline-none focus:border-indigo-500 transition-colors rounded-none text-lg font-bold`}
                     required
                     autoFocus
                   />

@@ -7,6 +7,7 @@ import LoginPage from './pages/Login';
 import AdminContractsDashboard from './pages/AdminContractsDashboard';
 import AdminSocialLeads from './pages/AdminSocialLeads';
 import AdminSEO from './pages/AdminSEO';
+import AdminPesquisaSites from './pages/AdminPesquisaSites';
 import ContractPage from './pages/ContractPage';
 
 
@@ -19,6 +20,7 @@ export const PAGES = {
     "admin-contratos": AdminContractsDashboard,
     "admin-leads": AdminSocialLeads,
     "admin-seo": AdminSEO,
+    "admin-pesquisa-sites": AdminPesquisaSites,
     "contrato": ContractPage,
     "login": LoginPage,
 }

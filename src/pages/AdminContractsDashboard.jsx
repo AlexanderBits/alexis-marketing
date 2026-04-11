@@ -109,7 +109,7 @@ export default function AdminContractsDashboard() {
                 className="bg-slate-800 border-slate-700 text-white"
                 autoFocus
               />
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold">
                 Acessar Dashboard
               </Button>
             </form>
@@ -129,31 +129,31 @@ export default function AdminContractsDashboard() {
           className="mb-8"
         >
           <div className="flex items-center gap-4 mb-6">
-            <Shield className="w-10 h-10 text-blue-500" />
-            <h1 className="text-3xl md:text-4xl font-bold text-white">
+            <Shield className="w-10 h-10 text-indigo-500" />
+            <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-white">
               Dashboard de Contratos
             </h1>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Total</p>
-                    <p className="text-3xl font-bold text-white">{contracts.length}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Total</p>
+                    <p className="text-3xl font-black text-white">{contracts.length}</p>
                   </div>
-                  <FileText className="w-10 h-10 text-blue-500" />
+                  <FileText className="w-10 h-10 text-indigo-500/20" />
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Essencial</p>
-                    <p className="text-3xl font-bold text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Essencial</p>
+                    <p className="text-3xl font-black text-white">
                       {contracts.filter(c => c.selected_plan === 'simple').length}
                     </p>
                   </div>
@@ -164,12 +164,12 @@ export default function AdminContractsDashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Bronze</p>
-                    <p className="text-3xl font-bold text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Bronze</p>
+                    <p className="text-3xl font-black text-white">
                       {contracts.filter(c => c.selected_plan === 'bronze').length}
                     </p>
                   </div>
@@ -180,12 +180,12 @@ export default function AdminContractsDashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Prata</p>
-                    <p className="text-3xl font-bold text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Prata</p>
+                    <p className="text-3xl font-black text-white">
                       {contracts.filter(c => c.selected_plan === 'prata').length}
                     </p>
                   </div>
@@ -196,12 +196,12 @@ export default function AdminContractsDashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-400">Ouro</p>
-                    <p className="text-3xl font-bold text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Ouro</p>
+                    <p className="text-3xl font-black text-white">
                       {contracts.filter(c => c.selected_plan === 'ouro').length}
                     </p>
                   </div>
@@ -240,15 +240,15 @@ export default function AdminContractsDashboard() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <Card className="bg-slate-900 border-slate-800 hover:border-slate-700 transition-colors">
+                <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm hover:border-slate-700 transition-colors">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div>
-                        <CardTitle className="text-white flex items-center gap-3">
-                          <User className="w-5 h-5 text-blue-500" />
+                        <CardTitle className="text-white flex items-center gap-3 font-bold">
+                          <User className="w-5 h-5 text-indigo-500" />
                           {contract.client_name}
                         </CardTitle>
-                        <p className="text-sm text-gray-400 mt-1">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
                           {contract.client_type === "cnpj" ? "CNPJ" : "CPF"}: {contract.client_type === "cnpj" ? contract.client_cnpj : contract.client_cpf}
                         </p>
                       </div>

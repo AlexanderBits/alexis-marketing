@@ -227,18 +227,18 @@ export default function BriefingForm() {
           transition={{ type: "spring", duration: 0.6 }}
           className="max-w-md text-center"
         >
-          <div className="w-24 h-24 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-12 h-12 text-green-400" />
+          <div className="w-24 h-24 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-indigo-500/10">
+            <CheckCircle2 className="w-12 h-12 text-indigo-400" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3">Briefing Enviado!</h1>
+          <h1 className="text-3xl font-black text-white mb-3 tracking-tighter">Briefing Enviado!</h1>
           <p className="text-slate-400 mb-2">
-            Obrigado, <span className="text-white font-semibold">{form.client_name}</span>!
+            Obrigado, <span className="text-white font-bold">{form.client_name}</span>!
           </p>
-          <p className="text-slate-500 text-sm">
-            Seu Blueprint de Campanha foi recebido. Nossa equipe irá analisar os dados e estruturar a estratégia ideal para <strong className="text-slate-300">{form.company_name}</strong>.
+          <p className="text-slate-500 text-sm font-medium leading-relaxed">
+            Seu Blueprint de Campanha foi recebido. Nossa inteligência irá analisar os dados e estruturar a estratégia ideal para <strong className="text-slate-300">{form.company_name}</strong>.
           </p>
-          <div className="mt-8 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
-            <p className="text-blue-300 text-sm">📱 Em breve entraremos em contato para alinhar os próximos passos.</p>
+          <div className="mt-8 p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 backdrop-blur-sm">
+            <p className="text-indigo-300 text-sm font-bold">📱 Em breve entraremos em contato para alinhar os próximos passos.</p>
           </div>
         </motion.div>
       </div>
@@ -249,15 +249,15 @@ export default function BriefingForm() {
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col">
       {/* Header */}
-      <div className="bg-slate-900 border-b border-slate-800 px-4 py-4">
+      <div className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 py-6 sticky top-0 z-50">
         <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-white font-bold text-lg">Blueprint de Campanha</h1>
-              <p className="text-slate-400 text-xs">Briefing Estratégico para IA de Anúncios</p>
+              <h1 className="text-white font-black text-xl tracking-tighter uppercase">Blueprint de Campanha</h1>
+              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Inteligência Estratégica Alexis</p>
             </div>
-            <span className="text-slate-400 text-sm font-mono bg-slate-800 px-3 py-1 rounded-full">
-              {step + 1}/{totalSteps}
+            <span className="text-indigo-400 text-xs font-black bg-indigo-500/10 px-4 py-1.5 rounded-full border border-indigo-500/20 shadow-lg shadow-indigo-500/10">
+              {step + 1} / {totalSteps}
             </span>
           </div>
           {/* Progress bar */}
@@ -270,12 +270,12 @@ export default function BriefingForm() {
             />
           </div>
           {/* Step dots */}
-          <div className="flex justify-between mt-2">
+          <div className="flex justify-between mt-3 px-1">
             {STEPS.map((s, i) => (
               <div
                 key={s.id}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i <= step ? "bg-blue-500" : "bg-slate-700"
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
+                  i <= step ? "bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" : "bg-slate-800"
                 }`}
               />
             ))}
@@ -557,12 +557,12 @@ export default function BriefingForm() {
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting || !canAdvance()}
-                className="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold py-6 shadow-lg shadow-emerald-500/20 hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="flex-1 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-black uppercase tracking-widest py-8 shadow-xl shadow-indigo-500/20 hover:opacity-90 transition-opacity disabled:opacity-50 rounded-2xl"
               >
                 {isSubmitting ? (
-                  <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Enviando Blueprint...</>
+                  <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Processando Blueprint...</>
                 ) : (
-                  <><CheckCircle2 className="w-5 h-5 mr-2" /> Enviar Blueprint de Campanha</>
+                  <><CheckCircle2 className="w-5 h-5 mr-2" /> Finalizar Blueprint</>
                 )}
               </Button>
             )}
