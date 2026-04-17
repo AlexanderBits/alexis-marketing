@@ -60,7 +60,7 @@ export default function ContractPage() {
       }
     };
     checkAuth();
-  }, [navigate]);
+  }, []);
 
   const planValues = {
     simple: 29.90,
