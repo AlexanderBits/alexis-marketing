@@ -7,11 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 import { FileText, CheckCircle2, Loader2, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
 export default function ContractPage() {
   const { toast } = useToast();
-  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
   const [formData, setFormData] = useState({
@@ -46,7 +43,7 @@ export default function ContractPage() {
       try {
         const user = await base44.auth.me();
         if (!user) {
-          navigate('/login');
+          base44.auth.redirectToLogin('/contrato');
           return;
         }
         setCurrentUser(user);
@@ -57,7 +54,7 @@ export default function ContractPage() {
         }));
       } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
-        navigate('/login');
+        base44.auth.redirectToLogin('/contrato');
       } finally {
         setIsLoadingAuth(false);
       }
