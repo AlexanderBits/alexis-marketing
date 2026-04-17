@@ -1,0 +1,94 @@
+{
+  "name": "CampaignBriefing",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Nome completo do cliente"
+    },
+    "company_name": {
+      "type": "string",
+      "description": "Nome da empresa/neg\u00f3cio"
+    },
+    "niche": {
+      "type": "string",
+      "description": "Nicho/Setor de atua\u00e7\u00e3o"
+    },
+    "pillar_1_objective": {
+      "type": "string",
+      "enum": [
+        "leads",
+        "vendas",
+        "awareness",
+        "app_installs",
+        "trafego",
+        "mensagens"
+      ],
+      "description": "Objetivo principal da campanha"
+    },
+    "pillar_2_ticket": {
+      "type": "number",
+      "description": "Ticket m\u00e9dio da venda/servi\u00e7o"
+    },
+    "pillar_2_cpl_estimate": {
+      "type": "number",
+      "description": "Custo por Lead (CPL) estimado"
+    },
+    "pillar_2_roi_target": {
+      "type": "number",
+      "description": "ROI alvo calculado"
+    },
+    "pillar_3_conversion_data": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Dados de convers\u00e3o dispon\u00edveis"
+    },
+    "pillar_4_audience": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o do p\u00fablico-alvo ideal"
+    },
+    "pillar_5_context": {
+      "type": "string",
+      "description": "Contexto do neg\u00f3cio (HTML do editor rico)"
+    },
+    "pillar_6_creatives": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o dos criativos dispon\u00edveis"
+    },
+    "pillar_7_structure": {
+      "type": "string",
+      "enum": [
+        "campanha_unica",
+        "abtest",
+        "funil",
+        "retargeting"
+      ],
+      "description": "Estrutura da campanha"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "em_analise",
+        "aprovado"
+      ],
+      "default": "pendente",
+      "description": "Status do briefing no painel admin"
+    }
+  },
+  "required": [
+    "client_name",
+    "company_name",
+    "niche",
+    "pillar_1_objective",
+    "pillar_2_ticket",
+    "pillar_2_cpl_estimate",
+    "pillar_3_conversion_data",
+    "pillar_4_audience",
+    "pillar_5_context",
+    "pillar_6_creatives",
+    "pillar_7_structure"
+  ]
+}
