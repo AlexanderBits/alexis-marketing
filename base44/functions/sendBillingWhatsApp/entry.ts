@@ -7,7 +7,8 @@ const EVOLUTION_KEY = Deno.env.get('EVOLUTION_API_KEY');
 const EVOLUTION_INSTANCE = Deno.env.get('EVOLUTION_INSTANCE');
 
 async function sendWhatsApp(phone, message) {
-  const baseUrl = (EVOLUTION_URL || '').replace(/\/$/, '');
+  // Forçar HTTP para evitar problemas de TLS/SSL no Deno
+  const baseUrl = (EVOLUTION_URL || '').replace(/\/$/, '').replace('https://', 'http://');
   const url = `${baseUrl}/message/sendText/${EVOLUTION_INSTANCE}`;
   const res = await fetch(url, {
     method: 'POST',
