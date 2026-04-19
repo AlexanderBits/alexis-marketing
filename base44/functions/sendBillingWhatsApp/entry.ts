@@ -62,7 +62,18 @@ Deno.serve(async (req) => {
     return Response.json({ error: 'Acesso negado' }, { status: 403 });
   }
 
-  const { subscription_id } = await req.json();
+  const body = await req.json();
+  const { subscription_id } = body;
+
+  // Debug: retornar config se solicitado
+  if (body.debug) {
+    return Response.json({
+      evolution_url: EVOLUTION_URL,
+      evolution_instance: EVOLUTION_INSTANCE,
+      evolution_key_set: !!EVOLUTION_KEY,
+      evolution_key_prefix: EVOLUTION_KEY ? EVOLUTION_KEY.substring(0, 6) + '...' : 'NÃO DEFINIDA',
+    });
+  }
 
   const allSubscriptions = await base44.asServiceRole.entities.Subscription.list();
   const subscription = allSubscriptions.find(s => s.id === subscription_id);
