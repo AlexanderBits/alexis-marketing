@@ -80,12 +80,12 @@ export default function AdminSocialLeads() {
         <Card className="max-w-md w-full bg-slate-900 border-slate-800 backdrop-blur-xl">
           <CardHeader>
             <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20">
-                <Shield className="w-8 h-8 text-red-500" />
+              <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+                <Shield className="w-8 h-8 text-white" />
               </div>
             </div>
-            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter">Acesso Restrito</CardTitle>
-            <p className="text-slate-400 text-center text-sm mt-2">Exclusivo para administradores.<br/>Faça login com sua conta Google.</p>
+            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter uppercase italic">Acesso Administrativo</CardTitle>
+            <p className="text-white text-center text-sm mt-2 font-black uppercase tracking-widest leading-relaxed">Exclusivo para administradores.<br/>Faça login via Google Auth.</p>
           </CardHeader>
           <CardContent>
             <Button
@@ -101,7 +101,7 @@ export default function AdminSocialLeads() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-100 font-sans">
+    <div className="min-h-screen bg-[#020617] text-white font-sans">
       <AdminNavbar />
       <div className="max-w-7xl mx-auto p-4 md:p-8">
 
@@ -112,11 +112,11 @@ export default function AdminSocialLeads() {
         >
           <div className="flex items-center gap-4">
             <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
-              <Shield className="w-8 h-8 text-indigo-500" />
+              <Shield className="w-8 h-8 text-white" />
             </div>
             <div>
               <h1 className="text-3xl font-black text-white tracking-tighter">Gestão de Leads</h1>
-              <p className="text-slate-500 text-[10px] uppercase font-black tracking-widest">Prospectos Capturados via Social</p>
+              <p className="text-white text-[10px] uppercase font-black tracking-widest">Prospectos Capturados via Social</p>
             </div>
           </div>
           
@@ -124,13 +124,13 @@ export default function AdminSocialLeads() {
             <Button 
                onClick={exportLeads}
                variant="outline" 
-               className="bg-slate-900/50 border-slate-800 hover:bg-slate-800 text-slate-200 border rounded-xl backdrop-blur-sm"
+               className="bg-slate-900/50 border-slate-800 hover:bg-slate-800 text-white border rounded-xl backdrop-blur-sm"
             >
               <Download className="mr-2 w-4 h-4" /> Exportar CSV
             </Button>
             <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm flex items-center px-6 py-2 shadow-xl rounded-xl">
-               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mr-3">Total:</span>
-               <span className="text-xl font-black text-indigo-500">{leads.length}</span>
+               <span className="text-[10px] font-bold uppercase tracking-widest text-white mr-3">Total:</span>
+               <span className="text-xl font-black text-white">{leads.length}</span>
             </Card>
           </div>
         </motion.div>
@@ -143,7 +143,7 @@ export default function AdminSocialLeads() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="bg-slate-900/50 border-slate-800 text-white pl-12 py-7 rounded-2xl focus:ring-indigo-500/20"
                 />
-                <Shield className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                <Shield className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white" />
             </div>
         </div>
 
@@ -151,13 +151,13 @@ export default function AdminSocialLeads() {
           {isLoading ? (
             <div className="text-center py-20 bg-slate-900/10 rounded-3xl border border-slate-800 border-dashed">
               <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-slate-400 font-medium tracking-wide">Buscando leads na nuvem...</p>
+              <p className="text-white font-medium tracking-wide">Buscando leads na nuvem...</p>
             </div>
           ) : filteredLeads.length === 0 ? (
             <Card className="bg-slate-900/20 border-slate-800 border-dashed py-20 text-center">
               <CardContent className="py-6">
-                <MessageCircle className="w-16 h-16 text-slate-700 mx-auto mb-6 opacity-30" />
-                <p className="text-slate-500 text-lg font-medium">Nenhum lead encontrado com estes critérios.</p>
+                <MessageCircle className="w-16 h-16 text-white mx-auto mb-6 opacity-30" />
+                <p className="text-white text-lg font-medium">Nenhum lead encontrado com estes critérios.</p>
               </CardContent>
             </Card>
           ) : (
@@ -183,7 +183,7 @@ export default function AdminSocialLeads() {
                     <CardHeader className="pb-3 border-b border-slate-800/50 mb-4 bg-slate-800/10">
                       <div className="flex items-center gap-3">
                          <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/10">
-                            <Mail className="w-5 h-5 text-indigo-400" />
+                            <Mail className="w-5 h-5 text-white" />
                          </div>
                          <CardTitle className="text-white text-base truncate pr-8" title={lead.email}>
                            {lead.email}
@@ -204,7 +204,7 @@ export default function AdminSocialLeads() {
                              ABRIR CONVERSA
                            </a>
                         </div>
-                        <div className="flex items-center gap-2 text-slate-500 text-xs mt-2 px-1">
+                        <div className="flex items-center gap-2 text-white text-xs mt-2 px-1">
                           <Calendar className="w-3 h-3" />
                           <span>Capturado em: {new Date(lead.created_date).toLocaleString('pt-BR')}</span>
                         </div>

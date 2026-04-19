@@ -23,10 +23,10 @@ export default function Footer() {
                   alt="Alexis Marketing • Dev - Especialista Google Partner"
                   className="h-20 w-auto object-contain" />
             </motion.div>
-            <p className="text-gray-500 mb-6 max-w-sm mx-auto md:mx-0">
+            <p className="text-white mb-6 max-w-sm mx-auto md:mx-0">
               Sua <strong>presença digital premium</strong> começa aqui. Como <strong>Especialista em Desenvolvimento de Sites</strong>, entregamos soluções de criação de sites profissionais e estratégias de SEO de alta performance para colocar seu negócio no topo.
             </p>
-            <div className="flex items-center gap-2 text-xs text-gray-600 justify-center md:justify-start">
+            <div className="flex items-center gap-2 text-xs text-white justify-center md:justify-start">
               <Cpu className="w-3 h-3" />
               <span>Especialistas em Criação de Sites • Alexis Dev Authority</span>
             </div>
@@ -35,22 +35,22 @@ export default function Footer() {
           {/* Links */}
           <div className="flex flex-col items-center md:items-start">
             <h4 className="text-white font-semibold mb-6 flex items-center gap-2">
-              <Compass className="w-4 h-4 text-blue-500" />
+              <Compass className="w-4 h-4 text-white" />
               Links Rápidos
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-500 hover:text-white transition-colors text-sm">
+                <Link to="/" className="text-white hover:text-white transition-colors text-sm">
                   Início
                 </Link>
               </li>
               <li>
-                <Link to="/google-meu-negocio" className="text-gray-500 hover:text-white transition-colors text-sm">
+                <Link to="/google-meu-negocio" className="text-white hover:text-white transition-colors text-sm">
                   Google Meu Negócio
                 </Link>
               </li>
               <li>
-                <Link to="/contrato" className="text-gray-500 hover:text-white transition-colors text-sm">
+                <Link to="/contrato" className="text-white hover:text-white transition-colors text-sm">
                   Contrato
                 </Link>
               </li>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <li key={link}>
                   <a
                     href="#"
-                    className="text-gray-500 hover:text-white transition-colors text-sm">
+                    className="text-white hover:text-white transition-colors text-sm">
                     {link}
                   </a>
                 </li>
@@ -72,22 +72,22 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:contato@alexis.dev.br" className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">contato@alexis.dev.br
+                  href="mailto:contato@alexis.dev.br" className="flex items-center gap-3 text-white hover:text-white transition-colors text-sm">contato@alexis.dev.br
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors text-sm">+55 (32) 987037221
+                  href="https://wa.me/5532987037221" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-white transition-colors text-sm">+55 (32) 987037221
                 </a>
               </li>
             </ul>
 
             <div className="mt-8 flex gap-4">
               <a href="https://instagram.com/alexismarketingedev" target="_blank" rel="noopener noreferrer" title="Siga no Instagram" className="p-2.5 bg-gray-900 border border-gray-800 rounded-lg hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 hover:border-transparent transition-all duration-300 group hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(219,39,119,0.4)]">
-                <Instagram className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                <Instagram className="w-5 h-5 text-white group-hover:text-white transition-colors" />
               </a>
               <a href="https://www.facebook.com/alexdevmarketingIA/" target="_blank" rel="noopener noreferrer" title="Siga no Facebook" className="p-2.5 bg-gray-900 border border-gray-800 rounded-lg hover:bg-blue-600 hover:border-transparent transition-all duration-300 group hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-                <Facebook className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                <Facebook className="w-5 h-5 text-white group-hover:text-white transition-colors" />
               </a>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function Footer() {
         <div className="mt-16 pt-12 border-t border-gray-900/50">
           <div className="text-center max-w-3xl mx-auto">
             <h5 className="text-white text-xs font-bold uppercase tracking-widest mb-4 opacity-50">Abrangência & Presença Nacional</h5>
-            <p className="text-gray-600 text-[11px] leading-relaxed italic">
+            <p className="text-white text-[11px] leading-relaxed italic">
               Liderança tecnológica com atendimento em <strong>todo o território nacional</strong>. Consolidamos nossa autoridade digital através de resultados extraordinários na Zona Norte de Rio, Zona Norte de BH e em todo o Norte do Brasil, operando hoje com infraestrutura de elite para clientes em qualquer parte do país e do mundo.
             </p>
           </div>
@@ -105,20 +105,20 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-sm">
+          <p className="text-white text-sm">
             © {currentYear} Alexis Dev • Especialista em Desenvolvimento de Sites e SEO.
           </p>
           <div className="flex gap-6 items-center">
-            <Link to="/politica-de-privacidade" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+            <Link to="/politica-de-privacidade" className="text-white hover:text-white text-xs transition-colors">
               Privacidade
             </Link>
-            <Link to="/termos-de-uso" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+            <Link to="/termos-de-uso" className="text-white hover:text-white text-xs transition-colors">
               Termos
             </Link>
-            <Link to="/contrato" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+            <Link to="/contrato" className="text-white hover:text-white text-xs transition-colors">
               Contratos
             </Link>
-            <Link to="/admin-leads" className="text-gray-800 hover:text-blue-500 transition-colors" title="Admin">
+            <Link to="/admin-leads" className="text-white hover:text-white transition-colors" title="Admin">
               <Shield className="w-3.5 h-3.5" />
             </Link>
           </div>

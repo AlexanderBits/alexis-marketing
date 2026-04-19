@@ -37,7 +37,7 @@ const STRUCTURE_LABELS = {
 
 const STATUS_CONFIG = {
   pendente: { label: "Pendente", color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20" },
-  em_analise: { label: "Em Análise", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  em_analise: { label: "Em Análise", color: "bg-blue-500/10 text-white border-blue-500/20" },
   aprovado: { label: "Aprovado", color: "bg-green-500/10 text-green-400 border-green-500/20" },
 };
 
@@ -168,8 +168,8 @@ export default function AdminBriefing() {
               <Shield className="w-8 h-8 text-red-500" />
             </div>
             <CardTitle className="text-white text-2xl font-black tracking-tighter">Área de Inteligência</CardTitle>
-            <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Exclusivo para Administradores</p>
-            <p className="text-slate-400 text-sm mt-3">Faça login com sua conta Google de administrador para acessar.</p>
+            <p className="text-white text-[10px] font-black uppercase tracking-widest">Exclusivo para Administradores</p>
+            <p className="text-white text-sm mt-3">Faça login com sua conta Google de administrador para acessar.</p>
           </CardHeader>
           <CardContent className="mt-2">
             <Button
@@ -214,13 +214,13 @@ export default function AdminBriefing() {
                   </span>
                 </div>
                 <h2 className="text-white font-bold text-xl">{b.client_name}</h2>
-                <p className="text-slate-400 text-sm flex items-center gap-2">
+                <p className="text-white text-sm flex items-center gap-2">
                   <Building2 className="w-3 h-3" /> {b.company_name}
                   <span className="mx-1">·</span>
                   {b.niche}
                 </p>
               </div>
-              <button onClick={() => setSelected(null)} className="text-slate-400 hover:text-white transition-colors">
+              <button onClick={() => setSelected(null)} className="text-white hover:text-white transition-colors">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -230,8 +230,8 @@ export default function AdminBriefing() {
               {/* Pilar 1 */}
               <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <Target className="w-4 h-4 text-indigo-400" />
-                  <span className="text-indigo-400 text-xs font-bold uppercase tracking-wider">Pilar 1 — Objetivo</span>
+                  <Target className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 1 — Objetivo</span>
                 </div>
                 <p className="text-white font-medium">{OBJECTIVE_LABELS[b.pillar_1_objective] || b.pillar_1_objective}</p>
               </div>
@@ -239,8 +239,8 @@ export default function AdminBriefing() {
               {/* Pilar 2 */}
               <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
                 <div className="flex items-center gap-2 mb-3">
-                  <DollarSign className="w-4 h-4 text-emerald-400" />
-                  <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider">Pilar 2 — Valores</span>
+                  <DollarSign className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 2 — Valores</span>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
                   {[
@@ -249,8 +249,8 @@ export default function AdminBriefing() {
                     { label: "ROI Target", value: `${b.pillar_2_roi_target}%`, highlight: true },
                   ].map((item) => (
                     <div key={item.label} className="bg-slate-800 rounded-xl p-3 text-center">
-                      <p className="text-slate-400 text-xs mb-1">{item.label}</p>
-                      <p className={`font-bold text-lg ${item.highlight ? "text-emerald-400" : "text-white"}`}>{item.value}</p>
+                      <p className="text-white text-xs mb-1">{item.label}</p>
+                      <p className={`font-bold text-lg ${item.highlight ? "text-white" : "text-white"}`}>{item.value}</p>
                     </div>
                   ))}
                 </div>
@@ -259,12 +259,12 @@ export default function AdminBriefing() {
               {/* Pilar 3 */}
               <div className="p-4 rounded-xl bg-orange-500/5 border border-orange-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <BarChart2 className="w-4 h-4 text-orange-400" />
-                  <span className="text-orange-400 text-xs font-bold uppercase tracking-wider">Pilar 3 — Dados</span>
+                  <BarChart2 className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 3 — Dados</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {(b.pillar_3_conversion_data || []).map((d) => (
-                    <span key={d} className="px-3 py-1 rounded-lg bg-orange-500/10 text-orange-300 text-xs font-medium border border-orange-500/20">
+                    <span key={d} className="px-3 py-1 rounded-lg bg-orange-500/10 text-white text-xs font-medium border border-orange-500/20">
                       {d}
                     </span>
                   ))}
@@ -274,20 +274,20 @@ export default function AdminBriefing() {
               {/* Pilar 4 */}
               <div className="p-4 rounded-xl bg-pink-500/5 border border-pink-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <Users className="w-4 h-4 text-pink-400" />
-                  <span className="text-pink-400 text-xs font-bold uppercase tracking-wider">Pilar 4 — Público</span>
+                  <Users className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 4 — Público</span>
                 </div>
-                <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">{b.pillar_4_audience}</p>
+                <p className="text-white text-sm leading-relaxed whitespace-pre-wrap">{b.pillar_4_audience}</p>
               </div>
 
               {/* Pilar 5 */}
               <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <BookOpen className="w-4 h-4 text-indigo-400" />
-                  <span className="text-indigo-400 text-xs font-bold uppercase tracking-wider">Pilar 5 — Contexto</span>
+                  <BookOpen className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 5 — Contexto</span>
                 </div>
                 <div
-                  className="text-slate-300 text-sm leading-relaxed prose prose-invert prose-sm max-w-none"
+                  className="text-white text-sm leading-relaxed prose prose-invert prose-sm max-w-none"
                   dangerouslySetInnerHTML={{ __html: b.pillar_5_context }}
                 />
               </div>
@@ -295,17 +295,17 @@ export default function AdminBriefing() {
               {/* Pilar 6 */}
               <div className="p-4 rounded-xl bg-teal-500/5 border border-teal-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <Image className="w-4 h-4 text-teal-400" />
-                  <span className="text-teal-400 text-xs font-bold uppercase tracking-wider">Pilar 6 — Criativos</span>
+                  <Image className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 6 — Criativos</span>
                 </div>
-                <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">{b.pillar_6_creatives}</p>
+                <p className="text-white text-sm leading-relaxed whitespace-pre-wrap">{b.pillar_6_creatives}</p>
               </div>
 
               {/* Pilar 7 */}
               <div className="p-4 rounded-xl bg-slate-500/10 border border-slate-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <Layers className="w-4 h-4 text-slate-400" />
-                  <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Pilar 7 — Estrutura</span>
+                  <Layers className="w-4 h-4 text-white" />
+                  <span className="text-white text-xs font-bold uppercase tracking-wider">Pilar 7 — Estrutura</span>
                 </div>
                 <p className="text-white font-medium">{STRUCTURE_LABELS[b.pillar_7_structure] || b.pillar_7_structure}</p>
               </div>
@@ -330,7 +330,7 @@ export default function AdminBriefing() {
 
   // ── Dashboard principal ──
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
+    <div className="min-h-screen bg-slate-950 text-white font-sans">
       <AdminNavbar />
       
       {/* Header */}
@@ -338,23 +338,23 @@ export default function AdminBriefing() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
-              <Shield className="w-7 h-7 text-indigo-500" />
+              <Shield className="w-7 h-7 text-white" />
             </div>
             <div>
               <h1 className="text-3xl font-black text-white tracking-tighter">Briefings Estratégicos</h1>
-              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Blueprints de Campanha Auditados</p>
+              <p className="text-white text-[10px] font-black uppercase tracking-widest">Blueprints de Campanha Auditados</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Card className="bg-slate-900 border-slate-800 px-5 py-2 flex items-center gap-2 text-white rounded-xl backdrop-blur-sm">
-              <Star className="w-4 h-4 text-amber-500" />
+              <Star className="w-4 h-4 text-white" />
               <span className="font-black text-xl">{briefings.length}</span>
-              <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Total</span>
+              <span className="text-white text-[10px] font-black uppercase tracking-widest">Total</span>
             </Card>
             <Button
               variant="outline"
               onClick={() => exportCSV(briefings)}
-              className="border-slate-800 bg-slate-900/50 text-slate-300 hover:bg-slate-800 rounded-xl backdrop-blur-sm"
+              className="border-slate-800 bg-slate-900/50 text-white hover:bg-slate-800 rounded-xl backdrop-blur-sm"
             >
               <Download className="w-4 h-4 mr-2" /> CSV
             </Button>
@@ -371,9 +371,9 @@ export default function AdminBriefing() {
             onChange={(e) => setSearch(e.target.value)}
             className="bg-slate-900/50 border-slate-800 text-white pl-12 py-7 rounded-2xl focus:ring-indigo-500/20"
           />
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500/50" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white" />
           {search && (
-            <button onClick={() => setSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+            <button onClick={() => setSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-white">
               <X className="w-4 h-4" />
             </button>
           )}
@@ -382,13 +382,13 @@ export default function AdminBriefing() {
         {/* Grid de briefings */}
         {isLoading ? (
           <div className="text-center py-20">
-            <Loader2 className="w-10 h-10 animate-spin text-indigo-500 mx-auto mb-4" />
-            <p className="text-slate-500 font-bold uppercase text-[10px] tracking-widest">Sincronizando Briefings...</p>
+            <Loader2 className="w-10 h-10 animate-spin text-white mx-auto mb-4" />
+            <p className="text-white font-bold uppercase text-[10px] tracking-widest">Sincronizando Briefings...</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-20 border border-dashed border-slate-800 rounded-3xl">
-            <Shield className="w-16 h-16 text-slate-700 mx-auto mb-4 opacity-40" />
-            <p className="text-slate-500 text-lg">
+            <Shield className="w-16 h-16 text-white mx-auto mb-4 opacity-40" />
+            <p className="text-white text-lg">
               {briefings.length === 0 ? "Nenhum briefing recebido ainda." : "Nenhum resultado encontrado."}
             </p>
           </div>
@@ -411,12 +411,12 @@ export default function AdminBriefing() {
                       <div className="flex justify-between items-start">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
-                            <User className="w-5 h-5 text-indigo-400" />
+                            <User className="w-5 h-5 text-white" />
                           </div>
                           <div>
                             <CardTitle className="text-white text-base font-bold">{b.client_name}</CardTitle>
-                            <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
-                              <Building2 className="w-3 h-3 text-indigo-500/50" /> {b.company_name}
+                            <p className="text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+                              <Building2 className="w-3 h-3 text-white" /> {b.company_name}
                             </p>
                           </div>
                         </div>
@@ -427,28 +427,28 @@ export default function AdminBriefing() {
                     </CardHeader>
                     <CardContent className="pt-4 space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Nicho:</span>
-                        <span className="text-slate-300 text-xs font-bold">{b.niche}</span>
+                        <span className="text-white text-[10px] uppercase font-bold tracking-widest">Nicho:</span>
+                        <span className="text-white text-xs font-bold">{b.niche}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Target className="w-3 h-3 text-indigo-500" />
-                        <span className="text-slate-300 text-xs font-medium">{OBJECTIVE_LABELS[b.pillar_1_objective] || b.pillar_1_objective}</span>
+                        <Target className="w-3 h-3 text-white" />
+                        <span className="text-white text-xs font-medium">{OBJECTIVE_LABELS[b.pillar_1_objective] || b.pillar_1_objective}</span>
                       </div>
                       <div className="flex gap-2">
                         <div className="flex-1 bg-slate-800 rounded-lg p-2 text-center">
-                          <p className="text-slate-500 text-xs">Ticket</p>
+                          <p className="text-white text-xs">Ticket</p>
                           <p className="text-white font-bold text-sm">R$ {Number(b.pillar_2_ticket).toLocaleString("pt-BR")}</p>
                         </div>
                         <div className="flex-1 bg-slate-800 rounded-lg p-2 text-center">
-                          <p className="text-slate-500 text-xs">ROI</p>
-                          <p className="text-emerald-400 font-bold text-sm">{b.pillar_2_roi_target}%</p>
+                          <p className="text-white text-xs">ROI</p>
+                          <p className="text-white font-bold text-sm">{b.pillar_2_roi_target}%</p>
                         </div>
                       </div>
                       <div className="flex justify-between items-center bg-slate-950/50 -mx-4 -mb-4 p-4 mt-4 border-t border-slate-800/50">
-                        <span className="text-slate-600 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+                        <span className="text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
                           <Clock className="w-3 h-3" /> {new Date(b.created_date).toLocaleDateString("pt-BR")}
                         </span>
-                        <span className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.2em] group-hover:text-indigo-400 transition-colors">
+                        <span className="text-white text-[10px] font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors">
                           Blueprint →
                         </span>
                       </div>
