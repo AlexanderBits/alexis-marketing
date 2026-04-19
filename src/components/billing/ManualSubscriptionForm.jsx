@@ -9,7 +9,7 @@ import { Plus } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 
-const PLAN_VALUES = { bronze: 297, prata: 497, ouro: 797 };
+const PLAN_VALUES = { bronze: 49.90, prata: 99.90, ouro: 199.99 };
 
 export default function ManualSubscriptionForm({ onSuccess }) {
   const { toast } = useToast();
@@ -20,7 +20,7 @@ export default function ManualSubscriptionForm({ onSuccess }) {
     customer_email: "",
     customer_whatsapp: "",
     selected_plan: "bronze",
-    amount: 297,
+    amount: 49.90,
     due_date: "",
     notes: "",
     origin: "manual",
@@ -40,7 +40,7 @@ export default function ManualSubscriptionForm({ onSuccess }) {
     await base44.entities.Subscription.create(form);
     toast({ title: "Assinatura criada!", description: `${form.customer_name} adicionado com sucesso.` });
     setOpen(false);
-    setForm({ customer_name: "", customer_email: "", customer_whatsapp: "", selected_plan: "bronze", amount: 297, due_date: "", notes: "", origin: "manual", status: "pendente" });
+    setForm({ customer_name: "", customer_email: "", customer_whatsapp: "", selected_plan: "bronze", amount: 49.90, due_date: "", notes: "", origin: "manual", status: "pendente" });
     onSuccess?.();
     setLoading(false);
   };
@@ -77,9 +77,9 @@ export default function ManualSubscriptionForm({ onSuccess }) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-slate-800 border-slate-600">
-                  <SelectItem value="bronze">Bronze — R$ 297</SelectItem>
-                  <SelectItem value="prata">Prata — R$ 497</SelectItem>
-                  <SelectItem value="ouro">Ouro — R$ 797</SelectItem>
+                  <SelectItem value="bronze">Bronze — R$ 49,90</SelectItem>
+                  <SelectItem value="prata">Prata — R$ 99,90</SelectItem>
+                  <SelectItem value="ouro">Ouro — R$ 199,99</SelectItem>
                 </SelectContent>
               </Select>
             </div>
