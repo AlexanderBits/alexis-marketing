@@ -1,0 +1,30 @@
+{
+  "name": "SocialMediaLead",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "E-mail de contato do lead"
+    },
+    "whatsapp": {
+      "type": "string",
+      "description": "Número de WhatsApp do lead"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Caminho ou página de origem da captura"
+    }
+  },
+  "required": [
+    "email",
+    "whatsapp"
+  ],
+  "policies": {
+    "list": "auth.role == 'admin'",
+    "get": "auth.role == 'admin'",
+    "create": "true",
+    "update": "auth.role == 'admin'",
+    "delete": "auth.role == 'admin'"
+  }
+}

@@ -90,5 +90,12 @@
     "pillar_5_context",
     "pillar_6_creatives",
     "pillar_7_structure"
-  ]
+  ],
+  "policies": {
+    "list": "auth.role == 'admin'",
+    "get": "auth.role == 'admin'",
+    "create": "true",
+    "update": "auth.role == 'admin'",
+    "delete": "auth.role == 'admin'"
+  }
 }

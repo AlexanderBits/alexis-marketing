@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
 
-const API_BASE_URL = "http://localhost:3001"; // URL do servidor hunter-dom
+const API_BASE_URL = import.meta.env.VITE_HUNTER_DOM_URL || "http://localhost:3001"; // URL do servidor hunter-dom
 
 export default function AdminPesquisaSites() {
   const { toast } = useToast();
