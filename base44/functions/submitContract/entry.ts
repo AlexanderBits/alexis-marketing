@@ -18,6 +18,7 @@ Deno.serve(async (req) => {
             client_cpf,
             client_cnpj,
             client_email,
+            client_whatsapp,
             client_cep,
             client_street,
             client_number,
@@ -81,6 +82,11 @@ O CONTRATANTE declara ter lido e aceito todas as cláusulas deste contrato, incl
 Data de Aceite: ${new Date().toLocaleString('pt-BR')}
 `;
 
+        // Validar WhatsApp
+        if (!client_whatsapp) {
+            return Response.json({ success: false, error: 'WhatsApp é obrigatório' }, { status: 400 });
+        }
+
         // Salvar contrato no banco de dados
         const contract = await base44.asServiceRole.entities.Contract.create({
             client_type,
@@ -98,6 +104,24 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
             plan_value,
             accepted_at: new Date().toISOString(),
             contract_full_text: contractFullText
+        });
+
+        // Calcular vencimento (30 dias a partir de hoje)
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 30);
+        const dueDateStr = dueDate.toISOString().split('T')[0];
+
+        // Criar Subscription automaticamente
+        await base44.asServiceRole.entities.Subscription.create({
+            customer_name: client_name,
+            customer_email: client_email,
+            customer_whatsapp: client_whatsapp,
+            selected_plan,
+            amount: plan_value,
+            status: 'pendente',
+            due_date: dueDateStr,
+            origin: 'contrato_digital',
+            notes: `Contrato ID: ${contract.id}`,
         });
 
         return Response.json({ 

@@ -17,6 +17,7 @@ export default function ContractPage() {
     client_cpf: "",
     client_cnpj: "",
     client_email: "",
+    client_whatsapp: "",
     client_cep: "",
     client_street: "",
     client_number: "",
@@ -357,6 +358,21 @@ export default function ContractPage() {
                   className="bg-slate-800 border-slate-700 text-white"
                 />
               </div>
+            </div>
+
+            <div>
+              <Label htmlFor="client_whatsapp" className="text-white">WhatsApp (com DDI) *</Label>
+              <Input
+                id="client_whatsapp"
+                name="client_whatsapp"
+                type="tel"
+                value={formData.client_whatsapp}
+                onChange={handleInputChange}
+                required
+                placeholder="5521999999999"
+                className="bg-slate-800 border-slate-700 text-white"
+              />
+              <p className="text-slate-500 text-xs mt-1">Ex: 5521999999999 (DDI + DDD + número, sem espaços)</p>
             </div>
 
             <div>
