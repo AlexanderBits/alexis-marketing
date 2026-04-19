@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Shield, Search, RefreshCw, DollarSign, Users, AlertTriangle, CheckCircle2, Clock } from "lucide-react";
+import { AdminNavbar } from "@/components/AdminNavbar";
 import ManualSubscriptionForm from "@/components/billing/ManualSubscriptionForm";
 import SubscriptionCard from "@/components/billing/SubscriptionCard";
 import PaymentLogTable from "@/components/billing/PaymentLogTable";
@@ -67,19 +68,18 @@ export default function AdminBilling() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      {/* Header */}
-      <div className="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <AdminNavbar />
+      {/* Subheader */}
+      <div className="border-b border-slate-800 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-black tracking-tighter text-white">Gestão de Cobranças</h1>
-            <p className="text-slate-500 text-xs uppercase tracking-widest">Alexis Marketing · Admin</p>
+            <h1 className="text-lg font-black tracking-tighter text-white">Gestão de Cobranças</h1>
           </div>
           <div className="flex gap-2 items-center">
             <Button variant="ghost" size="sm" onClick={refresh} className="text-slate-400 hover:text-white gap-1">
               <RefreshCw className="w-3.5 h-3.5" /> Atualizar
             </Button>
             <ManualSubscriptionForm onSuccess={refresh} />
-            <Button variant="ghost" size="sm" onClick={logout} className="text-slate-500 hover:text-red-400 text-xs">Sair</Button>
           </div>
         </div>
       </div>

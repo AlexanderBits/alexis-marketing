@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin, Lock, Trash2 } from "lucide-react";
+import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin, Lock, Trash2, CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import { AdminNavbar } from "@/components/AdminNavbar";
 import SubscriptionStatusBadge from "@/components/billing/SubscriptionStatusBadge";
@@ -253,6 +254,18 @@ export default function AdminContractsDashboard() {
                           {planNames[contract.selected_plan]}
                         </Badge>
                         <SubscriptionStatusBadge status={subByEmail[contract.client_email]?.status || 'pendente'} />
+                        {!subByEmail[contract.client_email] && (
+                          <Link to="/admin-billing">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-indigo-400 border-indigo-500/40 hover:bg-indigo-900/30 text-xs gap-1"
+                            >
+                              <CreditCard className="w-3.5 h-3.5" />
+                              Cobrança
+                            </Button>
+                          </Link>
+                        )}
                         <Button
                           variant="ghost"
                           size="icon"
