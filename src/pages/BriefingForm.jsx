@@ -132,47 +132,15 @@ const initialForm = {
 
 export default function BriefingForm() {
   const { toast } = useToast();
-
-  // Verificar se veio do Stripe com pagamento confirmado
-  const urlParams = new URLSearchParams(window.location.search);
-  const paymentSuccess = urlParams.get('payment') === 'success';
-
-  if (paymentSuccess) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", duration: 0.6 }}
-          className="max-w-lg text-center"
-        >
-          <div className="w-24 h-24 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-green-500/10">
-            <CheckCircle2 className="w-12 h-12 text-green-400" />
-          </div>
-          <h1 className="text-3xl font-black text-white mb-3 tracking-tighter">Pagamento Confirmado! 🎉</h1>
-          <p className="text-slate-400 mb-6 leading-relaxed">
-            Sua assinatura foi ativada com sucesso. Agora preencha o <strong className="text-white">Blueprint de Campanha</strong> para iniciarmos sua estratégia.
-          </p>
-          <div className="mb-8 p-4 rounded-xl bg-green-500/10 border border-green-500/20">
-            <p className="text-green-300 text-sm font-bold">✅ Assinatura ativa — você já faz parte da Alexis Marketing!</p>
-          </div>
-          <Button
-            onClick={() => window.location.href = '/briefing'}
-            className="w-full bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-black uppercase tracking-widest py-6 shadow-xl shadow-indigo-500/20 hover:opacity-90 rounded-2xl"
-          >
-            Preencher o Blueprint de Campanha <ChevronRight className="w-5 h-5 ml-2" />
-          </Button>
-          <p className="text-slate-600 text-xs mt-4">Você pode preencher o briefing a qualquer momento</p>
-        </motion.div>
-      </div>
-    );
-  }
-
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [form, setForm] = useState(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Verificar se veio do Stripe com pagamento confirmado
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentSuccess = urlParams.get('payment') === 'success';
 
   const totalSteps = STEPS.length;
   const currentStep = STEPS[step];
@@ -252,6 +220,38 @@ export default function BriefingForm() {
       setIsSubmitting(false);
     }
   };
+
+  // ── Tela de pagamento confirmado ──
+  if (paymentSuccess) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", duration: 0.6 }}
+          className="max-w-lg text-center"
+        >
+          <div className="w-24 h-24 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-green-500/10">
+            <CheckCircle2 className="w-12 h-12 text-green-400" />
+          </div>
+          <h1 className="text-3xl font-black text-white mb-3 tracking-tighter">Pagamento Confirmado! 🎉</h1>
+          <p className="text-slate-400 mb-6 leading-relaxed">
+            Sua assinatura foi ativada com sucesso. Agora preencha o <strong className="text-white">Blueprint de Campanha</strong> para iniciarmos sua estratégia.
+          </p>
+          <div className="mb-8 p-4 rounded-xl bg-green-500/10 border border-green-500/20">
+            <p className="text-green-300 text-sm font-bold">✅ Assinatura ativa — você já faz parte da Alexis Marketing!</p>
+          </div>
+          <Button
+            onClick={() => window.location.href = '/briefing'}
+            className="w-full bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-black uppercase tracking-widest py-6 shadow-xl shadow-indigo-500/20 hover:opacity-90 rounded-2xl"
+          >
+            Preencher o Blueprint de Campanha <ChevronRight className="w-5 h-5 ml-2" />
+          </Button>
+          <p className="text-slate-600 text-xs mt-4">Você pode preencher o briefing a qualquer momento</p>
+        </motion.div>
+      </div>
+    );
+  }
 
   // ── Tela de sucesso ──
   if (submitted) {
