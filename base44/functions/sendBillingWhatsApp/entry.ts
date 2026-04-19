@@ -26,33 +26,28 @@ async function sendWhatsApp(phone, message) {
   return await res.json();
 }
 
-async function createStripePaymentLink(subscription) {
-  const planPriceMap = {
-    bronze: 'price_bronze', // Substitua pelos Price IDs reais do Stripe
-    prata: 'price_prata',
-    ouro: 'price_ouro',
-  };
+// Price IDs reais criados no Stripe (recorrentes mensais em BRL)
+const PLAN_PRICE_IDS = {
+  simple: 'price_1TNv2kDHf3DkRIVWmTBKSVw5',
+  bronze: 'price_1TNv2kDHf3DkRIVWhxqz8x1c',
+  prata:  'price_1TNv2lDHf3DkRIVWFJZyWXKE',
+  ouro:   'price_1TNv2lDHf3DkRIVWxWQGFmFo',
+};
 
-  // Criar uma sessão de checkout única para este cliente
+async function createStripePaymentLink(subscription) {
+  const priceId = PLAN_PRICE_IDS[subscription.selected_plan];
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    line_items: [{
-      price_data: {
-        currency: 'brl',
-        product_data: {
-          name: `Plano ${subscription.selected_plan.charAt(0).toUpperCase() + subscription.selected_plan.slice(1)} - Alexis Marketing`,
-        },
-        unit_amount: Math.round(subscription.amount * 100),
-      },
-      quantity: 1,
-    }],
-    mode: 'payment',
-    metadata: {
-      contractId: subscription.id,
+    line_items: [{ price: priceId, quantity: 1 }],
+    mode: 'subscription',
+    subscription_data: {
+      metadata: { contractId: subscription.id },
     },
+    metadata: { contractId: subscription.id },
     customer_email: subscription.customer_email,
-    success_url: `${Deno.env.get('BASE44_APP_ID') ? 'https://app.base44.com' : 'https://localhost'}/pagamento-confirmado`,
-    cancel_url: `${Deno.env.get('BASE44_APP_ID') ? 'https://app.base44.com' : 'https://localhost'}/pagamento-cancelado`,
+    success_url: 'https://alexismarketing.com.br/pagamento-confirmado',
+    cancel_url: 'https://alexismarketing.com.br/pagamento-cancelado',
   });
 
   return session.url;
