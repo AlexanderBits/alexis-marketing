@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
-import { FileText, CheckCircle2, Loader2, ChevronRight } from "lucide-react";
+import { FileText, CheckCircle2, Loader2, ChevronRight, MapPin } from "lucide-react";
 export default function ContractPage() {
   const { toast } = useToast();
   const [currentUser, setCurrentUser] = useState(null);
@@ -28,6 +28,7 @@ export default function ContractPage() {
   const [accepted, setAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoadingCep, setIsLoadingCep] = useState(false);
 
   // Remoção do auto-redirect: o fluxo agora vai para o Stripe checkout
 
@@ -63,7 +64,29 @@ export default function ContractPage() {
   };
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'client_cep') {
+      const cep = value.replace(/\D/g, '');
+      if (cep.length === 8) {
+        setIsLoadingCep(true);
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then(r => r.json())
+          .then(data => {
+            if (!data.erro) {
+              setFormData(prev => ({
+                ...prev,
+                client_street: data.logradouro || '',
+                client_neighborhood: data.bairro || '',
+                client_city: data.localidade || '',
+                client_state: data.uf || '',
+              }));
+            }
+          })
+          .finally(() => setIsLoadingCep(false));
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -357,15 +380,23 @@ export default function ContractPage() {
             <div className="grid md:grid-cols-3 gap-6">
               <div>
                 <Label htmlFor="client_cep" className="text-white">CEP *</Label>
-                <Input
-                  id="client_cep"
-                  name="client_cep"
-                  value={formData.client_cep}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="00000-000"
-                  className="bg-slate-800 border-slate-700 text-white"
-                />
+                <div className="relative">
+                  <Input
+                    id="client_cep"
+                    name="client_cep"
+                    value={formData.client_cep}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="00000-000"
+                    className="bg-slate-800 border-slate-700 text-white pr-9"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    {isLoadingCep
+                      ? <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
+                      : <MapPin className="w-4 h-4 text-slate-500" />
+                    }
+                  </div>
+                </div>
               </div>
               <div className="md:col-span-2">
                 <Label htmlFor="client_street" className="text-white">Logradouro *</Label>
