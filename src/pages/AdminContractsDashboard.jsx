@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, FileText, Calendar, DollarSign, User, Mail, MapPin, Lock, Trash2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { AdminNavbar } from "@/components/AdminNavbar";
+import SubscriptionStatusBadge from "@/components/billing/SubscriptionStatusBadge";
 
 export default function AdminContractsDashboard() {
   const { toast } = useToast();
@@ -22,6 +23,18 @@ export default function AdminContractsDashboard() {
     queryFn: () => base44.entities.Contract.list('-created_date'),
     enabled: isAuthenticated
   });
+
+  const { data: subscriptions = [] } = useQuery({
+    queryKey: ['subscriptions-all'],
+    queryFn: () => base44.entities.Subscription.list('-created_date', 200),
+    enabled: isAuthenticated
+  });
+
+  // Mapa: customer_email -> subscription (pega a mais recente)
+  const subByEmail = subscriptions.reduce((acc, sub) => {
+    if (!acc[sub.customer_email]) acc[sub.customer_email] = sub;
+    return acc;
+  }, {});
 
   const deleteContractMutation = useMutation({
     mutationFn: (contractId) => base44.entities.Contract.delete(contractId),
@@ -239,6 +252,7 @@ export default function AdminContractsDashboard() {
                         <Badge className={planColors[contract.selected_plan]}>
                           {planNames[contract.selected_plan]}
                         </Badge>
+                        <SubscriptionStatusBadge status={subByEmail[contract.client_email]?.status || 'pendente'} />
                         <Button
                           variant="ghost"
                           size="icon"
