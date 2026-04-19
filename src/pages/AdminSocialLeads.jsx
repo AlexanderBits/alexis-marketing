@@ -14,8 +14,7 @@ import { AdminNavbar } from "@/components/AdminNavbar";
 export default function AdminSocialLeads() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { isAuthenticated, login } = useAdminAuth();
-  const [password, setPassword] = useState("");
+  const { isAuthenticated, isLoading: isLoadingAuth } = useAdminAuth();
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: leads = [], isLoading } = useQuery({
@@ -48,23 +47,6 @@ export default function AdminSocialLeads() {
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (login(password)) {
-      toast({
-        title: "Acesso Autorizado",
-        description: "Bem-vindo ao painel administrativo.",
-      });
-    } else {
-      toast({
-        title: "Erro de Acesso",
-        description: "Senha incorreta!",
-        variant: "destructive",
-      });
-      setPassword("");
-    }
-  };
-
   const filteredLeads = leads.filter(lead => 
     lead.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     lead.whatsapp?.includes(searchTerm)
@@ -84,36 +66,34 @@ export default function AdminSocialLeads() {
     document.body.removeChild(link);
   };
 
+  if (isLoadingAuth) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6">
         <Card className="max-w-md w-full bg-slate-900 border-slate-800 backdrop-blur-xl">
           <CardHeader>
             <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
-                <Shield className="w-8 h-8 text-indigo-500" />
+              <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20">
+                <Shield className="w-8 h-8 text-red-500" />
               </div>
             </div>
-            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter">Área de Captura</CardTitle>
-            <p className="text-slate-500 text-center text-[10px] font-black uppercase tracking-widest">Leads de Canais Sociais</p>
+            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter">Acesso Restrito</CardTitle>
+            <p className="text-slate-400 text-center text-sm mt-2">Exclusivo para administradores.<br/>Faça login com sua conta Google.</p>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2">
-                <Input
-                  type="password"
-                  placeholder="Senha Administrativa"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="bg-slate-800 border-slate-700 text-white placeholder-slate-500"
-                  autoFocus
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 text-lg tracking-wide shadow-lg shadow-indigo-500/20">
-                Acessar Dashboard <Lock className="ml-2 w-4 h-4" />
-              </Button>
-            </form>
+            <Button
+              onClick={() => base44.auth.redirectToLogin(window.location.pathname)}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 text-lg tracking-wide shadow-lg shadow-indigo-500/20"
+            >
+              Entrar com Google <Lock className="ml-2 w-4 h-4" />
+            </Button>
           </CardContent>
         </Card>
       </div>
