@@ -18,10 +18,11 @@ async function sendWhatsApp(phone, message) {
       number: phone,
       text: message,
     }),
+    signal: AbortSignal.timeout(15000), // timeout de 15s
   });
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`Evolution API error: ${err}`);
+    throw new Error(`Evolution API error (${res.status}): ${err}`);
   }
   return await res.json();
 }
@@ -63,8 +64,8 @@ Deno.serve(async (req) => {
 
   const { subscription_id } = await req.json();
 
-  const subscriptions = await base44.asServiceRole.entities.Subscription.filter({ id: subscription_id });
-  const subscription = subscriptions[0];
+  const allSubscriptions = await base44.asServiceRole.entities.Subscription.list();
+  const subscription = allSubscriptions.find(s => s.id === subscription_id);
 
   if (!subscription) {
     return Response.json({ error: 'Assinatura não encontrada' }, { status: 404 });
@@ -86,11 +87,16 @@ Deno.serve(async (req) => {
     ? `Olá ${subscription.customer_name}! 👋\n\nSua mensalidade do Plano *${planLabel}* no valor de *R$ ${subscription.amount.toFixed(2)}* está disponível para pagamento.\n\n💳 Pague pelo link abaixo:\n${paymentLink}\n\nQualquer dúvida, estamos à disposição. 🚀\n\n_Alexis Marketing_`
     : `Olá ${subscription.customer_name}! 👋\n\nSua mensalidade do Plano *${planLabel}* no valor de *R$ ${subscription.amount.toFixed(2)}* está vencendo. Entre em contato para efetuar o pagamento.\n\n_Alexis Marketing_`;
 
+  // Normalizar WhatsApp: garantir que começa com 55
+  const rawPhone = (subscription.customer_whatsapp || '').replace(/\D/g, '');
+  const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
+
   try {
-    await sendWhatsApp(subscription.customer_whatsapp, message);
+    await sendWhatsApp(phone, message);
   } catch (err) {
     whatsappStatus = 'falhou';
     details += ` | Erro WhatsApp: ${err.message}`;
+    console.error('Evolution error:', err.message, '| URL:', `${EVOLUTION_URL}/message/sendText/${EVOLUTION_INSTANCE}`, '| Phone:', phone);
   }
 
   // Registrar no log
