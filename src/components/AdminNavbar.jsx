@@ -1,13 +1,12 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Users, FileText, Target, Search, LogOut, Shield, Globe } from "lucide-react";
-import { motion } from "framer-motion";
-import { useAdminAuth } from "@/hooks/useAdminAuth";
+import { Users, FileText, Target, Search, LogOut, Shield, Globe, CreditCard } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Leads", path: "/admin-leads", icon: Users },
   { label: "Contratos", path: "/admin-contratos", icon: FileText },
   { label: "Briefings", path: "/admin-briefing", icon: Target },
+  { label: "Cobrança", path: "/admin-billing", icon: CreditCard },
   { label: "SEO", path: "/admin-seo", icon: Search },
   { label: "Pesquisa Sites", path: "/admin-pesquisa-sites", icon: Globe },
 ];
