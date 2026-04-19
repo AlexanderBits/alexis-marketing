@@ -7,7 +7,8 @@ const EVOLUTION_KEY = Deno.env.get('EVOLUTION_API_KEY');
 const EVOLUTION_INSTANCE = Deno.env.get('EVOLUTION_INSTANCE');
 
 async function sendWhatsApp(phone, message) {
-  const url = `${EVOLUTION_URL}/message/sendText/${EVOLUTION_INSTANCE}`;
+  const baseUrl = (EVOLUTION_URL || '').replace(/\/$/, '');
+  const url = `${baseUrl}/message/sendText/${EVOLUTION_INSTANCE}`;
   const res = await fetch(url, {
     method: 'POST',
     headers: {
@@ -17,6 +18,7 @@ async function sendWhatsApp(phone, message) {
     body: JSON.stringify({
       number: phone,
       text: message,
+      options: { delay: 1200 },
     }),
     signal: AbortSignal.timeout(15000), // timeout de 15s
   });
