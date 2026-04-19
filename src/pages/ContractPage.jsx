@@ -29,14 +29,7 @@ export default function ContractPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    if (submitted) {
-      const timer = setTimeout(() => {
-        window.location.href = "/briefing";
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [submitted]);
+  // Remoção do auto-redirect: o fluxo agora vai para o Stripe checkout
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -88,21 +81,29 @@ export default function ContractPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await base44.functions.invoke('submitContract', {
+      const contractResponse = await base44.functions.invoke('submitContract', {
         ...formData,
         plan_value: planValues[formData.selected_plan]
       });
 
-        if (response.data.success) {
-          setSubmitted(true);
-          toast({
-            title: "Contrato Aceito com Sucesso!",
-            description: "Seu contrato foi registrado e pode ser visualizado no dashboard administrativo.",
+        if (contractResponse.data.success) {
+          // Redirecionar para o checkout do Stripe
+          const checkoutResponse = await base44.functions.invoke('createCheckoutSession', {
+            selected_plan: formData.selected_plan,
+            customer_email: formData.client_email,
+            contract_id: contractResponse.data.contract_id || '',
           });
+
+          if (checkoutResponse.data.url) {
+            window.location.href = checkoutResponse.data.url;
+          } else {
+            // Fallback: mostrar tela de sucesso sem checkout
+            setSubmitted(true);
+          }
         } else {
           toast({
             title: "Erro ao Aceitar",
-            description: response.data.error || "Ocorreu um erro ao processar o contrato.",
+            description: contractResponse.data.error || "Ocorreu um erro ao processar o contrato.",
             variant: "destructive"
           });
         }
