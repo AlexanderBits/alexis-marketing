@@ -10,6 +10,14 @@ async function sendWhatsApp(phone, message) {
   // Forçar HTTP para evitar problemas de TLS/SSL no Deno
   const baseUrl = (EVOLUTION_URL || '').replace(/\/$/, '').replace('https://', 'http://');
   const url = `${baseUrl}/message/sendText/${EVOLUTION_INSTANCE}`;
+  
+  console.log('[DEBUG] Sending WhatsApp:', {
+    url,
+    method: 'POST',
+    phone,
+    apikey_prefix: EVOLUTION_KEY ? EVOLUTION_KEY.substring(0, 6) : 'MISSING',
+  });
+  
   const res = await fetch(url, {
     method: 'POST',
     headers: {
@@ -23,6 +31,9 @@ async function sendWhatsApp(phone, message) {
     }),
     signal: AbortSignal.timeout(15000), // timeout de 15s
   });
+  
+  console.log('[DEBUG] Response status:', res.status);
+  
   if (!res.ok) {
     const err = await res.text();
     throw new Error(`Evolution API error (${res.status}): ${err}`);
