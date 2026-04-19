@@ -82,10 +82,11 @@ O CONTRATANTE declara ter lido e aceito todas as cláusulas deste contrato, incl
 Data de Aceite: ${new Date().toLocaleString('pt-BR')}
 `;
 
-        // Validar WhatsApp
-        if (!client_whatsapp) {
-            return Response.json({ success: false, error: 'WhatsApp é obrigatório' }, { status: 400 });
-        }
+        // Normalizar WhatsApp: garantir que começa com 55
+        const rawWhatsapp = (client_whatsapp || '').replace(/\D/g, '');
+        const normalizedWhatsapp = rawWhatsapp
+            ? (rawWhatsapp.startsWith('55') ? rawWhatsapp : `55${rawWhatsapp}`)
+            : '55';
 
         // Salvar contrato no banco de dados
         const contract = await base44.asServiceRole.entities.Contract.create({
@@ -115,7 +116,7 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
         await base44.asServiceRole.entities.Subscription.create({
             customer_name: client_name,
             customer_email: client_email,
-            customer_whatsapp: client_whatsapp,
+            customer_whatsapp: normalizedWhatsapp,
             selected_plan,
             amount: plan_value,
             status: 'pendente',
