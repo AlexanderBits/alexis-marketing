@@ -106,8 +106,7 @@ Deno.serve(async (req) => {
     await sendWhatsApp(phone, message);
   } catch (err) {
     whatsappStatus = 'falhou';
-    details += ` | Erro WhatsApp: ${err.message}`;
-    console.error('Evolution error:', err.message, '| URL:', `${EVOLUTION_URL}/message/sendText/${EVOLUTION_INSTANCE}`, '| Phone:', phone);
+    details += ` | Erro WhatsApp: ${err.message} | URL: ${EVOLUTION_URL}/message/sendText/${EVOLUTION_INSTANCE} | Phone: ${phone}`;
   }
 
   // Registrar no log
@@ -120,5 +119,5 @@ Deno.serve(async (req) => {
     details: details || `Link enviado via WhatsApp para ${subscription.customer_whatsapp}`,
   });
 
-  return Response.json({ success: whatsappStatus === 'enviado', whatsapp_status: whatsappStatus, payment_link: paymentLink });
+  return Response.json({ success: whatsappStatus === 'enviado', whatsapp_status: whatsappStatus, payment_link: paymentLink, details });
 });
