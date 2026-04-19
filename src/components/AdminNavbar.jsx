@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Users, FileText, Target, Search, LogOut, Shield, Globe, CreditCard } from "lucide-react";
+import { motion } from "framer-motion";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 const NAV_ITEMS = [
   { label: "Leads", path: "/admin-leads", icon: Users },
