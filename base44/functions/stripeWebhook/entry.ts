@@ -32,14 +32,29 @@ Deno.serve(async (req) => {
 
     let subscription = null;
 
-    if (contractId) {
-      const results = await base44.asServiceRole.entities.Subscription.filter({ id: contractId });
+    // 1) Tentar pelo stripe_subscription_id
+    if (stripeSubscriptionId) {
+      const results = await base44.asServiceRole.entities.Subscription.filter({ stripe_subscription_id: stripeSubscriptionId });
       subscription = results[0];
     }
 
-    if (!subscription && stripeSubscriptionId) {
-      const results = await base44.asServiceRole.entities.Subscription.filter({ stripe_subscription_id: stripeSubscriptionId });
-      subscription = results[0];
+    // 2) Fallback: buscar pelo email do cliente no Stripe
+    if (!subscription && stripeCustomerId) {
+      const stripeCustomer = await stripe.customers.retrieve(stripeCustomerId);
+      const email = stripeCustomer?.email || session.customer_email;
+      if (email) {
+        const results = await base44.asServiceRole.entities.Subscription.filter({ customer_email: email });
+        // pegar a mais recente pendente
+        subscription = results.find(s => s.status === 'pendente') || results[0];
+      }
+    }
+
+    // 3) Se encontrou, atualizar o stripe_subscription_id para buscas futuras
+    if (subscription && stripeSubscriptionId && !subscription.stripe_subscription_id) {
+      await base44.asServiceRole.entities.Subscription.update(subscription.id, {
+        stripe_subscription_id: stripeSubscriptionId,
+        stripe_customer_id: stripeCustomerId,
+      });
     }
 
     if (subscription) {
