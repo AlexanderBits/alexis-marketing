@@ -35,8 +35,8 @@ Deno.serve(async (req) => {
       },
       metadata: { contractId: contract_id },
       customer_email: customer_email,
-      success_url: 'https://alexismarketing.com.br/briefing?payment=success',
-      cancel_url: 'https://alexismarketing.com.br/contrato?payment=cancelled',
+      success_url: `${new URL(req.url).origin}/briefing?payment=success`,
+      cancel_url: `${new URL(req.url).origin}/contrato?payment=cancelled`,
     });
 
     return Response.json({ url: session.url });
