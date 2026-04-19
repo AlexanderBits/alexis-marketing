@@ -1,0 +1,73 @@
+{
+  "name": "PaymentLog",
+  "type": "object",
+  "properties": {
+    "subscription_id": {
+      "type": "string",
+      "description": "ID da assinatura relacionada"
+    },
+    "customer_name": {
+      "type": "string",
+      "description": "Nome do cliente (desnormalizado para facilitar consultas)"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "cobranca_enviada",
+        "pagamento_confirmado",
+        "pagamento_falhou",
+        "cancelamento",
+        "manual"
+      ],
+      "description": "Tipo do evento registrado"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Valor envolvido no evento"
+    },
+    "stripe_event_id": {
+      "type": "string",
+      "description": "ID do evento no Stripe para idempot\u00eancia"
+    },
+    "whatsapp_status": {
+      "type": "string",
+      "enum": [
+        "enviado",
+        "falhou",
+        "nao_aplicavel"
+      ],
+      "default": "nao_aplicavel",
+      "description": "Status do envio da mensagem WhatsApp"
+    },
+    "details": {
+      "type": "string",
+      "description": "Detalhes adicionais ou erro"
+    }
+  },
+  "required": [
+    "subscription_id",
+    "event_type"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

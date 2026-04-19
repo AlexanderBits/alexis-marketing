@@ -15,6 +15,7 @@ import ContractPage from './pages/ContractPage';
 import AdminContractsDashboard from './pages/AdminContractsDashboard';
 import BriefingForm from './pages/BriefingForm';
 import AdminBriefing from './pages/AdminBriefing';
+import AdminBilling from './pages/AdminBilling';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -65,6 +66,7 @@ const AuthenticatedApp = () => {
       <Route path="/admin-contratos" element={<AdminContractsDashboard />} />
       <Route path="/briefing" element={<BriefingForm />} />
       <Route path="/admin-briefing" element={<AdminBriefing />} />
+      <Route path="/admin-billing" element={<AdminBilling />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

@@ -1,0 +1,105 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string",
+      "description": "Nome completo do cliente"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "E-mail do cliente"
+    },
+    "customer_whatsapp": {
+      "type": "string",
+      "description": "WhatsApp do cliente com DDD (ex: 5511999999999)"
+    },
+    "selected_plan": {
+      "type": "string",
+      "enum": [
+        "bronze",
+        "prata",
+        "ouro"
+      ],
+      "description": "Plano contratado"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Valor mensal do plano em R$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "ativo",
+        "atrasado",
+        "cancelado"
+      ],
+      "default": "pendente",
+      "description": "Status da assinatura"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de vencimento da pr\u00f3xima cobran\u00e7a"
+    },
+    "stripe_subscription_id": {
+      "type": "string",
+      "description": "ID da assinatura no Stripe (opcional)"
+    },
+    "stripe_customer_id": {
+      "type": "string",
+      "description": "ID do cliente no Stripe (opcional)"
+    },
+    "last_payment_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data do \u00faltimo pagamento confirmado"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es internas"
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "contrato_digital",
+        "stripe"
+      ],
+      "default": "manual",
+      "description": "Origem do cadastro"
+    }
+  },
+  "required": [
+    "customer_name",
+    "customer_email",
+    "customer_whatsapp",
+    "selected_plan",
+    "amount",
+    "due_date"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
