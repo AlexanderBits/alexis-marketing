@@ -14,8 +14,7 @@ import { AdminNavbar } from "@/components/AdminNavbar";
 export default function AdminContractsDashboard() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { isAuthenticated, login } = useAdminAuth();
-  const [password, setPassword] = useState("");
+  const { isAuthenticated, isLoading: isLoadingAuth } = useAdminAuth();
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: contracts = [], isLoading } = useQuery({
@@ -62,23 +61,6 @@ export default function AdminContractsDashboard() {
     ouro: "bg-yellow-100 text-yellow-800"
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (login(password)) {
-      toast({
-        title: "Acesso Autorizado",
-        description: "Bem-vindo ao dashboard de contratos.",
-      });
-    } else {
-      toast({
-        title: "Erro de Acesso",
-        description: "Senha incorreta!",
-        variant: "destructive",
-      });
-      setPassword("");
-    }
-  };
-
   const filteredContracts = contracts.filter(contract => 
     contract.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contract.client_email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -86,33 +68,34 @@ export default function AdminContractsDashboard() {
     contract.client_cnpj?.includes(searchTerm)
   );
 
+  if (isLoadingAuth) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6">
         <Card className="max-w-md w-full bg-slate-900 border-slate-800">
           <CardHeader>
             <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center">
-                <Lock className="w-8 h-8 text-blue-500" />
+              <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center">
+                <Lock className="w-8 h-8 text-red-500" />
               </div>
             </div>
-            <CardTitle className="text-white text-center text-2xl">Dashboard de Contratos</CardTitle>
-            <p className="text-gray-400 text-center text-sm">Digite a senha para acessar</p>
+            <CardTitle className="text-white text-center text-2xl">Acesso Restrito</CardTitle>
+            <p className="text-gray-400 text-center text-sm mt-2">Esta área é exclusiva para administradores.<br/>Faça login com sua conta Google de administrador.</p>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <Input
-                type="password"
-                placeholder="Senha de acesso"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-slate-800 border-slate-700 text-white"
-                autoFocus
-              />
-              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold">
-                Acessar Dashboard
-              </Button>
-            </form>
+            <Button
+              onClick={() => base44.auth.redirectToLogin(window.location.pathname)}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6"
+            >
+              Entrar com Google
+            </Button>
           </CardContent>
         </Card>
       </div>

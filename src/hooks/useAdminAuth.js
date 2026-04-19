@@ -1,34 +1,40 @@
 import { useState, useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
 
 /**
- * Custom hook to manage administrative authentication session.
- * Stores authentication state in sessionStorage to persist across tab navigation
- * but clear when the browser session ends.
+ * Hook de autenticação administrativa.
+ * Verifica se o usuário logado via Google tem role 'admin'.
+ * Remove a senha hardcoded anterior.
  */
 export function useAdminAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    // Check initial state from sessionStorage
-    return sessionStorage.getItem('admin_session_active') === 'true';
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const login = (password) => {
-    if (password === '@Alex7550') {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('admin_session_active', 'true');
-      return true;
-    }
-    return false;
-  };
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const user = await base44.auth.me();
+        if (user && user.role === 'admin') {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
+      } catch {
+        setIsAuthenticated(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    checkAdmin();
+  }, []);
 
   const logout = () => {
-    setIsAuthenticated(false);
-    sessionStorage.removeItem('admin_session_active');
-    window.location.href = '/'; // Redirect to home on logout
+    base44.auth.logout('/');
   };
 
   return {
     isAuthenticated,
-    login,
+    isLoading,
     logout
   };
 }

@@ -120,8 +120,7 @@ function exportCSV(briefings) {
 
 export default function AdminBriefing() {
   const { toast } = useToast();
-  const { isAuthenticated, login } = useAdminAuth();
-  const [password, setPassword] = useState("");
+  const { isAuthenticated, isLoading: isLoadingAuth } = useAdminAuth();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
   const [copied, setCopied] = useState(false);
@@ -131,23 +130,6 @@ export default function AdminBriefing() {
     queryFn: () => base44.entities.CampaignBriefing.list("-created_date"),
     enabled: isAuthenticated,
   });
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (login(password)) {
-      toast({
-        title: "Acesso Autorizado",
-        description: "Bem-vindo ao painel de briefings.",
-      });
-    } else {
-      toast({
-        title: "Erro de Acesso",
-        description: "Senha incorreta!",
-        variant: "destructive",
-      });
-      setPassword("");
-    }
-  };
 
   const copyPrompt = async (briefing) => {
     const prompt = generateAIPrompt(briefing);
@@ -169,32 +151,33 @@ export default function AdminBriefing() {
   );
 
   // ── Login ──
+  if (isLoadingAuth) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
         <Card className="max-w-md w-full bg-slate-900 border-slate-800 backdrop-blur-xl">
           <CardHeader className="text-center pb-2">
-            <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-indigo-500" />
+            <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8 text-red-500" />
             </div>
             <CardTitle className="text-white text-2xl font-black tracking-tighter">Área de Inteligência</CardTitle>
-            <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Gestão de Blueprints de Campanha</p>
+            <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Exclusivo para Administradores</p>
+            <p className="text-slate-400 text-sm mt-3">Faça login com sua conta Google de administrador para acessar.</p>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4 mt-4">
-              <Input
-                type="password"
-                placeholder="Senha administrativa"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-slate-800 border-slate-700 text-white py-6"
-                autoFocus
-                required
-              />
-              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 py-6 text-lg font-bold shadow-lg shadow-indigo-500/20">
-                Acessar Painel <Lock className="ml-2 w-4 h-4" />
-              </Button>
-            </form>
+          <CardContent className="mt-2">
+            <Button
+              onClick={() => base44.auth.redirectToLogin(window.location.pathname)}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 py-6 text-lg font-bold shadow-lg shadow-indigo-500/20"
+            >
+              Entrar com Google <Lock className="ml-2 w-4 h-4" />
+            </Button>
           </CardContent>
         </Card>
       </div>
