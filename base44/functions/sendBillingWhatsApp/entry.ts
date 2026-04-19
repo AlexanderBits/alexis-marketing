@@ -23,13 +23,14 @@ async function sendWhatsApp(phone, message) {
     headers: {
       'Content-Type': 'application/json',
       'apikey': EVOLUTION_KEY,
+      'Connection': 'close',
     },
     body: JSON.stringify({
       number: phone,
       text: message,
       options: { delay: 1200 },
     }),
-    signal: AbortSignal.timeout(15000), // timeout de 15s
+    signal: AbortSignal.timeout(30000), // timeout de 30s
   });
   
   console.log('[DEBUG] Response status:', res.status);
