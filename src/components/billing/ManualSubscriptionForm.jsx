@@ -9,7 +9,7 @@ import { Plus } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 
-const PLAN_VALUES = { bronze: 49.90, prata: 99.90, ouro: 199.99 };
+const PLAN_VALUES = { simples: 29.90, bronze: 49.90, prata: 99.90, ouro: 199.99 };
 
 export default function ManualSubscriptionForm({ onSuccess }) {
   const { toast } = useToast();
@@ -77,6 +77,7 @@ export default function ManualSubscriptionForm({ onSuccess }) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-slate-800 border-slate-600">
+                  <SelectItem value="simples">Simples — R$ 29,90</SelectItem>
                   <SelectItem value="bronze">Bronze — R$ 49,90</SelectItem>
                   <SelectItem value="prata">Prata — R$ 99,90</SelectItem>
                   <SelectItem value="ouro">Ouro — R$ 199,99</SelectItem>

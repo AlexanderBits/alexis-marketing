@@ -18,6 +18,7 @@
     "selected_plan": {
       "type": "string",
       "enum": [
+        "simples",
         "bronze",
         "prata",
         "ouro"
