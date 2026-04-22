@@ -150,12 +150,12 @@ const ModernLanding = () => {
                     </SheetTitle>
                   </SheetHeader>
                   <div className="flex flex-col p-6 space-y-6">
-                    <a href="/" className="text-xl font-bold hover:text-brand-lime transition-colors">Início</a>
-                    <a href="#servicos" className="text-xl font-bold hover:text-brand-lime transition-colors">Serviços</a>
-                    <Link to="/google-meu-negocio" className="text-xl font-bold hover:text-brand-lime transition-colors">Google Maps</Link>
-                    <a href="#portfolio" className="text-xl font-bold hover:text-brand-lime transition-colors">Portfólio</a>
-                    <a href="#sobre-nos" className="text-xl font-bold hover:text-brand-lime transition-colors">Sobre Nós</a>
-                    <a href="#contato" className="text-xl font-bold hover:text-brand-lime transition-colors">Contato</a>
+                    <a href="/" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Início</a>
+                    <a href="#servicos" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Serviços</a>
+                    <Link to="/google-meu-negocio" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Google Maps</Link>
+                    <a href="#portfolio" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Portfólio</a>
+                    <a href="#sobre-nos" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Sobre Nós</a>
+                    <a href="#contato" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Contato</a>
                     
                     <div className="pt-6 border-t border-white/5">
                       <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." 
