@@ -28,8 +28,17 @@ import {
   MapPin,
   Instagram,
   Facebook,
-  Shield
+  Shield,
+  Menu,
+  X
 } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 import ModernLogo from "@/assets/alexis-logo.png";
 import Footer from "@/components/landing/Footer";
@@ -101,16 +110,15 @@ const ModernLanding = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 pointer-events-none">
-        <div className="relative bg-black/40 backdrop-blur-md border border-white/10 px-10 py-1.5 rounded-none flex items-center justify-between w-[95%] max-w-7xl pointer-events-auto shadow-2xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6 pointer-events-none">
+        <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 px-4 md:px-10 py-2 rounded-none flex items-center justify-between w-[95%] max-w-7xl pointer-events-auto shadow-2xl">
           <div className="flex items-center gap-3">
-             <div className="absolute left-10 top-1/2 -translate-y-1/2">
-                <img src={ModernLogo} alt="Alexis Marketing • Dev" className="h-[100px] w-auto drop-shadow-2xl" />
-             </div>
-             {/* Spacer for the absolute logo */}
-             <div className="w-[180px]"></div>
+             <Link to="/" className="flex items-center">
+                <img src={ModernLogo} alt="Alexis Marketing • Dev" className="h-12 md:h-[80px] w-auto drop-shadow-2xl transition-all" />
+             </Link>
           </div>
-          <div className="hidden md:flex items-center gap-12 text-sm font-medium text-white/70">
+          
+          <div className="hidden lg:flex items-center gap-8 xl:gap-12 text-sm font-medium text-white/70">
             <a href="/" className="hover:text-brand-lime transition-colors">Início</a>
             <a href="#servicos" className="hover:text-brand-lime transition-colors">Serviços</a>
             <Link to="/google-meu-negocio" className="hover:text-brand-lime transition-colors">Google Maps</Link>
@@ -118,9 +126,49 @@ const ModernLanding = () => {
             <a href="#sobre-nos" className="hover:text-brand-lime transition-colors">Sobre Nós</a>
             <a href="#contato" className="hover:text-brand-lime transition-colors">Contato</a>
           </div>
-          <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener noreferrer" className="bg-white text-black px-6 py-2 rounded-none text-sm font-bold hover:bg-brand-lime transition-all">
-            Falar com Especialista
-          </a>
+
+          <div className="flex items-center gap-4">
+            <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." 
+               target="_blank" rel="noopener noreferrer" 
+               className="hidden sm:block bg-white text-black px-6 py-2 rounded-none text-xs md:text-sm font-bold hover:bg-brand-lime transition-all whitespace-nowrap">
+              Falar com Especialista
+            </a>
+
+            {/* Mobile Menu Trigger */}
+            <div className="lg:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <button className="p-2 text-white hover:text-brand-lime transition-colors" aria-label="Abrir menu">
+                    <Menu className="w-6 h-6" />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="right" className="bg-brand-dark border-white/10 p-0 rounded-none w-[300px]">
+                  <SheetHeader className="p-6 border-b border-white/5 bg-black/40">
+                    <SheetTitle className="text-white text-left flex items-center gap-2">
+                       <img src={ModernLogo} alt="Alexis" className="h-8 w-auto" />
+                       <span className="text-xs text-white/40 font-normal">Menu</span>
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col p-6 space-y-6">
+                    <a href="/" className="text-xl font-bold hover:text-brand-lime transition-colors">Início</a>
+                    <a href="#servicos" className="text-xl font-bold hover:text-brand-lime transition-colors">Serviços</a>
+                    <Link to="/google-meu-negocio" className="text-xl font-bold hover:text-brand-lime transition-colors">Google Maps</Link>
+                    <a href="#portfolio" className="text-xl font-bold hover:text-brand-lime transition-colors">Portfólio</a>
+                    <a href="#sobre-nos" className="text-xl font-bold hover:text-brand-lime transition-colors">Sobre Nós</a>
+                    <a href="#contato" className="text-xl font-bold hover:text-brand-lime transition-colors">Contato</a>
+                    
+                    <div className="pt-6 border-t border-white/5">
+                      <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." 
+                         target="_blank" rel="noopener noreferrer" 
+                         className="w-full bg-brand-lime text-black py-4 px-6 rounded-none font-bold text-center block">
+                        Falar com Especialista
+                      </a>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -135,8 +183,8 @@ const ModernLanding = () => {
             <div className="mb-6">
                <img src="https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png" alt="Google Partner" className="w-[250px] h-auto opacity-80" />
             </div>
-            <h1 className="text-6xl lg:text-7xl font-['Outfit'] font-extrabold leading-[1.1] mb-8">
-              Criação de <br />Sites Profissionais <br />Next-Gen
+            <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-['Outfit'] font-extrabold leading-[1.1] mb-8">
+              Criação de <br className="hidden xs:block" />Sites Profissionais <br className="hidden xs:block" />Next-Gen
             </h1>
             <p className="text-white/60 text-lg mb-10 max-w-md leading-relaxed">
               Desenvolvemos projetos com design exclusivo e arquitetura digital de alta performance para dominar o Google.
