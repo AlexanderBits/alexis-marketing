@@ -521,24 +521,21 @@ export default function AdminPesquisaSites() {
       </main>
 
       {/* Footer com Status da Engine */}
-      <footer className="max-w-7xl mx-auto p-12 mt-24 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center bg-slate-950/50 gap-8">
-        <div className="space-y-4 text-center md:text-left">
-          <p className="text-white text-[10px] font-black uppercase tracking-[0.5em]">Antigravity Research Engine V2.5</p>
-          <div className="flex flex-wrap justify-center md:justify-start gap-8">
-             <div className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-                <span className="text-[9px] font-black text-white uppercase tracking-widest">Moz Scape: Connected</span>
+      <footer className="max-w-7xl mx-auto py-12 px-6 border-t border-slate-900/50 flex justify-between items-center opacity-20 hover:opacity-100 transition-opacity mt-20">
+        <div className="flex flex-col gap-2">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 italic">Antigravity Research Engine V2.5</p>
+          <div className="flex gap-4">
+             <div className="flex items-center gap-1.5">
+                <div className="h-1 w-1 rounded-full bg-emerald-500"></div>
+                <span className="text-[8px] font-black text-slate-600 uppercase tracking-widest">Moz Scape: Connected</span>
              </div>
-             <div className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-                <span className="text-[9px] font-black text-white uppercase tracking-widest">Local Node 3001: Active</span>
+             <div className="flex items-center gap-1.5">
+                <div className="h-1 w-1 rounded-full bg-emerald-500"></div>
+                <span className="text-[8px] font-black text-slate-600 uppercase tracking-widest">Local Node 3001: Active</span>
              </div>
           </div>
         </div>
-        <div className="flex items-center gap-4 opacity-30">
-          <Globe className="w-8 h-8 text-white" />
-          <span className="text-[10px] font-black text-white uppercase tracking-[.8em]">AlexisMarketing</span>
-        </div>
+        <Shield className="w-3.5 h-3.5 text-slate-500" />
       </footer>
     </div>
   );

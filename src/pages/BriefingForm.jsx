@@ -210,7 +210,6 @@ export default function BriefingForm() {
       pillar_2_roi_target: roiTarget ? parseFloat(roiTarget) : 0,
       status: "pendente",
     };
-    console.log("📦 BRIEFING PAYLOAD (7 Pilares):", payload);
     try {
       await base44.entities.CampaignBriefing.create(payload);
       setSubmitted(true);
@@ -256,26 +255,31 @@ export default function BriefingForm() {
   // ── Tela de sucesso ──
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-brand-dark flex items-center justify-center px-4 overflow-hidden relative">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-lime/10 blur-[120px] rounded-none animate-pulse" />
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: "spring", duration: 0.6 }}
-          className="max-w-md text-center"
+          className="max-w-md text-center bg-brand-card border border-white/5 p-12 relative overflow-hidden shadow-2xl"
         >
-          <div className="w-24 h-24 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-indigo-500/10">
-            <CheckCircle2 className="w-12 h-12 text-indigo-400" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-brand-lime" />
+          <div className="w-24 h-24 bg-brand-lime/10 border border-brand-lime/20 flex items-center justify-center mx-auto mb-8">
+            <CheckCircle2 className="w-12 h-12 text-brand-lime" />
           </div>
-          <h1 className="text-3xl font-black text-white mb-3 tracking-tighter">Briefing Enviado!</h1>
-          <p className="text-slate-400 mb-2">
-            Obrigado, <span className="text-white font-bold">{form.client_name}</span>!
+          <h1 className="text-4xl font-['Outfit'] font-black text-white mb-4 tracking-tight">Blueprint <span className="text-brand-lime">Enviado!</span></h1>
+          <p className="text-white/40 text-sm mb-10 leading-relaxed uppercase tracking-widest font-bold italic">
+            Obrigado, <span className="text-white">{form.client_name}</span>. Sua estratégia está sendo processada.
           </p>
-          <p className="text-slate-500 text-sm font-medium leading-relaxed">
-            Seu Blueprint de Campanha foi recebido. Nossa inteligência irá analisar os dados e estruturar a estratégia ideal para <strong className="text-slate-300">{form.company_name}</strong>.
-          </p>
-          <div className="mt-8 p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 backdrop-blur-sm">
-            <p className="text-indigo-300 text-sm font-bold">📱 Em breve entraremos em contato para alinhar os próximos passos.</p>
+          <div className="p-6 bg-white/5 border border-white/5 backdrop-blur-sm">
+            <p className="text-brand-lime text-[10px] font-black uppercase tracking-[0.2em]">Status: Em Análise Estratégica</p>
           </div>
+          <Button 
+            onClick={() => window.location.href = "/"}
+            className="mt-10 w-full bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-none text-[10px] font-black uppercase tracking-[0.3em] py-6"
+          >
+            Voltar para o Início
+          </Button>
         </motion.div>
       </div>
     );
@@ -283,103 +287,97 @@ export default function BriefingForm() {
 
   // ── Layout principal ──
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col">
+    <div className="min-h-screen bg-brand-dark text-white font-['Inter'] selection:bg-brand-lime selection:text-black flex flex-col overflow-x-hidden">
+      {/* Background Glows */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-lime/5 blur-[120px] rounded-none animate-pulse" />
+        <div className="absolute bottom-[20%] right-[-10%] w-[30%] h-[30%] bg-indigo-500/5 blur-[120px] rounded-none" />
+      </div>
+
       {/* Header */}
-      <div className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 py-6 sticky top-0 z-50">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-4">
+      <div className="bg-black/40 backdrop-blur-md border-b border-white/5 px-6 py-8 sticky top-0 z-50">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6">
+          <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-white font-black text-xl tracking-tighter uppercase">Blueprint de Campanha</h1>
-              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Inteligência Estratégica Alexis</p>
+              <h1 className="text-white font-black text-xl tracking-tighter uppercase font-['Outfit']">Blueprint de <span className="text-brand-lime">Campanha</span></h1>
+              <p className="text-white/30 text-[8px] font-black uppercase tracking-[0.4em] mt-1">Inteligência Estratégica • Alexis Dev</p>
             </div>
-            <span className="text-indigo-400 text-xs font-black bg-indigo-500/10 px-4 py-1.5 rounded-full border border-indigo-500/20 shadow-lg shadow-indigo-500/10">
-              {step + 1} / {totalSteps}
-            </span>
+            <div className="flex items-center gap-4">
+              <span className="text-brand-lime text-[10px] font-black bg-brand-lime/10 px-6 py-2 rounded-none border border-brand-lime/20 tracking-widest uppercase">
+                Etapa {step + 1} / {totalSteps}
+              </span>
+            </div>
           </div>
           {/* Progress bar */}
-          <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+          <div className="h-[2px] bg-white/5 rounded-none overflow-hidden relative">
             <motion.div
-              className={`h-full bg-gradient-to-r ${currentStep.color} rounded-full`}
+              className={`absolute top-0 left-0 h-full bg-brand-lime`}
               initial={false}
               animate={{ width: `${((step + 1) / totalSteps) * 100}%` }}
               transition={{ duration: 0.4 }}
             />
           </div>
-          {/* Step dots */}
-          <div className="flex justify-between mt-3 px-1">
-            {STEPS.map((s, i) => (
-              <div
-                key={s.id}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
-                  i <= step ? "bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" : "bg-slate-800"
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
 
       {/* Step Content */}
-      <div className="flex-1 flex items-start justify-center px-4 py-8">
-        <div className="w-full max-w-2xl">
+      <div className="flex-1 flex items-start justify-center px-6 py-16 relative z-10">
+        <div className="w-full max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ x: direction > 0 ? 60 : -60, opacity: 0 }}
+              initial={{ x: direction > 0 ? 40 : -40, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: direction > 0 ? -60 : 60, opacity: 0 }}
+              exit={{ x: direction > 0 ? -40 : 40, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="bg-brand-card border border-white/5 p-8 md:p-12 relative overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-lime/30 to-transparent" />
+              
               {/* Step Header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${currentStep.color} flex items-center justify-center shadow-lg`}>
-                  <Icon className="w-7 h-7 text-white" />
+              <div className="flex items-center gap-6 mb-12">
+                <div className={`w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center shadow-xl`}>
+                  <Icon className="w-8 h-8 text-brand-lime" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-white">{currentStep.title}</h2>
-                  <p className="text-slate-400 text-sm">{currentStep.subtitle}</p>
+                  <h2 className="text-3xl font-['Outfit'] font-extrabold text-white leading-none mb-2">{currentStep.title}</h2>
+                  <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold italic">{currentStep.subtitle}</p>
                 </div>
               </div>
 
               {/* ── Passo 0: Identificação ── */}
               {step === 0 && (
-                <div className="space-y-5">
-                  <div>
-                    <Label className="text-slate-300 text-sm mb-2 block flex items-center gap-2">
-                      <User className="w-4 h-4" /> Seu nome completo *
-                    </Label>
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">Seu nome completo *</Label>
                     <Input
                       value={form.client_name}
                       onChange={(e) => set("client_name", e.target.value)}
-                      placeholder="Ex: João da Silva"
-                      className="bg-slate-800 border-slate-700 text-white placeholder-slate-500 py-6 text-base"
+                      placeholder="Identificação do Responsável"
+                      className="bg-black/40 border-white/10 text-white placeholder-white/10 rounded-none h-14"
                     />
                   </div>
-                  <div>
-                    <Label className="text-slate-300 text-sm mb-2 block flex items-center gap-2">
-                      <Building2 className="w-4 h-4" /> Nome da empresa / negócio *
-                    </Label>
+                  <div className="space-y-3">
+                    <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">Nome da empresa / negócio *</Label>
                     <Input
                       value={form.company_name}
                       onChange={(e) => set("company_name", e.target.value)}
-                      placeholder="Ex: João Consultoria Ltda"
-                      className="bg-slate-800 border-slate-700 text-white placeholder-slate-500 py-6 text-base"
+                      placeholder="Nome da Entidade"
+                      className="bg-black/40 border-white/10 text-white placeholder-white/10 rounded-none h-14"
                     />
                   </div>
-                  <div>
-                    <Label className="text-slate-300 text-sm mb-2 block">
-                      Nicho / Setor de atuação *
-                    </Label>
-                    <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-3">
+                    <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-4 block">Nicho / Setor de atuação *</Label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {NICHES.map((n) => (
                         <button
                           key={n}
                           type="button"
                           onClick={() => set("niche", n)}
-                          className={`text-left px-4 py-3 rounded-xl text-sm border transition-all ${
+                          className={`text-left px-4 py-3 rounded-none text-[10px] font-bold uppercase tracking-widest border transition-all ${
                             form.niche === n
-                              ? "border-violet-500 bg-violet-500/10 text-violet-300"
-                              : "border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-500"
+                              ? "border-brand-lime bg-brand-lime/10 text-brand-lime"
+                              : "border-white/5 bg-white/5 text-white/40 hover:border-white/20"
                           }`}
                         >
                           {n}
@@ -392,19 +390,21 @@ export default function BriefingForm() {
 
               {/* ── Passo 1: Objetivo ── */}
               {step === 1 && (
-                <div className="grid gap-3">
+                <div className="grid gap-4">
                   {OBJECTIVES.map((obj) => (
                     <button
                       key={obj.value}
                       type="button"
                       onClick={() => set("pillar_1_objective", obj.value)}
-                      className={`text-left px-5 py-4 rounded-xl border-2 transition-all font-medium text-base ${
+                      className={`text-left px-8 py-6 rounded-none border-2 transition-all group ${
                         form.pillar_1_objective === obj.value
-                          ? "border-blue-500 bg-blue-500/10 text-blue-300"
-                          : "border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500"
+                          ? "border-brand-lime bg-brand-lime/5 text-brand-lime"
+                          : "border-white/5 bg-white/5 text-white/40 hover:border-white/20"
                       }`}
                     >
-                      {obj.label}
+                      <span className={`text-sm font-bold uppercase tracking-widest ${form.pillar_1_objective === obj.value ? "text-brand-lime" : "text-white/60 group-hover:text-white"}`}>
+                        {obj.label}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -412,57 +412,55 @@ export default function BriefingForm() {
 
               {/* ── Passo 2: Valores ── */}
               {step === 2 && (
-                <div className="space-y-5">
-                  <div>
-                    <Label className="text-slate-300 text-sm mb-2 block">
-                      Ticket Médio (R$) *
-                    </Label>
-                    <Input
-                      type="number"
-                      min="0"
-                      value={form.pillar_2_ticket}
-                      onChange={(e) => set("pillar_2_ticket", e.target.value)}
-                      placeholder="Ex: 1500"
-                      className="bg-slate-800 border-slate-700 text-white placeholder-slate-500 py-6 text-xl font-bold"
-                    />
-                    <p className="text-slate-500 text-xs mt-1">Valor médio de uma venda ou contrato</p>
-                  </div>
-                  <div>
-                    <Label className="text-slate-300 text-sm mb-2 block">
-                      CPL Estimado (R$) — Custo por Lead *
-                    </Label>
-                    <Input
-                      type="number"
-                      min="0"
-                      value={form.pillar_2_cpl_estimate}
-                      onChange={(e) => set("pillar_2_cpl_estimate", e.target.value)}
-                      placeholder="Ex: 25"
-                      className="bg-slate-800 border-slate-700 text-white placeholder-slate-500 py-6 text-xl font-bold"
-                    />
-                    <p className="text-slate-500 text-xs mt-1">Quanto você acredita que custará cada lead</p>
+                <div className="space-y-10">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">Ticket Médio (R$) *</Label>
+                      <Input
+                        type="number"
+                        min="0"
+                        value={form.pillar_2_ticket}
+                        onChange={(e) => set("pillar_2_ticket", e.target.value)}
+                        className="bg-black/40 border-white/10 text-white rounded-none h-16 text-2xl font-black focus:border-brand-lime/50 transition-colors"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">CPL Estimado (R$) *</Label>
+                      <Input
+                        type="number"
+                        min="0"
+                        value={form.pillar_2_cpl_estimate}
+                        onChange={(e) => set("pillar_2_cpl_estimate", e.target.value)}
+                        className="bg-black/40 border-white/10 text-white rounded-none h-16 text-2xl font-black focus:border-brand-lime/50 transition-colors"
+                      />
+                    </div>
                   </div>
                   {roiTarget !== null && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`p-4 rounded-xl border ${
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className={`p-10 rounded-none border ${
                         parseFloat(roiTarget) > 0
-                          ? "bg-emerald-500/10 border-emerald-500/30"
-                          : "bg-red-500/10 border-red-500/30"
+                          ? "bg-brand-lime/5 border-brand-lime/20"
+                          : "bg-red-500/5 border-red-500/20"
                       }`}
                     >
-                      <p className="text-slate-400 text-sm mb-1">ROI Estimado por Lead</p>
-                      <p className={`text-3xl font-bold ${parseFloat(roiTarget) > 0 ? "text-emerald-400" : "text-red-400"}`}>
-                        {roiTarget}%
-                      </p>
-                      <p className="text-slate-500 text-xs mt-1">
+                      <p className="text-white/30 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Projeção de Performance (ROI)</p>
+                      <div className="flex items-baseline gap-4">
+                        <p className={`text-6xl font-['Outfit'] font-black ${parseFloat(roiTarget) > 0 ? "text-brand-lime" : "text-red-400"}`}>
+                          {roiTarget}%
+                        </p>
+                        <p className="text-white/20 text-xs font-bold uppercase tracking-widest italic">Target Automático</p>
+                      </div>
+                      <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-8 flex items-center gap-3">
+                        <div className={`w-2 h-2 rounded-full ${parseFloat(roiTarget) > 0 ? "bg-brand-lime animate-pulse" : "bg-red-500"}`} />
                         {parseFloat(roiTarget) > 200
-                          ? "🚀 Excelente! Alta margem para investir em tráfego."
+                          ? "Engine: Potencial de Escala Agressiva detectado."
                           : parseFloat(roiTarget) > 50
-                          ? "✅ Bom potencial de retorno."
+                          ? "Engine: Fluxo Sustentável de Conversão."
                           : parseFloat(roiTarget) > 0
-                          ? "⚠️ Margem apertada. Avalie otimizar o funil."
-                          : "❌ CPL maior que o ticket. Revisar os valores."}
+                          ? "Engine: Necessidade de Otimização Criativa."
+                          : "Engine: Atenção - Margem de Prejuízo Detectada."}
                       </p>
                     </motion.div>
                   )}
@@ -471,96 +469,119 @@ export default function BriefingForm() {
 
               {/* ── Passo 3: Dados ── */}
               {step === 3 && (
-                <div className="space-y-3">
-                  <p className="text-slate-400 text-sm mb-4">Selecione todos que se aplicam ao seu negócio hoje:</p>
-                  {CONVERSION_DATA.map((item) => (
-                    <label
-                      key={item.value}
-                      className={`flex items-center gap-4 px-5 py-4 rounded-xl border-2 cursor-pointer transition-all ${
-                        form.pillar_3_conversion_data.includes(item.value)
-                          ? "border-orange-500 bg-orange-500/10"
-                          : "border-slate-700 bg-slate-800 hover:border-slate-600"
-                      }`}
-                    >
-                      <Checkbox
-                        checked={form.pillar_3_conversion_data.includes(item.value)}
-                        onCheckedChange={() => toggleCheckbox("pillar_3_conversion_data", item.value)}
-                        className="border-slate-500 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
-                      />
-                      <span className={form.pillar_3_conversion_data.includes(item.value) ? "text-orange-200 font-medium" : "text-slate-300"}>
-                        {item.label}
-                      </span>
-                    </label>
-                  ))}
+                <div className="space-y-4">
+                  <p className="text-white/30 text-[10px] font-black uppercase tracking-widest mb-6">Selecione as fontes de dados disponíveis:</p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {CONVERSION_DATA.map((item) => (
+                      <label
+                        key={item.value}
+                        className={`flex items-center gap-6 px-6 py-5 rounded-none border transition-all cursor-pointer group ${
+                          form.pillar_3_conversion_data.includes(item.value)
+                            ? "border-brand-lime bg-brand-lime/10"
+                            : "border-white/5 bg-white/5 hover:border-white/10"
+                        }`}
+                      >
+                        <div className={`w-5 h-5 border-2 flex items-center justify-center transition-all ${form.pillar_3_conversion_data.includes(item.value) ? "border-brand-lime bg-brand-lime" : "border-white/20 group-hover:border-brand-lime/50"}`}>
+                          {form.pillar_3_conversion_data.includes(item.value) && <div className="w-2 h-2 bg-black" />}
+                        </div>
+                        <input
+                          type="checkbox"
+                          className="hidden"
+                          checked={form.pillar_3_conversion_data.includes(item.value)}
+                          onChange={() => toggleCheckbox("pillar_3_conversion_data", item.value)}
+                        />
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${form.pillar_3_conversion_data.includes(item.value) ? "text-brand-lime" : "text-white/40"}`}>
+                          {item.label}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               )}
 
               {/* ── Passo 4: Público ── */}
               {step === 4 && (
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-pink-500/10 border border-pink-500/20 mb-4">
-                    <p className="text-pink-300 text-sm">💡 <strong>Dica:</strong> Quanto mais específico, melhor a IA segmentará. Ex: "Mulheres de 30-45 anos, com renda acima de R$5k, interessadas em emagrecimento, que já consumiram produtos naturais."</p>
+                <div className="space-y-8">
+                  <div className="p-6 bg-brand-lime/5 border-l-2 border-brand-lime">
+                    <p className="text-brand-lime text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed italic">
+                      "A segmentação é o coração da Engine. Defina quem é o seu cliente com precisão cirúrgica."
+                    </p>
                   </div>
-                  <Label className="text-slate-300 text-sm mb-2 block">Descreva seu cliente ideal *</Label>
-                  <textarea
-                    value={form.pillar_4_audience}
-                    onChange={(e) => set("pillar_4_audience", e.target.value)}
-                    placeholder="Idade, gênero, localização, interesses, comportamentos, poder aquisitivo, dores, desejos..."
-                    rows={6}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
-                  />
-                  <p className="text-slate-500 text-xs text-right">{form.pillar_4_audience.length} caracteres (mín. 20)</p>
+                  <div className="space-y-3">
+                    <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">Descrição do Perfil de Público *</Label>
+                    <textarea
+                      value={form.pillar_4_audience}
+                      onChange={(e) => set("pillar_4_audience", e.target.value)}
+                      placeholder="Ex: Profissionais liberais, 25-40 anos, residentes em capitais, interessados em alta performance..."
+                      rows={8}
+                      className="w-full bg-black/40 border border-white/10 rounded-none text-white placeholder-white/10 p-6 text-sm resize-none focus:outline-none focus:border-brand-lime/50 transition-colors custom-scrollbar"
+                    />
+                    <div className="flex justify-between items-center">
+                       <p className="text-white/20 text-[8px] font-black uppercase tracking-widest italic">Mínimo 20 caracteres para validação</p>
+                       <p className="text-white/40 text-[10px] font-black tracking-widest">{form.pillar_4_audience.length} / 500</p>
+                    </div>
+                  </div>
                 </div>
               )}
 
-              {/* ── Passo 5: Contexto (React Quill) ── */}
+              {/* ── Passo 5: Contexto ── */}
               {step === 5 && (
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 mb-2">
-                    <p className="text-indigo-300 text-sm">📖 Conte sobre sua empresa, diferenciais, por que os clientes escolhem você, objeções comuns, jornada do cliente, resultados anteriores.</p>
+                <div className="space-y-8">
+                  <div className="p-6 bg-indigo-500/5 border-l-2 border-indigo-500">
+                    <p className="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed italic">
+                      "A narrativa do seu negócio define o sucesso do criativo. Conte-nos sua história."
+                    </p>
                   </div>
-                  <Label className="text-slate-300 text-sm mb-2 block">Contexto do Negócio *</Label>
-                  <RichTextEditor
-                    value={form.pillar_5_context}
-                    onChange={(val) => set("pillar_5_context", val)}
-                    placeholder="Descreva seu negócio com riqueza de detalhes..."
-                  />
+                  <div className="space-y-3">
+                    <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">Contexto Estratégico do Negócio *</Label>
+                    <RichTextEditor
+                      value={form.pillar_5_context}
+                      onChange={(val) => set("pillar_5_context", val)}
+                      placeholder="Diferenciais, autoridade, dores que resolve..."
+                    />
+                  </div>
                 </div>
               )}
 
               {/* ── Passo 6: Criativos ── */}
               {step === 6 && (
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-teal-500/10 border border-teal-500/20 mb-2">
-                    <p className="text-teal-300 text-sm">🎨 Descreva os formatos de anúncio disponíveis (vídeo, carrossel, imagem estática), o tom da comunicação, e qualquer referência criativa que você goste.</p>
+                <div className="space-y-8">
+                   <div className="p-6 bg-teal-500/5 border-l-2 border-teal-500">
+                    <p className="text-teal-400 text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed italic">
+                      "O visual atrai, a mensagem converte. Liste seus ativos visuais disponíveis."
+                    </p>
                   </div>
-                  <Label className="text-slate-300 text-sm mb-2 block">Descrição dos Criativos *</Label>
-                  <textarea
-                    value={form.pillar_6_creatives}
-                    onChange={(e) => set("pillar_6_creatives", e.target.value)}
-                    placeholder="Ex: Temos vídeos de depoimentos de 30s, fotos do produto, e um carrossel com o passo a passo. Tom: profissional mas acessível..."
-                    rows={6}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-teal-500/50"
-                  />
+                  <div className="space-y-3">
+                    <Label className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 block">Definição de Ativos Criativos *</Label>
+                    <textarea
+                      value={form.pillar_6_creatives}
+                      onChange={(e) => set("pillar_6_creatives", e.target.value)}
+                      placeholder="Ex: Vídeos de depoimento, carrossel de resultados, artes estáticas institucionais..."
+                      rows={8}
+                      className="w-full bg-black/40 border border-white/10 rounded-none text-white placeholder-white/10 p-6 text-sm resize-none focus:outline-none focus:border-brand-lime/50 transition-colors custom-scrollbar"
+                    />
+                  </div>
                 </div>
               )}
 
               {/* ── Passo 7: Estrutura ── */}
               {step === 7 && (
-                <div className="grid gap-3">
-                  <p className="text-slate-400 text-sm mb-2">Como você quer organizar a campanha?</p>
+                <div className="grid gap-4">
+                  <p className="text-white/30 text-[10px] font-black uppercase tracking-widest mb-6 italic">Selecione o modelo de arquitetura de campanha:</p>
                   {STRUCTURES.map((s) => (
                     <button
                       key={s.value}
                       type="button"
                       onClick={() => set("pillar_7_structure", s.value)}
-                      className={`text-left px-5 py-4 rounded-xl border-2 transition-all font-medium text-base ${
+                      className={`text-left px-8 py-6 rounded-none border-2 transition-all group ${
                         form.pillar_7_structure === s.value
-                          ? "border-slate-400 bg-slate-700 text-white"
-                          : "border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500"
+                          ? "border-brand-lime bg-brand-lime/5 text-brand-lime"
+                          : "border-white/5 bg-white/5 text-white/40 hover:border-white/20"
                       }`}
                     >
-                      {s.label}
+                      <span className={`text-sm font-bold uppercase tracking-widest ${form.pillar_7_structure === s.value ? "text-brand-lime" : "text-white/60 group-hover:text-white"}`}>
+                        {s.label}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -569,42 +590,43 @@ export default function BriefingForm() {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div className="flex items-center gap-3 mt-10">
+          <div className="flex items-center gap-6 mt-12">
             {step > 0 && (
-              <Button
+              <button
                 type="button"
-                variant="outline"
                 onClick={goPrev}
-                className="flex-1 border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 py-6"
+                className="flex items-center gap-3 text-white/30 hover:text-white transition-colors text-[10px] font-black uppercase tracking-[0.2em]"
               >
-                <ChevronLeft className="w-4 h-4 mr-1" /> Voltar
-              </Button>
+                <ChevronLeft className="w-4 h-4 rotate-0" /> Voltar
+              </button>
             )}
+            <div className="flex-1" />
             {step < totalSteps - 1 ? (
               <Button
                 type="button"
                 onClick={goNext}
-                className={`flex-1 bg-gradient-to-r ${currentStep.color} text-white font-semibold py-6 shadow-lg hover:opacity-90 transition-opacity`}
+                className={`bg-brand-lime text-black font-black uppercase tracking-[0.2em] text-[10px] px-12 py-8 rounded-none shadow-[0_0_30px_rgba(212,255,51,0.1)] group transition-all active:scale-95`}
               >
-                Próximo <ChevronRight className="w-4 h-4 ml-1" />
+                Próximo Passo <ChevronRight className="w-5 h-5 ml-4 group-hover:translate-x-2 transition-transform" />
               </Button>
             ) : (
               <Button
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting || !canAdvance()}
-                className="flex-1 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-black uppercase tracking-widest py-8 shadow-xl shadow-indigo-500/20 hover:opacity-90 transition-opacity disabled:opacity-50 rounded-2xl"
+                className="bg-brand-lime text-black font-black uppercase tracking-[0.3em] text-[10px] px-16 py-8 rounded-none shadow-[0_0_40px_rgba(212,255,51,0.2)] active:scale-95 transition-all disabled:opacity-20"
               >
                 {isSubmitting ? (
-                  <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Processando Blueprint...</>
+                  <><Loader2 className="w-5 h-5 mr-3 animate-spin" /> Processando Blueprint...</>
                 ) : (
-                  <><CheckCircle2 className="w-5 h-5 mr-2" /> Finalizar Blueprint</>
+                  <><CheckCircle2 className="w-5 h-5 mr-3" /> Finalizar Blueprint</>
                 )}
               </Button>
             )}
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

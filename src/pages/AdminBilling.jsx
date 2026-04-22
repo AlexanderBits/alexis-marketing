@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -13,7 +13,7 @@ import SubscriptionCard from "@/components/billing/SubscriptionCard";
 import PaymentLogTable from "@/components/billing/PaymentLogTable";
 
 export default function AdminBilling() {
-  const { isAuthenticated, isLoadingAuth, logout } = useAdminAuth();
+  const { isAuthenticated, isLoadingAuth } = useAdminAuth();
   const queryClient = useQueryClient();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -69,6 +69,7 @@ export default function AdminBilling() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <AdminNavbar />
+      
       {/* Subheader */}
       <div className="border-b border-slate-800 bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -94,7 +95,7 @@ export default function AdminBilling() {
             { label: "Pendentes", value: stats.pendentes, Icon: Clock, color: "text-yellow-400" },
             { label: "MRR", value: `R$ ${stats.mrr.toFixed(0)}`, Icon: DollarSign, color: "text-indigo-400" },
           ].map(({ label, value, Icon, color }) => (
-            <Card key={label} className="bg-slate-900 border-slate-800">
+            <Card key={label} className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
               <CardContent className="p-4 flex items-center gap-3">
                 <Icon className={`w-5 h-5 ${color}`} />
                 <div>
@@ -106,17 +107,19 @@ export default function AdminBilling() {
           ))}
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 border-b border-slate-800">
-          {["subscriptions", "logs"].map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 text-sm font-bold transition-colors ${activeTab === tab ? "text-indigo-400 border-b-2 border-indigo-400" : "text-slate-500 hover:text-slate-300"}`}
-            >
-              {tab === "subscriptions" ? "Assinaturas" : "Log de Pagamentos"}
-            </button>
-          ))}
+        {/* Action Bar */}
+        <div className="flex justify-between items-center bg-slate-900/40 p-4 border border-slate-800">
+           <div className="flex gap-1 border-b border-slate-800">
+            {["subscriptions", "logs"].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2 text-sm font-bold transition-colors ${activeTab === tab ? "text-brand-lime border-b-2 border-brand-lime" : "text-slate-500 hover:text-slate-300"}`}
+              >
+                {tab === "subscriptions" ? "Assinaturas" : "Log de Pagamentos"}
+              </button>
+            ))}
+          </div>
         </div>
 
         {activeTab === "subscriptions" && (
@@ -129,7 +132,7 @@ export default function AdminBilling() {
                   placeholder="Buscar por nome, e-mail ou WhatsApp..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="pl-9 bg-slate-800 border-slate-700 text-white placeholder-slate-500"
+                  className="pl-9 bg-slate-900 border-slate-800 text-white placeholder-slate-500"
                 />
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
@@ -168,6 +171,11 @@ export default function AdminBilling() {
 
         {activeTab === "logs" && isAuthenticated && <PaymentLogTable />}
       </div>
+
+      <footer className="max-w-7xl mx-auto py-12 px-6 border-t border-slate-900/50 flex justify-between items-center opacity-20 hover:opacity-100 transition-opacity mt-20">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 italic">Alexis Dev Admin Control</p>
+        <Shield className="w-3 h-3 text-slate-500" />
+      </footer>
     </div>
   );
 }

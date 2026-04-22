@@ -171,6 +171,10 @@ Line: 111 - 121
           </main>
         </div>
       </div>
+      <footer className="max-w-7xl mx-auto py-12 px-6 border-t border-slate-900/50 flex justify-between items-center opacity-20 hover:opacity-100 transition-opacity mt-20">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 italic">Alexis Dev Admin Control</p>
+        <Shield className="w-3 h-3 text-slate-500" />
+      </footer>
     </div>
   );
 }

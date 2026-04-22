@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 border-t border-gray-900">
+    <footer className="bg-[#050505] border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-4 gap-12 text-center md:text-left">
           {/* Logo & Description */}
@@ -39,30 +39,13 @@ export default function Footer() {
               Links Rápidos
             </h4>
             <ul className="space-y-3">
-              <li>
-                <Link to="/" className="text-white hover:text-white transition-colors text-sm">
-                  Início
-                </Link>
-              </li>
-              <li>
-                <Link to="/google-meu-negocio" className="text-white hover:text-white transition-colors text-sm">
-                  Google Meu Negócio
-                </Link>
-              </li>
-              <li>
-                <Link to="/contrato" className="text-white hover:text-white transition-colors text-sm">
-                  Contrato
-                </Link>
-              </li>
-              {["Serviços", "Portfólio", "Sobre Nós", "Contato"].map((link) =>
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="text-white hover:text-white transition-colors text-sm">
-                    {link}
-                  </a>
-                </li>
-              )}
+              <li><Link to="/" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Início</Link></li>
+              <li><Link to="/google-meu-negocio" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Google Meu Negócio</Link></li>
+              <li><Link to="/contrato" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Contrato</Link></li>
+              <li><a href="/#servicos" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Serviços</a></li>
+              <li><a href="/#portfolio" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Portfólio</a></li>
+              <li><a href="/#sobre-nos" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Sobre Nós</a></li>
+              <li><a href="/#contato" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Contato</a></li>
             </ul>
           </div>
 
@@ -72,7 +55,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:contato@alexis.dev.br" className="flex items-center gap-3 text-white hover:text-white transition-colors text-sm">contato@alexis.dev.br
+                  href="mailto:t.i@desenvolvimentodesites.com.br" className="flex items-center gap-3 text-white hover:text-white transition-colors text-sm">t.i@desenvolvimentodesites.com.br
                 </a>
               </li>
               <li>
@@ -104,19 +87,19 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white text-sm">
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-white/40 text-xs">
             © {currentYear} Alexis Dev • Especialista em Desenvolvimento de Sites e SEO.
           </p>
           <div className="flex gap-6 items-center">
-            <Link to="/politica-de-privacidade" className="text-white hover:text-white text-xs transition-colors">
+            <Link to="/politica-de-privacidade" className="text-white/40 hover:text-brand-lime text-[10px] uppercase font-black tracking-widest transition-colors">
               Privacidade
             </Link>
-            <Link to="/termos-de-uso" className="text-white hover:text-white text-xs transition-colors">
+            <Link to="/termos-de-uso" className="text-white/40 hover:text-brand-lime text-[10px] uppercase font-black tracking-widest transition-colors">
               Termos
             </Link>
-            <Link to="/contrato" className="text-white hover:text-white text-xs transition-colors">
-              Contratos
+            <Link to="/contrato" className="text-white/40 hover:text-brand-lime text-[10px] uppercase font-black tracking-widest transition-colors">
+              Contrato
             </Link>
             <Link to="/admin-leads" className="text-white hover:text-white transition-colors" title="Admin">
               <Shield className="w-3.5 h-3.5" />

@@ -59,7 +59,13 @@ module.exports = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+        brand: {
+          lime: '#D4FF33',
+          dark: '#0A0A0A',
+          card: '#141414',
+          muted: '#1A1A1A'
+        }
   		},
   		keyframes: {
   			'accordion-down': {

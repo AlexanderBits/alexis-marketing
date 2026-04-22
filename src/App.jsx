@@ -38,7 +38,12 @@ const AuthenticatedApp = () => {
 
   if (authError) {
     if (authError.type === 'user_not_registered') return <UserNotRegisteredError />;
-    if (authError.type === 'auth_required' && window.location.pathname !== '/login') {
+    
+    // Lista de rotas que exigem autenticação
+    const protectedRoutes = ['/contrato', '/briefing', '/admin-contratos', '/admin-briefing', '/admin-billing', '/admin-leads'];
+    const isProtectedRoute = protectedRoutes.some(route => window.location.pathname.startsWith(route));
+
+    if (authError.type === 'auth_required' && isProtectedRoute && window.location.pathname !== '/login') {
       navigateToLogin();
       return null;
     }

@@ -14,7 +14,7 @@ export default function ConceptSection() {
           transition={{ duration: 0.8 }}>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight">
-            Autoridade em Desenvolvimento de Sites: O Legado Nortec + Alexis
+            Autoridade em Desenvolvimento de Sites e Marketing Digital Premium
           </h2>
           
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
