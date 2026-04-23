@@ -7,39 +7,69 @@ const EVOLUTION_KEY = Deno.env.get('EVOLUTION_API_KEY');
 const EVOLUTION_INSTANCE = Deno.env.get('EVOLUTION_INSTANCE');
 
 async function sendWhatsApp(phone, message) {
-  // Forçar HTTP para evitar problemas de TLS/SSL no Deno
   const baseUrl = (EVOLUTION_URL || '').replace(/\/$/, '').replace('https://', 'http://');
   const url = `${baseUrl}/message/sendText/${EVOLUTION_INSTANCE}`;
   
-  console.log('[DEBUG] Sending WhatsApp:', {
-    url,
-    method: 'POST',
-    phone,
-    apikey_prefix: EVOLUTION_KEY ? EVOLUTION_KEY.substring(0, 6) : 'MISSING',
-  });
-  
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': EVOLUTION_KEY,
-      'Connection': 'close',
-    },
-    body: JSON.stringify({
-      number: phone,
-      text: message,
-      options: { delay: 1200 },
-    }),
-    signal: AbortSignal.timeout(30000), // timeout de 30s
-  });
-  
-  console.log('[DEBUG] Response status:', res.status);
-  
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Evolution API error (${res.status}): ${err}`);
+  const payload = {
+    number: phone,
+    text: message,
+    options: { delay: 1200 },
+  };
+
+  const executeRequest = async (targetPhone) => {
+    payload.number = targetPhone;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': EVOLUTION_KEY,
+        'Connection': 'close',
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(30000),
+    });
+
+    const responseText = await res.text();
+    let responseData;
+    try {
+      responseData = JSON.parse(responseText);
+    } catch {
+      responseData = { error: responseText };
+    }
+
+    return { ok: res.ok, status: res.status, data: responseData };
+  };
+
+  // Primeira tentativa
+  let attempt = await executeRequest(phone);
+
+  // Lógica de auto-correção para Brasil (DDI 55)
+  // Se o número não existe (exists: false ou status 400), tenta ajustar o 9º dígito
+  if (!attempt.ok && phone.startsWith('55')) {
+    const ddd = phone.substring(2, 4);
+    const body = phone.substring(4);
+    let alternativePhone = null;
+
+    if (body.length === 9 && body.startsWith('9')) {
+      // Remover o 9 (ex: 5521999998888 -> 552199998888)
+      alternativePhone = `55${ddd}${body.substring(1)}`;
+    } else if (body.length === 8) {
+      // Adicionar o 9 (ex: 552199998888 -> 5521999998888)
+      alternativePhone = `55${ddd}9${body}`;
+    }
+
+    if (alternativePhone) {
+      console.log(`[DEBUG] Tentando auto-correção para: ${alternativePhone}`);
+      const secondAttempt = await executeRequest(alternativePhone);
+      if (secondAttempt.ok) return secondAttempt.data;
+    }
   }
-  return await res.json();
+
+  if (!attempt.ok) {
+    throw new Error(JSON.stringify(attempt.data));
+  }
+  
+  return attempt.data;
 }
 
 // Price IDs reais criados no Stripe (recorrentes mensais em BRL)
