@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Send, Trash2, Phone, Mail, Calendar, DollarSign } from "lucide-react";
+import { Send, Trash2, Phone, Mail, Calendar, DollarSign, Check } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 import SubscriptionStatusBadge from "./SubscriptionStatusBadge";
@@ -17,6 +17,7 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
   const { toast } = useToast();
   const [sendingBill, setSendingBill] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [markingPaid, setMarkingPaid] = useState(false);
 
   const handleSendBill = async () => {
     setSendingBill(true);
@@ -38,6 +39,34 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
     setDeleting(false);
   };
 
+  const handleMarkAsPaid = async () => {
+    setMarkingPaid(true);
+    try {
+      // Calculate next month's due date
+      let nextDate = new Date();
+      if (subscription.due_date) {
+        nextDate = new Date(subscription.due_date);
+        nextDate.setMonth(nextDate.getMonth() + 1);
+      } else {
+        nextDate.setMonth(nextDate.getMonth() + 1);
+      }
+      
+      const nextDateStr = nextDate.toISOString().split('T')[0];
+
+      await base44.entities.Subscription.update(subscription.id, {
+        status: "ativo",
+        due_date: nextDateStr,
+        last_payment_date: new Date().toISOString()
+      });
+
+      toast({ title: "Pago! ✅", description: `${subscription.customer_name} está em dia.` });
+      onRefresh?.();
+    } catch (error) {
+      toast({ title: "Erro ao atualizar", description: "Não foi possível marcar como pago.", variant: "destructive" });
+    }
+    setMarkingPaid(false);
+  };
+
   const isOverdue = subscription.due_date && subscription.due_date < new Date().toISOString().split('T')[0];
 
   return (
@@ -47,7 +76,7 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-white font-bold text-sm truncate">{subscription.customer_name}</span>
-              <SubscriptionStatusBadge status={subscription.status} />
+              <SubscriptionStatusBadge status={isOverdue && subscription.status === 'ativo' ? 'atrasado' : subscription.status} />
             </div>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400 mt-1">
               <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{subscription.customer_email}</span>
@@ -89,6 +118,18 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
               <Trash2 className="w-3 h-3" />
               {deleting ? "..." : "Excluir"}
             </Button>
+            
+            {(subscription.status === 'atrasado' || subscription.status === 'pendente' || isOverdue) && (
+              <Button
+                size="sm"
+                onClick={handleMarkAsPaid}
+                disabled={markingPaid}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-4 py-2 font-bold gap-2 shadow-lg shadow-emerald-900/20"
+              >
+                <Check className="w-4 h-4" />
+                {markingPaid ? "..." : "Marcar como Pago"}
+              </Button>
+            )}
           </div>
         </div>
       </CardContent>

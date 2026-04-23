@@ -91,7 +91,7 @@ export default function AdminBilling() {
           {[
             { label: "Total", value: stats.total, Icon: Users, color: "text-slate-300" },
             { label: "Ativos", value: stats.ativos, Icon: CheckCircle2, color: "text-green-400" },
-            { label: "Atrasados", value: stats.atrasados, Icon: AlertTriangle, color: "text-red-400" },
+            { label: "Vencidas", value: stats.atrasados, Icon: AlertTriangle, color: "text-red-400" },
             { label: "Pendentes", value: stats.pendentes, Icon: Clock, color: "text-yellow-400" },
             { label: "MRR", value: `R$ ${stats.mrr.toFixed(0)}`, Icon: DollarSign, color: "text-indigo-400" },
           ].map(({ label, value, Icon, color }) => (
@@ -143,7 +143,7 @@ export default function AdminBilling() {
                   <SelectItem value="all">Todos</SelectItem>
                   <SelectItem value="pendente">Pendente</SelectItem>
                   <SelectItem value="ativo">Ativo</SelectItem>
-                  <SelectItem value="atrasado">Atrasado</SelectItem>
+                  <SelectItem value="atrasado">Vencida</SelectItem>
                   <SelectItem value="cancelado">Cancelado</SelectItem>
                 </SelectContent>
               </Select>
