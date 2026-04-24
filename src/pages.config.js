@@ -9,6 +9,8 @@ import AdminSocialLeads from './pages/AdminSocialLeads';
 import AdminSEO from './pages/AdminSEO';
 import AdminPesquisaSites from './pages/AdminPesquisaSites';
 import ContractPage from './pages/ContractPage';
+import HunterDom from './pages/HunterDom';
+
 
 
 export const PAGES = {
@@ -23,7 +25,9 @@ export const PAGES = {
     "admin-pesquisa-sites": AdminPesquisaSites,
     "contrato": ContractPage,
     "login": LoginPage,
+    "performance": HunterDom,
 }
+
 
 export const pagesConfig = {
     mainPage: "Home",

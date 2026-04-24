@@ -35,20 +35,22 @@ export default function CookieConsent() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 100, scale: 0.95 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md z-[100] p-[1px] rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/40"
+          className="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md z-[100] p-[1px] rounded-none bg-gradient-to-br from-brand-lime/20 to-emerald-500/20 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/40"
         >
-          <div className="bg-slate-950/90 rounded-2xl p-6 relative overflow-hidden">
+          <div className="bg-brand-dark rounded-none p-6 relative overflow-hidden">
             {/* Background Glow */}
-            <div className="absolute -top-12 -right-12 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
+            <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-lime/10 rounded-none blur-2xl" />
             
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20">
-                <Cookie className="w-6 h-6 text-blue-400" />
+              <div className="w-12 h-12 rounded-none bg-brand-lime/10 flex items-center justify-center shrink-0 border border-brand-lime/20">
+                <Cookie className="w-6 h-6 text-brand-lime" />
               </div>
+
               
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-white font-bold text-lg tracking-tight">Privacidade & Cookies</h3>
+                  <h3 className="text-white font-['Outfit'] font-black text-lg tracking-tighter uppercase italic">Privacidade</h3>
+
                   <button 
                     onClick={() => setIsVisible(false)}
                     className="text-gray-500 hover:text-white transition-colors"
@@ -57,9 +59,9 @@ export default function CookieConsent() {
                   </button>
                 </div>
                 
-                <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                  Utilizamos cookies para otimizar sua experiência e analisar o tráfego em conformidade com a nossa 
-                  <Link to="/politica-de-privacidade" className="text-blue-400 hover:text-blue-300 ml-1 underline decoration-blue-400/30 underline-offset-4">
+                <p className="text-white/40 text-[10px] leading-relaxed mb-6 uppercase tracking-widest italic">
+                  Utilizamos cookies para otimizar sua experiência conforme nossa 
+                  <Link to="/politica-de-privacidade" className="text-brand-lime hover:text-white ml-1 underline underline-offset-4">
                     Política de Privacidade
                   </Link>.
                 </p>
@@ -67,17 +69,19 @@ export default function CookieConsent() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button 
                     onClick={handleAccept}
-                    className="bg-white text-black hover:bg-gray-200 rounded-full font-bold px-6 py-2 transition-all duration-300 shadow-lg shadow-white/5 active:scale-95 flex-1"
+                    className="bg-brand-lime text-black hover:bg-white rounded-none font-black uppercase tracking-widest text-[10px] px-6 py-2 transition-all active:scale-95 flex-1"
                   >
                     Aceitar tudo
                   </Button>
+
                   <Button 
                     variant="outline"
                     onClick={handleDecline}
-                    className="border-white/10 text-gray-400 hover:text-white hover:bg-white/5 rounded-full font-medium px-6 py-2 transition-all duration-300 active:scale-95 flex-1"
+                    className="border-white/10 text-white/40 hover:text-white hover:bg-white/5 rounded-none font-black uppercase tracking-widest text-[10px] px-6 py-2 transition-all active:scale-95 flex-1"
                   >
-                    Apenas essenciais
+                    Essenciais
                   </Button>
+
                 </div>
               </div>
             </div>

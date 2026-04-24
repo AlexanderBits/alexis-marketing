@@ -24,8 +24,8 @@ import {
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Footer from "@/components/landing/Footer";
+import Navbar from "@/components/landing/Navbar";
 
-import ModernLogo from "@/assets/alexis-logo.png";
 
 const GoogleMeuNegocio = () => {
   useEffect(() => {
@@ -105,28 +105,9 @@ const GoogleMeuNegocio = () => {
 
   return (
     <div className="bg-brand-dark text-white font-['Inter'] selection:bg-brand-lime selection:text-black overflow-x-hidden min-h-screen">
-      {/* Navbar - Matching Home Style */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 pointer-events-none">
-        <div className="relative bg-black/40 backdrop-blur-md border border-white/10 px-10 py-1.5 rounded-none flex items-center justify-between w-[95%] max-w-7xl pointer-events-auto shadow-2xl">
-          <div className="flex items-center gap-3">
-            <Link to="/" className="absolute left-10 top-1/2 -translate-y-1/2">
-              <img src={ModernLogo} alt="Alexis Marketing • Dev" className="h-[100px] w-auto drop-shadow-2xl" />
-            </Link>
-            <div className="w-[180px]"></div>
-          </div>
-          <div className="hidden md:flex items-center gap-12 text-sm font-medium text-white/70">
-            <Link to="/" className="hover:text-brand-lime transition-colors flex items-center gap-2 uppercase tracking-widest text-[10px] font-bold">
-              <ArrowLeft className="w-4 h-4" /> Voltar para Home
-            </Link>
-            <a href="#ciclo" className="hover:text-brand-lime transition-colors uppercase tracking-widest text-[10px] font-bold">O Ciclo</a>
-            <a href="#autoridade" className="hover:text-brand-lime transition-colors uppercase tracking-widest text-[10px] font-bold">Autoridade</a>
-            <a href="#faq" className="hover:text-brand-lime transition-colors uppercase tracking-widest text-[10px] font-bold">Dúvidas</a>
-          </div>
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="bg-white text-black px-6 py-2 rounded-none text-[10px] font-bold uppercase tracking-widest hover:bg-brand-lime transition-all">
-            Falar com Especialista
-          </a>
-        </div>
-      </nav>
+      {/* Navbar */}
+      <Navbar />
+
 
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 px-6">

@@ -3,12 +3,14 @@ import Stripe from 'npm:stripe@14.21.0';
 
 const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
-const PLAN_PRICE_IDS = {
-  simple: 'price_1TNv2kDHf3DkRIVWmTBKSVw5',
-  bronze: 'price_1TNv2kDHf3DkRIVWhxqz8x1c',
-  prata:  'price_1TNv2lDHf3DkRIVWFJZyWXKE',
-  ouro:   'price_1TNv2lDHf3DkRIVWxWQGFmFo',
-};
+// Função para buscar o ID do preço dinamicamente via Stripe Search
+async function getPriceIdByPlanKey(planKey: string) {
+  const prices = await stripe.prices.search({
+    query: `active:'true' AND metadata['plan_key']:'${planKey}'`,
+  });
+  return prices.data.length > 0 ? prices.data[0].id : null;
+}
+
 
 Deno.serve(async (req) => {
   try {
@@ -20,10 +22,10 @@ Deno.serve(async (req) => {
     }
 
     const { selected_plan, customer_email, contract_id } = await req.json();
+    const priceId = await getPriceIdByPlanKey(selected_plan);
 
-    const priceId = PLAN_PRICE_IDS[selected_plan];
     if (!priceId) {
-      return Response.json({ error: 'Plano inválido' }, { status: 400 });
+      return Response.json({ error: 'Plano inválido ou não configurado no Stripe' }, { status: 400 });
     }
 
     const session = await stripe.checkout.sessions.create({

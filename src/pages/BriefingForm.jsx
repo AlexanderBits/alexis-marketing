@@ -22,57 +22,65 @@ const STEPS = [
     icon: User,
     title: "Identificação",
     subtitle: "Quem é você e seu negócio?",
-    color: "from-violet-500 to-purple-600",
+    color: "from-brand-lime to-emerald-600",
   },
+
   {
     id: 1,
     icon: Target,
     title: "Pilar 1 – Objetivo",
     subtitle: "O que a campanha deve alcançar?",
-    color: "from-blue-500 to-cyan-600",
+    color: "from-brand-lime to-brand-lime/50",
   },
+
   {
     id: 2,
     icon: DollarSign,
     title: "Pilar 2 – Valores",
     subtitle: "Ticket e ROI esperado",
-    color: "from-emerald-500 to-green-600",
+    color: "from-emerald-500 to-brand-lime",
   },
+
   {
     id: 3,
     icon: BarChart2,
     title: "Pilar 3 – Dados",
     subtitle: "Quais dados de conversão você tem?",
-    color: "from-orange-500 to-amber-600",
+    color: "from-brand-lime/20 to-brand-lime/80",
   },
+
   {
     id: 4,
     icon: Users,
     title: "Pilar 4 – Público",
     subtitle: "Descreva seu cliente ideal",
-    color: "from-pink-500 to-rose-600",
+    color: "from-brand-lime to-white/20",
   },
+
   {
     id: 5,
     icon: BookOpen,
     title: "Pilar 5 – Contexto",
     subtitle: "Contexto do seu negócio",
-    color: "from-indigo-500 to-blue-600",
+    color: "from-white/10 to-brand-lime/20",
   },
+
   {
     id: 6,
     icon: Image,
     title: "Pilar 6 – Criativos",
     subtitle: "Descrição dos anúncios",
-    color: "from-teal-500 to-cyan-600",
+    color: "from-brand-lime/10 to-brand-lime/40",
   },
+
   {
     id: 7,
     icon: Layers,
     title: "Pilar 7 – Estrutura",
     subtitle: "Como montar a campanha",
-    color: "from-slate-500 to-gray-600",
+    color: "from-brand-card to-black",
   },
+
 ];
 
 const OBJECTIVES = [
@@ -223,34 +231,36 @@ export default function BriefingForm() {
   // ── Tela de pagamento confirmado ──
   if (paymentSuccess) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-brand-dark flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: "spring", duration: 0.6 }}
-          className="max-w-lg text-center"
+          className="max-w-lg text-center bg-brand-card border border-white/5 p-12 relative overflow-hidden shadow-2xl"
         >
-          <div className="w-24 h-24 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-green-500/10">
-            <CheckCircle2 className="w-12 h-12 text-green-400" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-brand-lime" />
+          <div className="w-24 h-24 bg-brand-lime/10 border border-brand-lime/20 flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-brand-lime/10">
+            <CheckCircle2 className="w-12 h-12 text-brand-lime" />
           </div>
-          <h1 className="text-3xl font-black text-white mb-3 tracking-tighter">Pagamento Confirmado! 🎉</h1>
-          <p className="text-slate-400 mb-6 leading-relaxed">
-            Sua assinatura foi ativada com sucesso. Agora preencha o <strong className="text-white">Blueprint de Campanha</strong> para iniciarmos sua estratégia.
+          <h1 className="text-3xl font-['Outfit'] font-black text-white mb-3 tracking-tighter uppercase italic">Pagamento Confirmado! 🎉</h1>
+          <p className="text-white/40 mb-6 leading-relaxed text-sm font-medium uppercase tracking-widest">
+            Sua assinatura foi ativada com sucesso. Agora preencha o <strong className="text-white italic">Blueprint de Campanha</strong> para iniciarmos sua estratégia.
           </p>
-          <div className="mb-8 p-4 rounded-xl bg-green-500/10 border border-green-500/20">
-            <p className="text-green-300 text-sm font-bold">✅ Assinatura ativa — você já faz parte da Alexis Marketing!</p>
+          <div className="mb-8 p-4 bg-brand-lime/5 border border-brand-lime/20">
+            <p className="text-brand-lime text-[10px] font-black uppercase tracking-widest">✅ Engine Ativa — Você já faz parte da Alexis Marketing!</p>
           </div>
           <Button
             onClick={() => window.location.href = '/briefing'}
-            className="w-full bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-black uppercase tracking-widest py-6 shadow-xl shadow-indigo-500/20 hover:opacity-90 rounded-2xl"
+            className="w-full bg-brand-lime text-black font-black uppercase tracking-[0.2em] py-8 shadow-xl shadow-brand-lime/10 hover:bg-white rounded-none text-xs"
           >
-            Preencher o Blueprint de Campanha <ChevronRight className="w-5 h-5 ml-2" />
+            Acessar Blueprint de Campanha <ChevronRight className="w-5 h-5 ml-4" />
           </Button>
-          <p className="text-slate-600 text-xs mt-4">Você pode preencher o briefing a qualquer momento</p>
+          <p className="text-white/20 text-[8px] font-black uppercase tracking-widest mt-6 italic">Inicie o projeto agora mesmo</p>
         </motion.div>
       </div>
     );
   }
+
 
   // ── Tela de sucesso ──
   if (submitted) {

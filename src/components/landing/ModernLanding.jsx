@@ -32,20 +32,16 @@ import {
   Menu,
   X
 } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
 import ModernLogo from "@/assets/alexis-logo.png";
 import Footer from "@/components/landing/Footer";
+import Navbar from "@/components/landing/Navbar";
+
 
 
 const ModernLanding = () => {
   const fadeInUp = {
+
+
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
@@ -55,29 +51,41 @@ const ModernLanding = () => {
   const services = [
     {
       icon: <Zap className="w-6 h-6 text-brand-lime" />,
-      title: "Gestão de Tráfego Pago",
-      description: "Campanhas de Google Ads focadas em ROI e conversão imediata para o seu negócio."
+      title: "Performance & Tráfego",
+      description: "Campanhas de Google Ads focadas em ROI. Transforme seu site em uma máquina de vendas.",
+      link: "/performance"
+    },
+    {
+      icon: <Instagram className="w-6 h-6 text-brand-lime" />,
+      title: "Redes Sociais",
+      description: "Posicionamento estratégico no Instagram, TikTok e YouTube para criar autoridade.",
+      link: "/gestao-de-redes-sociais"
     },
     {
       icon: <Cpu className="w-6 h-6 text-brand-lime" />,
-      title: "Sites de Alta Performance",
-      description: "Desenvolvimento com as tecnologias mais rápidas do mercado como React e Next.js."
+      title: "Sites Next-Gen",
+      description: "Desenvolvimento com as tecnologias mais rápidas do mercado como React e Next.js.",
+      link: "/"
     },
     {
       icon: <Layout className="w-6 h-6 text-brand-lime" />,
-      title: "Landing Pages de Elite",
-      description: "Páginas otimizadas para converter visitantes em clientes reais de forma automática."
+      title: "Landing Pages",
+      description: "Páginas otimizadas para converter visitantes em clientes reais de forma automática.",
+      link: "/"
+    },
+    {
+      icon: <MapPin className="w-6 h-6 text-brand-lime" />,
+      title: "Google Maps",
+      description: "Domine o Google Maps e apareça para clientes locais que buscam seu serviço agora.",
+      link: "/google-meu-negocio"
     },
     {
       icon: <Layers className="w-6 h-6 text-brand-lime" />,
       title: "Estratégia Digital",
-      description: "Consultoria completa para dominar o mercado e escalar seu faturamento online."
-    },
-    {
-      icon: <MapPin className="w-6 h-6 text-brand-lime" />,
-      title: "Google Meu Negócio",
-      description: "Domine o Google Maps e apareça para clientes locais que buscam seu serviço agora."
+      description: "Consultoria completa para dominar o mercado e escalar seu faturamento online.",
+      link: "/"
     }
+
   ];
 
   const cases = [
@@ -110,67 +118,8 @@ const ModernLanding = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6 pointer-events-none">
-        <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 px-4 md:px-10 py-2 rounded-none flex items-center justify-between w-[95%] max-w-7xl pointer-events-auto shadow-2xl">
-          <div className="flex items-center gap-3">
-             <Link to="/" className="flex items-center">
-                <img src={ModernLogo} alt="Alexis Marketing • Dev" className="h-12 md:h-[80px] w-auto drop-shadow-2xl transition-all" />
-             </Link>
-          </div>
-          
-          <div className="hidden lg:flex items-center gap-8 xl:gap-12 text-sm font-medium text-white/70">
-            <a href="/" className="hover:text-brand-lime transition-colors">Início</a>
-            <a href="#servicos" className="hover:text-brand-lime transition-colors">Serviços</a>
-            <Link to="/google-meu-negocio" className="hover:text-brand-lime transition-colors">Google Maps</Link>
-            <a href="#portfolio" className="hover:text-brand-lime transition-colors">Portfólio</a>
-            <a href="#sobre-nos" className="hover:text-brand-lime transition-colors">Sobre Nós</a>
-            <a href="#contato" className="hover:text-brand-lime transition-colors">Contato</a>
-          </div>
+      <Navbar />
 
-          <div className="flex items-center gap-4">
-            <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." 
-               target="_blank" rel="noopener noreferrer" 
-               className="hidden sm:block bg-white text-black px-6 py-2 rounded-none text-xs md:text-sm font-bold hover:bg-brand-lime transition-all whitespace-nowrap">
-              Falar com Especialista
-            </a>
-
-            {/* Mobile Menu Trigger */}
-            <div className="lg:hidden">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <button className="p-2 text-white hover:text-brand-lime transition-colors" aria-label="Abrir menu">
-                    <Menu className="w-6 h-6" />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="right" className="bg-brand-dark border-white/10 p-0 rounded-none w-[300px]">
-                  <SheetHeader className="p-6 border-b border-white/5 bg-black/40">
-                    <SheetTitle className="text-white text-left flex items-center gap-2">
-                       <img src={ModernLogo} alt="Alexis" className="h-8 w-auto" />
-                       <span className="text-xs text-white/40 font-normal">Menu</span>
-                    </SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col p-6 space-y-6">
-                    <a href="/" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Início</a>
-                    <a href="#servicos" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Serviços</a>
-                    <Link to="/google-meu-negocio" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Google Maps</Link>
-                    <a href="#portfolio" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Portfólio</a>
-                    <a href="#sobre-nos" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Sobre Nós</a>
-                    <a href="#contato" className="text-xl font-bold text-white hover:text-brand-lime transition-colors">Contato</a>
-                    
-                    <div className="pt-6 border-t border-white/5">
-                      <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." 
-                         target="_blank" rel="noopener noreferrer" 
-                         className="w-full bg-brand-lime text-black py-4 px-6 rounded-none font-bold text-center block">
-                        Falar com Especialista
-                      </a>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 px-6">
@@ -281,23 +230,27 @@ const ModernLanding = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, i) => (
-              <motion.div 
+              <Link 
+                to={service.link}
                 key={i}
-                {...fadeInUp}
-                className="bg-brand-card border border-white/5 p-8 rounded-none hover:border-brand-lime/30 transition-all group"
+                className="bg-brand-card border border-white/5 p-8 rounded-none hover:border-brand-lime/30 transition-all group block"
               >
                 <div className="mb-6 p-3 bg-white/5 rounded-none w-fit group-hover:bg-brand-lime/10 transition-colors">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">
+                <p className="text-white/40 text-sm leading-relaxed mb-6">
                   {service.description}
                 </p>
-              </motion.div>
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-lime opacity-0 group-hover:opacity-100 transition-all">
+                  Saber mais <ChevronRight className="w-4 h-4" />
+                </div>
+              </Link>
             ))}
           </div>
+
         </div>
       </section>
 

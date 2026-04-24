@@ -34,10 +34,11 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex flex-col items-center md:items-start">
-            <h4 className="text-white font-semibold mb-6 flex items-center gap-2">
-              <Compass className="w-4 h-4 text-white" />
-              Links Rápidos
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-6 flex items-center gap-2 italic">
+              <Compass className="w-3 h-3 text-brand-lime" />
+              Navegação
             </h4>
+
             <ul className="space-y-3">
               <li><Link to="/" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Início</Link></li>
               <li><Link to="/google-meu-negocio" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Google Meu Negócio</Link></li>
@@ -51,7 +52,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="text-white font-semibold mb-6">Fale Conosco</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-6 italic">Fale Conosco</h4>
+
             <ul className="space-y-4">
               <li>
                 <a
@@ -66,13 +68,14 @@ export default function Footer() {
             </ul>
 
             <div className="mt-8 flex gap-4">
-              <a href="https://instagram.com/alexismarketingedev" target="_blank" rel="noopener noreferrer" title="Siga no Instagram" className="p-2.5 bg-gray-900 border border-gray-800 rounded-lg hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 hover:border-transparent transition-all duration-300 group hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(219,39,119,0.4)]">
-                <Instagram className="w-5 h-5 text-white group-hover:text-white transition-colors" />
+              <a href="https://instagram.com/alexismarketingedev" target="_blank" rel="noopener noreferrer" title="Siga no Instagram" className="p-2.5 bg-white/5 border border-white/10 rounded-none hover:bg-brand-lime hover:border-transparent transition-all duration-300 group hover:scale-110">
+                <Instagram className="w-5 h-5 text-white group-hover:text-black transition-colors" />
               </a>
-              <a href="https://www.facebook.com/alexdevmarketingIA/" target="_blank" rel="noopener noreferrer" title="Siga no Facebook" className="p-2.5 bg-gray-900 border border-gray-800 rounded-lg hover:bg-blue-600 hover:border-transparent transition-all duration-300 group hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-                <Facebook className="w-5 h-5 text-white group-hover:text-white transition-colors" />
+              <a href="https://www.facebook.com/alexdevmarketingIA/" target="_blank" rel="noopener noreferrer" title="Siga no Facebook" className="p-2.5 bg-white/5 border border-white/10 rounded-none hover:bg-brand-lime hover:border-transparent transition-all duration-300 group hover:scale-110">
+                <Facebook className="w-5 h-5 text-white group-hover:text-black transition-colors" />
               </a>
             </div>
+
           </div>
         </div>
 

@@ -25,8 +25,11 @@ export default function ContractPage() {
     client_neighborhood: "",
     client_city: "",
     client_state: "",
-    selected_plan: "bronze"
+    client_city: "",
+    client_state: "",
+    selected_plan: new URLSearchParams(window.location.search).get('plan') || "bronze"
   });
+
   const [accepted, setAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -60,8 +63,13 @@ export default function ContractPage() {
     simple: 29.90,
     bronze: 49.90,
     prata: 99.90,
-    ouro: 199.99
+    ouro: 199.99,
+    entry: 400.00,
+    starter: 1000.00,
+    growth: 2500.00,
+    scale: 5000.00
   };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -264,7 +272,9 @@ export default function ContractPage() {
                 <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Bronze:</strong> R$ 49,90/mês</li>
                 <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Prata:</strong> R$ 99,90/mês</li>
                 <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Ouro:</strong> R$ 199,99/mês</li>
+                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Níveis de Escala (Performance):</strong> R$ 400 a R$ 5.000/mês</li>
               </ul>
+
               <p className="mb-4 italic text-xs text-white/40">
                 * O Plano Essencial possui escopo restrito e não se aplica a 98% dos modelos de negócio tradicionais.
               </p>
@@ -374,30 +384,25 @@ export default function ContractPage() {
 
               <div>
                 <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-8 block">Seleção do Plano Estratégico</Label>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {["simple", "bronze", "prata", "ouro"].map((plan) => (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Object.keys(planValues).map((plan) => (
                     <div
                       key={plan}
                       onClick={() => setFormData({ ...formData, selected_plan: plan })}
-                      className={`relative cursor-pointer p-6 rounded-none border-2 transition-all group ${
+                      className={`relative cursor-pointer p-4 rounded-none border-2 transition-all group ${
                         formData.selected_plan === plan
                           ? "border-brand-lime bg-brand-lime/5"
                           : "border-white/5 bg-white/5 hover:border-white/10"
                       }`}
                     >
-                      {plan === "simple" && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-black text-[8px] font-black px-2 py-1 uppercase tracking-widest whitespace-nowrap">
-                          Escopo Limitado
-                        </div>
-                      )}
-                      <h3 className={`text-lg font-['Outfit'] font-bold capitalize mb-2 ${formData.selected_plan === plan ? "text-brand-lime" : "text-white"}`}>
-                        {plan === "simple" ? "Essencial" : plan}
+                      <h3 className={`text-xs font-['Outfit'] font-bold capitalize mb-1 ${formData.selected_plan === plan ? "text-brand-lime" : "text-white"}`}>
+                        {plan}
                       </h3>
-                      <p className="text-xl font-black text-white/80">R$ {planValues[plan].toFixed(2)}</p>
-                      <p className="text-[10px] text-white/30 uppercase tracking-widest mt-1">Mensal</p>
+                      <p className="text-sm font-black text-white/80">R$ {planValues[plan].toFixed(0)}</p>
                     </div>
                   ))}
                 </div>
+
               </div>
 
               <div className="flex items-start gap-4 pt-8 border-t border-white/5">

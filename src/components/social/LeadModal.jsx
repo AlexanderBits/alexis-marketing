@@ -56,9 +56,10 @@ export default function LeadModal({ isOpen, onOpenChange }) {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden"
+        className="w-full max-w-md bg-brand-card border border-white/10 rounded-none p-8 shadow-2xl relative overflow-hidden"
       >
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-lime via-emerald-500 to-brand-lime" />
+
         
         <button 
           onClick={() => onOpenChange(false)}
@@ -68,11 +69,12 @@ export default function LeadModal({ isOpen, onOpenChange }) {
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-green-500/10 rounded-lg">
-            <MessageCircle className="w-6 h-6 text-green-500" />
+          <div className="p-2 bg-brand-lime/10 rounded-none">
+            <MessageCircle className="w-6 h-6 text-brand-lime" />
           </div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">Quase lá!</h2>
+          <h2 className="text-2xl font-['Outfit'] font-black text-white tracking-tighter uppercase italic">Quase lá!</h2>
         </div>
+
 
         <p className="text-slate-400 mb-8 leading-relaxed">
           Preencha seus dados para que nossa equipe possa oferecer o melhor atendimento personalizado via WhatsApp.
@@ -80,7 +82,7 @@ export default function LeadModal({ isOpen, onOpenChange }) {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300 ml-1">E-mail Comercial *</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1 italic">E-mail Comercial *</label>
             <input
               name="email"
               type="email"
@@ -88,12 +90,12 @@ export default function LeadModal({ isOpen, onOpenChange }) {
               required
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              className="w-full bg-black/50 border border-white/10 rounded-none px-4 py-3 text-white focus:border-brand-lime/50 outline-none transition-all"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300 ml-1">WhatsApp *</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1 italic">WhatsApp *</label>
             <input
               name="whatsapp"
               type="tel"
@@ -101,15 +103,16 @@ export default function LeadModal({ isOpen, onOpenChange }) {
               required
               value={formData.whatsapp}
               onChange={handleInputChange}
-              className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              className="w-full bg-black/50 border border-white/10 rounded-none px-4 py-3 text-white focus:border-brand-lime/50 outline-none transition-all"
             />
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2"
+            className="w-full bg-brand-lime hover:bg-white disabled:opacity-50 text-black py-4 rounded-none font-black uppercase tracking-[0.2em] text-xs transition-all shadow-xl shadow-brand-lime/10 flex items-center justify-center gap-2"
           >
+
             {isSubmitting ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />

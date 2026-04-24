@@ -9,7 +9,13 @@ const PLANS = [
   { key: 'bronze',  name: 'Plano Bronze',      amount: 4990  }, // R$ 49,90
   { key: 'prata',   name: 'Plano Prata',       amount: 9990  }, // R$ 99,90
   { key: 'ouro',    name: 'Plano Ouro',        amount: 19999 }, // R$ 199,99
+  // Novos Níveis de Escala (Performance)
+  { key: 'entry',   name: 'Plano Entry (Performance)',   amount: 40000  }, // R$ 400,00
+  { key: 'starter', name: 'Plano Starter (Performance)', amount: 100000 }, // R$ 1.000,00
+  { key: 'growth',  name: 'Plano Growth (Performance)',  amount: 250000 }, // R$ 2.500,00
+  { key: 'scale',   name: 'Plano Scale (Performance)',   amount: 500000 }, // R$ 5.000,00
 ];
+
 
 Deno.serve(async (req) => {
   const base44 = createClientFromRequest(req);
