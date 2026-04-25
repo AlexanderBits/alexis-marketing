@@ -316,19 +316,24 @@ const HunterDom = () => {
           <div className="relative">
              <div className="bg-brand-card border border-white/10 p-10 relative z-10">
                 <div className="text-brand-lime text-6xl font-black italic tracking-tighter mb-2">ROI Real.</div>
-                <div className="text-white/60 text-lg leading-relaxed mb-8">
-                  "O diferencial do Alexis é que ele não fala 'clique', ele fala 'venda'. Em 2 meses nosso custo por lead caiu 40%."
+                <div className="text-white/60 text-lg leading-relaxed mb-8 italic">
+                  "Nossa Engine não foca em cliques vazios. Focamos em <span className="text-white font-bold">Conversão Direta</span>. Cada real investido é rastreado para garantir que o retorno supere o custo de aquisição."
                 </div>
-                <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 bg-white/10 rounded-none" />
-                   <div>
-                      <div className="font-bold text-sm uppercase tracking-widest">Ricardo M.</div>
-                      <div className="text-[10px] text-white/40 uppercase tracking-widest">CEO • Tech Solutions</div>
+                <div className="flex items-center gap-6">
+                   <div className="flex flex-col">
+                      <div className="text-2xl font-black text-white italic tracking-tighter">Data-Driven</div>
+                      <div className="text-[10px] text-white/40 uppercase tracking-widest font-black">Alexis Dev Authority</div>
+                   </div>
+                   <div className="w-[1px] h-10 bg-white/10" />
+                   <div className="flex flex-col">
+                      <div className="text-2xl font-black text-brand-lime italic tracking-tighter">Real-Time</div>
+                      <div className="text-[10px] text-white/40 uppercase tracking-widest font-black">Monitoramento 24/7</div>
                    </div>
                 </div>
              </div>
              <div className="absolute -top-6 -right-6 w-full h-full border border-brand-lime/20 -z-0" />
           </div>
+
         </div>
       </section>
 
