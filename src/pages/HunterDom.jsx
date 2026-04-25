@@ -153,9 +153,10 @@ const HunterDom = () => {
             <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-['Outfit'] font-black leading-[0.95] mb-8 tracking-tighter uppercase italic">
               Transforme seu site em uma <span className="text-brand-lime">máquina de vendas</span> com a expertise de um Google Partner.
             </h1>
-            <p className="text-white/60 text-lg mb-10 max-w-md leading-relaxed">
-              Não somos apenas uma agência. Somos o motor de performance que pequenas e médias empresas precisam para dominar o mercado digital.
+            <p className="text-white/60 text-lg mb-10 max-w-md leading-relaxed italic">
+              Somos o motor de performance e tecnologia que pequenas e médias empresas precisam para dominar o mercado digital com precisão.
             </p>
+
             
             <div id="analise" className="flex flex-col sm:flex-row gap-4 mb-12">
               <div className="relative flex-grow max-w-md">
@@ -427,9 +428,10 @@ const HunterDom = () => {
            <div>
               <div className="text-brand-lime text-[10px] font-black uppercase tracking-[0.3em] mb-4">O Especialista</div>
               <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-6 leading-none">Alexis <span className="text-white/20">Marketing & Dev</span></h2>
-              <p className="text-white/60 text-lg leading-relaxed mb-8">
-                "Não acredito em agências com centenas de clientes e atendimento genérico. Meu foco é atuar como um braço técnico e estratégico direto no seu negócio. Se eu não puder garantir o ROI, eu nem começo o projeto."
+              <p className="text-white/60 text-lg leading-relaxed mb-8 italic">
+                "Atuamos como um braço técnico e estratégico diretamente integrado ao seu negócio. Nossa metodologia é focada em resultados reais: se não houver clareza sobre o ROI, não iniciamos o projeto. Compromisso total com a sua escala."
               </p>
+
               <div className="flex gap-8">
                  <div>
                     <div className="text-2xl font-black italic tracking-tighter leading-none mb-1">+R$ 2M</div>

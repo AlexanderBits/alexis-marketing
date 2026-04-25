@@ -391,8 +391,9 @@ const ModernLanding = () => {
              </h2>
              <div className="space-y-6 text-white/60 text-lg leading-relaxed">
                <p>
-                 A <strong>Alexis Marketing • Dev</strong> nasceu da visão de unir tecnologia de ponta com estratégias de marketing agressivas. Não somos apenas uma agência; somos o motor de crescimento do seu negócio.
+                 A <strong>Alexis Marketing • Dev</strong> nasceu da visão de unir tecnologia de ponta com estratégias de marketing agressivas. Atuamos como o motor de crescimento do seu negócio, integrando desenvolvimento e tráfego em uma única estrutura de elite.
                </p>
+
                <p>
                  Como especialistas com chancela <strong>Google Partner</strong>, nossa missão é simples: colocar sua marca no topo e garantir que ela permaneça lá através de sites Next Gen e SEO de elite.
                </p>
