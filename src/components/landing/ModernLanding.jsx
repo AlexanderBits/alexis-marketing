@@ -149,9 +149,11 @@ const ModernLanding = () => {
               <span className="text-sm text-white/40">Especialista Google Partner | Todo o Brasil</span>
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
-                  {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-4 h-4 fill-brand-lime text-brand-lime" />)}
+                  {[1, 2, 3, 4].map(i => <Star key={i} className="w-4 h-4 fill-brand-lime text-brand-lime" />)}
+                  <Star className="w-4 h-4 text-brand-lime fill-brand-lime/30" />
                 </div>
-                <span className="text-sm font-bold">5.0 Expertise</span>
+                <span className="text-sm font-bold">4.9 Expertise</span>
+
               </div>
             </div>
           </motion.div>
