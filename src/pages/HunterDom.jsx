@@ -37,8 +37,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/landing/Navbar";
+
 
 
 const HunterDom = () => {
