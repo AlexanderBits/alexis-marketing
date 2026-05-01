@@ -161,6 +161,14 @@ const GestaoObras = () => {
   }, []);
 
   const handleStartPurchase = (mode = 'purchase') => {
+    if (mode === 'download') {
+      window.open('https://drive.google.com/file/d/1OkiTctsFZl_WJQeqZf2587czubCLvqIE/view?usp=sharing', '_blank');
+      toast({
+        title: "Download Iniciado!",
+        description: "O instalador está sendo aberto no Google Drive.",
+      });
+      return;
+    }
     setModalMode(mode);
     setShowModal(true);
   };
@@ -175,57 +183,29 @@ const GestaoObras = () => {
       });
       return;
     }
-
-    setIsProcessing(true);
+    setIsProcessing(true);
     try {
-      if (modalMode === 'download') {
-        // Fluxo de Download - Apenas captura o lead (opcional enviar para o banco primeiro)
-        // Simulando a captura de lead enviando para a função mas sem gerar checkout
-        await base44.functions.invoke('captureSoftwareLead', {
-          customer_name: customerData.name,
-          customer_email: customerData.email,
-          customer_whatsapp: customerData.whatsapp,
-          type: 'trial_download'
-        });
-
-        // Dispara o download
-        // Dispara o download oficial via GitHub Release
-        window.open('https://github.com/AlexanderBits/alexis-marketing/releases/download/v2.8.0/Controle.e.Custos.Setup.2.8.0.exe', '_blank');
-        
-        toast({
-          title: "Download Iniciado!",
-          description: "O instalador está sendo baixado. Sua chave de 30 dias está ativa no programa.",
-        });
-        setShowModal(false);
+      // Fluxo de Compra - Segue para o Stripe
+      const response = await base44.functions.invoke('createSoftwareCheckout', {
+        customer_name: customerData.name,
+        customer_email: customerData.email,
+        customer_whatsapp: customerData.whatsapp
+      });
+      
+      if (response.data?.url) {
+        window.location.href = response.data.url;
       } else {
-        // Fluxo de Compra - Segue para o Stripe
-        const response = await base44.functions.invoke('createSoftwareCheckout', {
-          customer_name: customerData.name,
-          customer_email: customerData.email,
-          customer_whatsapp: customerData.whatsapp
-        });
-        
-        if (response.data?.url) {
-          window.location.href = response.data.url;
-        } else {
-          throw new Error(response.data?.error || "Erro ao gerar checkout");
-        }
+        throw new Error(response.data?.error || "Erro ao gerar checkout");
       }
     } catch (error) {
       console.error("Erro no processamento:", error);
       const errorMessage = error.response?.data?.error || error.message || "Não foi possível processar sua solicitação.";
       
-      // Se der erro na captura de lead mas for download, tentamos baixar mesmo assim
-      if (modalMode === 'download') {
-         window.open('/downloads/instalador-alexis-gestao.exe', '_blank');
-         setShowModal(false);
-      } else {
-        toast({
-          title: "Erro no Checkout",
-          description: errorMessage,
-          variant: "destructive"
-        });
-      }
+      toast({
+        title: "Erro no Checkout",
+        description: errorMessage,
+        variant: "destructive"
+      });
     } finally {
       setIsProcessing(false);
     }
@@ -423,14 +403,10 @@ const GestaoObras = () => {
                     <ShieldCheck className="w-10 h-10 text-red-600" />
                  </div>
                  <h3 className="text-3xl font-black text-slate-900 uppercase italic tracking-tight mb-2">
-                    {modalMode === 'download' ? 'Download Grátis!' : 'Quase lá!'}
+                    Quase lá!
                  </h3>
                  <p className="text-slate-500 font-medium leading-relaxed">
-                    {modalMode === 'download' ? (
-                      <>Você receberá **30 dias de teste grátis**. <br /> Informe seus dados para iniciar o download.</>
-                    ) : (
-                      <>Você está adquirindo uma **Licença Vitalícia**. <br /> Informe onde deseja receber sua chave de acesso.</>
-                    )}
+                    Você está adquirindo uma **Licença Vitalícia**. <br /> Informe onde deseja receber sua chave de acesso.
                  </p>
               </div>
 
@@ -490,22 +466,17 @@ const GestaoObras = () => {
                     {customerData.consent && <CheckCircle2 className="w-4 h-4 text-white" />}
                   </div>
                   <p className="text-[11px] text-red-900 font-bold leading-tight">
-                    {modalMode === 'download' 
-                      ? "Estou ciente que o programa possui 30 dias de teste grátis e concordo com os termos."
-                      : "Estou ciente que receberei uma **Licença Vitalícia** e que a chave definitiva será enviada para o meu WhatsApp após o pagamento."
-                    }
+                    Estou ciente que receberei uma **Licença Vitalícia** e que a chave definitiva será enviada para o meu WhatsApp após o pagamento.
                   </p>
                 </div>
 
-                <Button 
-                  type="submit" 
-                  disabled={isProcessing}
-                  className="w-full bg-[#DC2626] hover:bg-red-700 text-white h-20 text-2xl font-black rounded-2xl shadow-xl shadow-red-500/20 uppercase italic transition-all active:scale-95"
-                >
-                  {isProcessing ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : (
-                      modalMode === 'download' ? "BAIXAR AGORA" : "IR PARA O PAGAMENTO"
-                    )}
-                </Button>
+                  <Button 
+                    type="submit" 
+                    disabled={isProcessing}
+                    className="w-full bg-[#DC2626] hover:bg-red-700 text-white h-20 text-2xl font-black rounded-2xl shadow-xl shadow-red-500/20 uppercase italic transition-all active:scale-95"
+                  >
+                    {isProcessing ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : "IR PARA O PAGAMENTO"}
+                  </Button>
               </form>
             </motion.div>
           </div>
