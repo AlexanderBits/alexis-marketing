@@ -188,9 +188,11 @@ const GestaoObras = () => {
         throw new Error(response.data?.error || "Erro ao gerar checkout");
       }
     } catch (error) {
+      console.error("Erro completo do checkout:", error);
+      const errorMessage = error.response?.data?.error || error.message || "Não foi possível iniciar o pagamento.";
       toast({
         title: "Erro no Checkout",
-        description: error.message || "Não foi possível iniciar o pagamento.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
