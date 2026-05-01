@@ -14,6 +14,8 @@ const PLANS = [
   { key: 'starter', name: 'Plano Starter (Performance)', amount: 100000 }, // R$ 1.000,00
   { key: 'growth',  name: 'Plano Growth (Performance)',  amount: 250000 }, // R$ 2.500,00
   { key: 'scale',   name: 'Plano Scale (Performance)',   amount: 500000 }, // R$ 5.000,00
+  // Software License
+  { key: 'software_annual', name: 'Software Controle e Custos - Licença Anual', amount: 49700 }, // R$ 497,00
 ];
 
 
@@ -44,24 +46,31 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Verificar se já existe um Price recorrente ativo para este produto
+    // Verificar se já existe um Price ativo para este produto
+    const isSoftware = plan.key.includes('software');
     const existingPrices = await stripe.prices.list({
       product: product.id,
       active: true,
-      type: 'recurring',
+      // Se for software, procuramos por um preço 'one_time', senão 'recurring'
+      type: isSoftware ? 'one_time' : 'recurring',
     });
-
+    
     let price;
     if (existingPrices.data.length > 0) {
       price = existingPrices.data[0];
     } else {
-      price = await stripe.prices.create({
+      const priceData: any = {
         product: product.id,
         unit_amount: plan.amount,
         currency: 'brl',
-        recurring: { interval: 'month' },
         metadata: { plan_key: plan.key },
-      });
+      };
+
+      if (!isSoftware) {
+        priceData.recurring = { interval: 'month' };
+      }
+
+      price = await stripe.prices.create(priceData);
     }
 
     results[plan.key] = {

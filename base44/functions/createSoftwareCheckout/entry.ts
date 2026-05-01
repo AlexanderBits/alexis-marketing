@@ -17,34 +17,21 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'E-mail e WhatsApp são obrigatórios.' });
     }
 
-    // Buscando o produto de software no Stripe
-    // Vamos tentar uma busca mais simples primeiro ou listar os preços ativos
+    // Buscando o ID do preço via plan_key (padrão do projeto)
+    const planKey = 'software_annual';
     let priceId = '';
+    
     try {
       const prices = await stripe.prices.search({
-        query: "active:'true' AND metadata['product_type']:'software_license'",
+        query: `active:'true' AND metadata['plan_key']:'${planKey}'`,
       });
 
       if (prices.data.length > 0) {
         priceId = prices.data[0].id;
       } else {
-        // Fallback: tentar buscar qualquer preço que contenha 'software' no metadata ou nome
-        console.log('Nenhum preço encontrado com product_type=software_license, tentando busca geral...');
-        const allPrices = await stripe.prices.list({ active: true, limit: 10, expand: ['data.product'] });
-        const softwarePrice = allPrices.data.find(p => {
-          const prod = p.product as Stripe.Product;
-          return prod.metadata?.product_type === 'software_license' || 
-                 prod.name?.toLowerCase().includes('software') ||
-                 p.metadata?.product_type === 'software_license';
+        return Response.json({ 
+          error: `Produto '${planKey}' não encontrado no Stripe. Execute a função setupStripeProducts para configurar.` 
         });
-
-        if (softwarePrice) {
-          priceId = softwarePrice.id;
-        } else {
-          return Response.json({ 
-            error: 'Produto não encontrado no Stripe. Certifique-se de ter um preço ativo com o metadado product_type="software_license".' 
-          });
-        }
       }
     } catch (stripeError) {
       console.error('Erro ao buscar no Stripe:', stripeError);

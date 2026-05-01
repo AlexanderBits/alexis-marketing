@@ -77,6 +77,23 @@ export default function AdminBilling() {
             <h1 className="text-lg font-black tracking-tighter text-white">Gestão de Cobranças</h1>
           </div>
           <div className="flex gap-2 items-center">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={async () => {
+                if(!confirm("Deseja sincronizar os produtos com o Stripe?")) return;
+                try {
+                  await base44.functions.invoke("setupStripeProducts");
+                  alert("Produtos sincronizados com sucesso!");
+                  refresh();
+                } catch(e) {
+                  alert("Erro ao sincronizar: " + e.message);
+                }
+              }} 
+              className="text-slate-400 border-slate-800 hover:text-white gap-1"
+            >
+              <RefreshCw className="w-3.5 h-3.5" /> Sincronizar Stripe
+            </Button>
             <Button variant="ghost" size="sm" onClick={refresh} className="text-slate-400 hover:text-white gap-1">
               <RefreshCw className="w-3.5 h-3.5" /> Atualizar
             </Button>
