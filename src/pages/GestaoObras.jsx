@@ -162,10 +162,10 @@ const GestaoObras = () => {
 
   const handleStartPurchase = (mode = 'purchase') => {
     if (mode === 'download') {
-      window.open('https://drive.google.com/file/d/1OkiTctsFZl_WJQeqZf2587czubCLvqIE/view?usp=sharing', '_blank');
+      window.open('https://github.com/AlexanderBits/alexis-marketing/releases/download/v2.8.0/Controle.e.Custos.Setup.2.8.0.exe', '_blank');
       toast({
         title: "Download Iniciado!",
-        description: "O instalador está sendo aberto no Google Drive.",
+        description: "O instalador está sendo baixado.",
       });
       return;
     }
