@@ -35,6 +35,7 @@ import {
 import ModernLogo from "@/assets/alexis-logo.png";
 import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/landing/Navbar";
+import { Badge } from "@/components/ui/badge";
 
 
 
@@ -143,8 +144,13 @@ const ModernLanding = () => {
               <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener noreferrer" className="bg-brand-lime text-black px-8 py-4 rounded-none font-bold flex items-center gap-3 hover:scale-105 transition-transform group">
                 Iniciar Projeto <ChevronRight className="w-5 h-5" />
               </a>
+              <Link to="/gestao-obras" className="border border-white/10 hover:border-brand-lime/50 bg-white/5 backdrop-blur-sm text-white px-8 py-4 rounded-none font-bold flex items-center gap-3 transition-all">
+                Controle e Custos .EXE <Download className="w-5 h-5 text-brand-lime" />
+              </Link>
+              <Link to="/gestao-de-redes-sociais" className="text-white/60 hover:text-white px-4 py-4 font-bold flex items-center gap-2 transition-all group">
+                Gestão de Redes <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
-
             <div className="flex items-center gap-6">
               <span className="text-sm text-white/40">Especialista Google Partner | Todo o Brasil</span>
               <div className="flex items-center gap-2">
@@ -214,6 +220,39 @@ const ModernLanding = () => {
               </ul>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Products Highlight */}
+      <section className="py-20 px-6 border-y border-white/5 bg-white/2 space-y-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+           <Link to="/gestao-obras" className="group relative overflow-hidden bg-brand-card p-10 border border-white/5 hover:border-brand-lime/30 transition-all">
+              <div className="relative z-10">
+                 <Badge className="bg-brand-lime text-black rounded-none mb-4 font-black">SOFTWARE DESKTOP</Badge>
+                 <h3 className="text-3xl font-black mb-4 uppercase italic tracking-tighter">Alexis Controle e Custos</h3>
+                 <p className="text-white/50 mb-8 max-w-sm">Assuma o controle real da sua produção e lucro com nosso software .EXE exclusivo.</p>
+                 <div className="flex items-center gap-2 text-brand-lime font-bold uppercase tracking-widest text-xs">
+                    Adquirir Software <ChevronRight className="w-4 h-4" />
+                 </div>
+              </div>
+              <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                 <Cpu size={200} />
+              </div>
+           </Link>
+
+           <Link to="/gestao-de-redes-sociais" className="group relative overflow-hidden bg-brand-card p-10 border border-white/5 hover:border-brand-lime/30 transition-all">
+              <div className="relative z-10">
+                 <Badge className="bg-emerald-500 text-black rounded-none mb-4 font-black">MARKETING ELITE</Badge>
+                 <h3 className="text-3xl font-black mb-4 uppercase italic tracking-tighter">Gestão de Redes Sociais</h3>
+                 <p className="text-white/50 mb-8 max-w-sm">Posicionamento estratégico para quem deseja ser autoridade no mercado.</p>
+                 <div className="flex items-center gap-2 text-emerald-500 font-bold uppercase tracking-widest text-xs">
+                    Acessar Gestão <ChevronRight className="w-4 h-4" />
+                 </div>
+              </div>
+              <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                 <Instagram size={200} />
+              </div>
+           </Link>
         </div>
       </section>
 

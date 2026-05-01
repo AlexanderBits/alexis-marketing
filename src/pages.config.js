@@ -10,6 +10,8 @@ import AdminSEO from './pages/AdminSEO';
 import AdminPesquisaSites from './pages/AdminPesquisaSites';
 import ContractPage from './pages/ContractPage';
 import HunterDom from './pages/HunterDom';
+import GestaoObras from './pages/GestaoObras';
+
 
 
 
@@ -26,6 +28,7 @@ export const PAGES = {
     "contrato": ContractPage,
     "login": LoginPage,
     "performance": HunterDom,
+    "gestao-obras": GestaoObras,
 }
 
 
