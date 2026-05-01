@@ -189,7 +189,8 @@ const GestaoObras = () => {
         });
 
         // Dispara o download
-        window.open('/downloads/Controle e Custos Setup 2.8.0.exe', '_blank');
+        // Dispara o download oficial via GitHub Release
+        window.open('https://github.com/AlexanderBits/alexis-marketing/releases/download/v2.8.0/Controle.e.Custos.Setup.2.8.0.exe', '_blank');
         
         toast({
           title: "Download Iniciado!",
