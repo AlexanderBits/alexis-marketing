@@ -84,7 +84,7 @@ const SoftwareMockup = ({ screen = 'dashboard' }) => {
           <div className="w-9 h-9 rounded-full bg-red-400 flex items-center justify-center font-black text-white text-xs">C</div>
           <div className="text-[9px]">
             <p className="font-black text-slate-900">Administrador</p>
-            <p className="text-slate-400 font-bold">Versão 2.8</p>
+            <p className="text-slate-400 font-bold">Versão 2.9</p>
           </div>
         </div>
       </div>
@@ -162,7 +162,7 @@ const GestaoObras = () => {
 
   const handleStartPurchase = (mode = 'purchase') => {
     if (mode === 'download') {
-      window.open('https://github.com/AlexanderBits/alexis-marketing/releases/download/v2.8.0/Controle.e.Custos.Setup.2.8.0.exe', '_blank');
+      window.open('https://github.com/AlexanderBits/alexis-marketing/releases/download/v2.9.0/Controle.e.Custos.Setup.2.9.0.exe', '_blank');
       toast({
         title: "Download Iniciado!",
         description: "O instalador está sendo baixado.",
@@ -255,7 +255,7 @@ const GestaoObras = () => {
 
             <div className="bg-white/40 backdrop-blur-md p-8 rounded-[32px] border border-slate-100 mb-16 max-w-4xl mx-auto shadow-xl">
                <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-bold">
-                  Saiba exatamente quanto ganhou em cada venda com a <span className="text-red-600 italic">porcentagem real de lucro</span>. Tenha controle da mão de obra e dos insumos em um só lugar.
+                  Saiba exatamente quanto ganhou em cada venda ou serviço com a <span className="text-red-600 italic">porcentagem real de lucro</span>. Tenha controle da mão de obra e dos insumos em um só lugar.
                </p>
             </div>
             
