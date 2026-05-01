@@ -28,3 +28,4 @@ dist-ssr
 *.sw?
 
 .env
+public/downloads/*.exe

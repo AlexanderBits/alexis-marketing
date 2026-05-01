@@ -137,6 +137,7 @@ const GestaoObras = () => {
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [modalMode, setModalMode] = useState('download'); // 'download' or 'purchase'
   const [customerData, setCustomerData] = useState({
     name: '',
     email: '',
@@ -159,7 +160,8 @@ const GestaoObras = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleStartPurchase = () => {
+  const handleStartPurchase = (mode = 'purchase') => {
+    setModalMode(mode);
     setShowModal(true);
   };
 
@@ -168,7 +170,7 @@ const GestaoObras = () => {
     if (!customerData.consent) {
       toast({
         title: "Atenção",
-        description: "Você precisa confirmar que receberá a chave via WhatsApp.",
+        description: "Você precisa confirmar que está ciente dos termos.",
         variant: "destructive"
       });
       return;
@@ -176,25 +178,53 @@ const GestaoObras = () => {
 
     setIsProcessing(true);
     try {
-      const response = await base44.functions.invoke('createSoftwareCheckout', {
-        customer_name: customerData.name,
-        customer_email: customerData.email,
-        customer_whatsapp: customerData.whatsapp
-      });
-      
-      if (response.data?.url) {
-        window.location.href = response.data.url;
+      if (modalMode === 'download') {
+        // Fluxo de Download - Apenas captura o lead (opcional enviar para o banco primeiro)
+        // Simulando a captura de lead enviando para a função mas sem gerar checkout
+        await base44.functions.invoke('captureSoftwareLead', {
+          customer_name: customerData.name,
+          customer_email: customerData.email,
+          customer_whatsapp: customerData.whatsapp,
+          type: 'trial_download'
+        });
+
+        // Dispara o download
+        window.open('/downloads/Controle e Custos Setup 2.8.0.exe', '_blank');
+        
+        toast({
+          title: "Download Iniciado!",
+          description: "O instalador está sendo baixado. Sua chave de 30 dias está ativa no programa.",
+        });
+        setShowModal(false);
       } else {
-        throw new Error(response.data?.error || "Erro ao gerar checkout");
+        // Fluxo de Compra - Segue para o Stripe
+        const response = await base44.functions.invoke('createSoftwareCheckout', {
+          customer_name: customerData.name,
+          customer_email: customerData.email,
+          customer_whatsapp: customerData.whatsapp
+        });
+        
+        if (response.data?.url) {
+          window.location.href = response.data.url;
+        } else {
+          throw new Error(response.data?.error || "Erro ao gerar checkout");
+        }
       }
     } catch (error) {
-      console.error("Erro completo do checkout:", error);
-      const errorMessage = error.response?.data?.error || error.message || "Não foi possível iniciar o pagamento.";
-      toast({
-        title: "Erro no Checkout",
-        description: errorMessage,
-        variant: "destructive"
-      });
+      console.error("Erro no processamento:", error);
+      const errorMessage = error.response?.data?.error || error.message || "Não foi possível processar sua solicitação.";
+      
+      // Se der erro na captura de lead mas for download, tentamos baixar mesmo assim
+      if (modalMode === 'download') {
+         window.open('/downloads/instalador-alexis-gestao.exe', '_blank');
+         setShowModal(false);
+      } else {
+        toast({
+          title: "Erro no Checkout",
+          description: errorMessage,
+          variant: "destructive"
+        });
+      }
     } finally {
       setIsProcessing(false);
     }
@@ -216,7 +246,7 @@ const GestaoObras = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-32 overflow-hidden bg-gradient-to-b from-[#F2EBE4] to-[#FDF9F6]">
+      <section className="relative pt-16 pb-20 overflow-hidden bg-gradient-to-b from-[#F2EBE4] to-[#FDF9F6]">
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -233,13 +263,13 @@ const GestaoObras = () => {
               </Badge>
             </div>
 
-            <h1 className="text-6xl md:text-[100px] font-black tracking-tight mb-10 text-slate-900 leading-[0.95] uppercase italic">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6 text-slate-900 leading-[1.1] uppercase italic">
               Tenha controle <br />
-              <span className="text-red-600 underline decoration-slate-200 decoration-8 underline-offset-8">dos gastos e lucro.</span>
+              <span className="text-red-600 underline decoration-slate-200 decoration-2 underline-offset-4">dos gastos e lucro.</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-slate-600 mb-14 leading-relaxed max-w-5xl mx-auto font-medium">
-              Solução ideal para negócios como <span className="text-slate-900 font-black italic">lojas de churrasqueiras, venda de piscinas de fibra com instalação, instaladores de gesso e drywall, marmorarias, telhados e marcenarias</span>.
+              Solução ideal para <span className="text-slate-900 font-black italic">lojistas que vendem churrasqueiras de tijolos e pré-moldadas, lojas de piscinas de fibra com instalação, empresas de instalação de teto em gesso e drywall, marmorarias, marcenarias</span> e todo e qualquer negócio que envolve <span className="text-slate-900 font-black italic">insumos para produção, entrega e mão de obra</span>.
             </p>
 
             <div className="bg-white/40 backdrop-blur-md p-8 rounded-[32px] border border-slate-100 mb-16 max-w-4xl mx-auto shadow-xl">
@@ -251,19 +281,23 @@ const GestaoObras = () => {
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-24">
               <Button 
                 size="lg" 
-                onClick={handleStartPurchase}
-                className="bg-[#DC2626] hover:bg-red-700 text-white px-16 h-24 text-3xl font-black rounded-2xl group shadow-[0_20px_50px_rgba(220,38,38,0.3)] transition-all hover:scale-105 active:scale-95 border-b-8 border-red-800 uppercase italic"
+                onClick={() => handleStartPurchase('download')}
+                className="bg-[#DC2626] hover:bg-red-700 text-white px-10 h-16 text-lg font-black rounded-lg group shadow-[0_10px_30px_rgba(220,38,38,0.2)] transition-all hover:scale-105 active:scale-95 border-b-4 border-red-800 uppercase italic"
               >
                 BAIXAR AGORA
-                <Download className="ml-4 w-10 h-10 group-hover:translate-y-1 transition-transform" />
+                <Download className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
               </Button>
-              <div className="text-left bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-slate-100 group cursor-pointer hover:border-red-500 transition-colors">
-                <div className="flex items-center gap-2 text-slate-900 font-black text-2xl italic tracking-tight">
-                  <MessageCircle className="w-8 h-8 text-emerald-500" />
+              <a 
+                href="https://wa.me/5532987037221" 
+                target="_blank" 
+                className="text-left bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-slate-100 group cursor-pointer hover:border-red-500 transition-colors block"
+              >
+                <div className="flex items-center gap-2 text-slate-900 font-black text-xl italic tracking-tight">
+                  <MessageCircle className="w-6 h-6 text-emerald-500" />
                   Falar com Consultor
                 </div>
-                <p className="text-slate-500 text-sm font-bold ml-10 uppercase tracking-tighter">Dúvidas via WhatsApp</p>
-              </div>
+                <p className="text-slate-500 text-[10px] font-bold ml-8 uppercase tracking-tighter">Dúvidas via WhatsApp</p>
+              </a>
             </div>
           </motion.div>
 
@@ -283,21 +317,21 @@ const GestaoObras = () => {
         <div className="container mx-auto px-6">
           <p className="text-center text-slate-400 uppercase tracking-[0.4em] text-[10px] font-black mb-12">Desenvolvido para Profissionais e Lojistas</p>
           <div className="flex flex-wrap justify-center gap-12 md:gap-24 items-center opacity-30 grayscale contrast-125 font-black text-2xl italic tracking-normal text-slate-900 uppercase">
-            <span>CHURRASQUEIRAS</span>
-            <span>PISCINAS DE FIBRA</span>
-            <span>GESSO & DRYWALL</span>
-            <span>TELHADOS</span>
-            <span>MARMORARIAS</span>
-            <span>MARCENARIAS</span>
+            <span>PROGRAMA PARA LOJAS DE CHURRASQUEIRA</span>
+            <span>PROGRAMA PARA LOJAS DE PISCINA DE FIBRA</span>
+            <span>PROGRAMA PARA LOJAS DE GESSO</span>
+            <span>PROGRAMA PARA LOJAS DE MONTAGEM DE TELHADO</span>
+            <span>PROGRAMA PARA MARMORARIAS</span>
+            <span>PROGRAMA PARA MARCENARIAS</span>
           </div>
         </div>
       </section>
 
       {/* Feature Showcase */}
       <section className="py-32 bg-[#F2EBE4]/30">
-        <div className="container mx-auto px-6 text-center mb-24">
-            <h2 className="text-6xl font-black mb-6 text-slate-900 tracking-tight uppercase italic underline decoration-red-500 decoration-8 underline-offset-8">Gestão Profissional 360°</h2>
-            <p className="text-2xl text-slate-500 max-w-4xl mx-auto font-medium">Controle total de insumos e mão de obra em um só lugar.</p>
+        <div className="container mx-auto px-6 text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-slate-900 tracking-tight uppercase italic underline decoration-red-500 decoration-2 underline-offset-4">Gestão Profissional 360°</h2>
+            <p className="text-xl text-slate-500 max-w-3xl mx-auto font-medium">Controle total de insumos e mão de obra em um só lugar.</p>
         </div>
         <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -311,7 +345,7 @@ const GestaoObras = () => {
                     <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
                         De gasolina ao salário do escritório. No nosso programa, você cadastra cada saída e visualiza o impacto real no seu lucro mensal instantaneamente.
                     </p>
-                    <Button onClick={handleStartPurchase} size="lg" className="bg-slate-900 text-white font-black px-10 h-16 rounded-xl uppercase tracking-widest italic">Comprar Licença Agora</Button>
+                    <Button onClick={() => handleStartPurchase('download')} size="lg" className="bg-slate-900 text-white font-black px-10 h-16 rounded-xl uppercase tracking-widest italic">Testar Grátis Agora</Button>
                 </motion.div>
                 <motion.div {...fadeIn} transition={{ delay: 0.2 }}>
                     <SoftwareMockup screen="insumos" />
@@ -324,35 +358,34 @@ const GestaoObras = () => {
       <section className="py-40 bg-[#1F2937] relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div {...fadeIn}>
-            <h2 className="text-7xl font-black mb-6 italic tracking-tight uppercase text-white leading-tight">Sua empresa <span className="text-red-600">organizada</span> hoje.</h2>
+            <h2 className="text-4xl font-black mb-4 italic tracking-tight uppercase text-white leading-tight">Sua empresa <span className="text-red-600">organizada</span> hoje.</h2>
             
-            <div className="max-w-xl mx-auto mt-24">
-              <Card className="bg-white border-[12px] border-slate-900 shadow-[0_60px_150px_-20px_rgba(220,38,38,0.25)] overflow-hidden scale-110 rounded-[50px]">
+            <div className="max-w-lg mx-auto mt-16">
+              <Card className="bg-white border-4 border-slate-900 shadow-[0_40px_100px_-15px_rgba(220,38,38,0.2)] overflow-hidden rounded-[40px]">
                 <div className="bg-red-600 py-6 text-center">
-                  <span className="text-white font-black uppercase tracking-[0.3em] text-xs italic">LICENÇA ANUAL • CHAVE VIA WHATSAPP</span>
+                  <span className="text-white font-black uppercase tracking-[0.3em] text-xs italic">LICENÇA VITALÍCIA • CHAVE VIA WHATSAPP</span>
                 </div>
                 <CardContent className="p-16">
-                  <div className="mb-14 text-center">
-                    <span className="text-slate-400 line-through text-3xl block mb-4 font-black italic uppercase tracking-tight">De R$ 997,00</span>
+                  <div className="mb-10 text-center">
+                    <span className="text-slate-400 line-through text-xl block mb-2 font-black italic uppercase tracking-tight">De R$ 997,00</span>
                     <div className="flex flex-col items-center">
-                      <span className="text-[140px] font-black text-slate-900 tracking-tight leading-none mb-6">R$ 497</span>
-                      <Badge className="bg-[#8B5CF6] text-white px-10 py-4 rounded-3xl text-3xl font-black italic shadow-[0_10px_30px_rgba(139,92,246,0.3)]">PAGAMENTO ÚNICO</Badge>
+                      <span className="text-6xl font-black text-slate-900 tracking-tight leading-none mb-4">R$ 497</span>
+                      <Badge className="bg-[#8B5CF6] text-white px-4 py-1 rounded-xl text-sm font-black italic shadow-[0_10px_20px_rgba(139,92,246,0.2)]">PAGAMENTO ÚNICO</Badge>
+                      <p className="mt-6 text-[10px] font-black text-red-600 uppercase tracking-widest animate-pulse">
+                        30 Dias Grátis Para Experimentar
+                      </p>
                     </div>
                   </div>
 
                   <Button 
-                    onClick={handleStartPurchase}
-                    className="w-full bg-[#DC2626] hover:bg-red-700 text-white h-28 text-4xl font-black rounded-[40px] shadow-2xl shadow-red-500/40 group transition-all active:scale-95 border-b-[12px] border-red-800 mb-10 uppercase tracking-tight italic"
+                    onClick={() => handleStartPurchase('purchase')}
+                    className="w-full bg-[#DC2626] hover:bg-red-700 text-white h-16 text-xl font-black rounded-2xl shadow-lg shadow-red-500/20 group transition-all active:scale-95 border-b-4 border-red-800 mb-6 uppercase tracking-tight italic"
                   >
-                    BAIXAR PROGRAMA
-                    <Download className="ml-5 w-12 h-12 group-hover:translate-y-2 transition-transform" />
+                    COMPRAR LICENÇA
+                    <Download className="ml-3 w-6 h-6 group-hover:translate-y-1 transition-transform" />
                   </Button>
                   
-                  <p className="text-[11px] text-slate-400 font-black uppercase tracking-[0.4em] italic leading-relaxed">
-                    Você receberá 7 (Sete) dias de teste grátis. <br />
-                    Após esse período, é necessário adquirir a licença que é <br />
-                    enviada no seu WhatsApp logo após a confirmação do pagamento.
-                  </p>
+
                 </CardContent>
               </Card>
             </div>
@@ -388,10 +421,15 @@ const GestaoObras = () => {
                  <div className="w-20 h-20 bg-red-50 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                     <ShieldCheck className="w-10 h-10 text-red-600" />
                  </div>
-                 <h3 className="text-3xl font-black text-slate-900 uppercase italic tracking-tight mb-2">Quase lá!</h3>
+                 <h3 className="text-3xl font-black text-slate-900 uppercase italic tracking-tight mb-2">
+                    {modalMode === 'download' ? 'Download Grátis!' : 'Quase lá!'}
+                 </h3>
                  <p className="text-slate-500 font-medium leading-relaxed">
-                    Você receberá **7 dias de teste grátis**. <br />
-                    Informe onde deseja receber o link de download e sua chave.
+                    {modalMode === 'download' ? (
+                      <>Você receberá **30 dias de teste grátis**. <br /> Informe seus dados para iniciar o download.</>
+                    ) : (
+                      <>Você está adquirindo uma **Licença Vitalícia**. <br /> Informe onde deseja receber sua chave de acesso.</>
+                    )}
                  </p>
               </div>
 
@@ -451,7 +489,10 @@ const GestaoObras = () => {
                     {customerData.consent && <CheckCircle2 className="w-4 h-4 text-white" />}
                   </div>
                   <p className="text-[11px] text-red-900 font-bold leading-tight">
-                    Estou ciente que receberei **7 dias de teste grátis** e que a licença definitiva será enviada para o meu WhatsApp após o pagamento.
+                    {modalMode === 'download' 
+                      ? "Estou ciente que o programa possui 30 dias de teste grátis e concordo com os termos."
+                      : "Estou ciente que receberei uma **Licença Vitalícia** e que a chave definitiva será enviada para o meu WhatsApp após o pagamento."
+                    }
                   </p>
                 </div>
 
@@ -460,7 +501,9 @@ const GestaoObras = () => {
                   disabled={isProcessing}
                   className="w-full bg-[#DC2626] hover:bg-red-700 text-white h-20 text-2xl font-black rounded-2xl shadow-xl shadow-red-500/20 uppercase italic transition-all active:scale-95"
                 >
-                  {isProcessing ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : "IR PARA O PAGAMENTO"}
+                  {isProcessing ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : (
+                      modalMode === 'download' ? "BAIXAR AGORA" : "IR PARA O PAGAMENTO"
+                    )}
                 </Button>
               </form>
             </motion.div>
@@ -470,9 +513,9 @@ const GestaoObras = () => {
 
       <footer className="py-24 bg-white border-t border-slate-100">
         <div className="container mx-auto px-6 text-center">
-          <div className="font-black text-6xl tracking-tight italic text-slate-900 mb-8 uppercase">ALEXIS GESTÃO</div>
+          <div className="font-black text-4xl tracking-tight italic text-slate-900 mb-8 uppercase">ALEXIS GESTÃO</div>
           <div className="flex justify-center gap-10 items-center">
-             <a href="https://wa.me/55SEUNUMERO" target="_blank" className="flex items-center gap-2 text-emerald-600 font-black uppercase text-xs tracking-widest hover:scale-105 transition-transform">
+             <a href="https://wa.me/5532987037221" target="_blank" className="flex items-center gap-2 text-emerald-600 font-black uppercase text-xs tracking-widest hover:scale-105 transition-transform">
                 <MessageCircle size={18} /> Chamar no WhatsApp
              </a>
           </div>
