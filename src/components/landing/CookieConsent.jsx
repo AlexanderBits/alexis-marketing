@@ -75,9 +75,8 @@ export default function CookieConsent() {
                   </Button>
 
                   <Button 
-                    variant="outline"
                     onClick={handleDecline}
-                    className="border-white/10 text-white/40 hover:text-white hover:bg-white/5 rounded-none font-black uppercase tracking-widest text-[10px] px-6 py-2 transition-all active:scale-95 flex-1"
+                    className="bg-transparent border border-white/10 text-white hover:bg-white/5 rounded-none font-black uppercase tracking-widest text-[10px] px-6 py-2 transition-all active:scale-95 flex-1"
                   >
                     Essenciais
                   </Button>
