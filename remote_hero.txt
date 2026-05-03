@@ -1,8 +1,8 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
@@ -12,10 +12,10 @@ export default function HeroSection() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const authStatus = await base44.auth.isAuthenticated();
+        const authStatus = await alexis.auth.isAuthenticated();
         setIsAuthenticated(authStatus);
       } catch (error) {
-        console.error("Erro ao verificar autentica├º├úo:", error);
+        console.error("Erro ao verificar autentica+�+�o:", error);
       }
     };
     checkAuth();
@@ -25,7 +25,7 @@ export default function HeroSection() {
     if (isAuthenticated) {
       navigate('/contrato');
     } else {
-      base44.auth.redirectToLogin('/contrato');
+      alexis.auth.redirectToLogin('/contrato');
     }
   };
 
@@ -59,7 +59,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-8">
 
-          Cria├º├úo de Site Profissional
+          Cria+�+�o de Site Profissional
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
             Seguro. Veloz. Exclusivo.
@@ -75,7 +75,7 @@ export default function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">Especialista em cria├º├úo de sites profissionais. Desenvolvo projetos com design exclusivo e arquitetura digital de alta performance, utilizando foundation models de ├║ltima gera├º├úo, automa├º├úo inteligente avan├ºada e data center com hospedagem ilimitada
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">Especialista em cria+�+�o de sites profissionais. Desenvolvo projetos com design exclusivo e arquitetura digital de alta performance, utilizando foundation models de +�ltima gera+�+�o, automa+�+�o inteligente avan+�ada e data center com hospedagem ilimitada
 
 
 
@@ -114,7 +114,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-base font-semibold group transition-all duration-300">
-              Solicitar Or├ºamento
+              Solicitar Or+�amento
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>

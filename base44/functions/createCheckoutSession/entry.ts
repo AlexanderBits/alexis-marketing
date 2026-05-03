@@ -14,8 +14,8 @@ async function getPriceIdByPlanKey(planKey: string) {
 
 Deno.serve(async (req) => {
   try {
-    const base44 = createClientFromRequest(req);
-    const user = await base44.auth.me();
+    const alexis = createClientFromRequest(req);
+    const user = await alexis.auth.me();
 
     if (!user) {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });

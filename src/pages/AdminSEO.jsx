@@ -4,7 +4,7 @@ import { Shield, Search, Layout, LogOut, CheckCircle2, Loader2 } from "lucide-re
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { SEO_Editor } from "@/components/seo/SEO_Editor";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,7 @@ export default function AdminSEO() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const { data } = await base44.entities.SiteMetadata.list();
+      const { data } = await alexis.entities.SiteMetadata.list();
       const map = {};
       data.forEach(item => { map[item.path] = item; });
       setSeoMap(map);
@@ -67,9 +67,9 @@ export default function AdminSEO() {
     try {
       const existing = seoMap[payload.canonical];
       if (existing) {
-        await base44.entities.SiteMetadata.update(existing.id, payload);
+        await alexis.entities.SiteMetadata.update(existing.id, payload);
       } else {
-        await base44.entities.SiteMetadata.create({ ...payload, path: payload.canonical });
+        await alexis.entities.SiteMetadata.create({ ...payload, path: payload.canonical });
       }
       toast({ title: "SEO_SYNC_OK" });
       fetchData();

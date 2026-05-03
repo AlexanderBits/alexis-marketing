@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const base44 = createClientFromRequest(req);
+    const alexis = createClientFromRequest(req);
     const body = await req.json();
 
     // Validar segredo se configurado
@@ -24,7 +24,7 @@ Deno.serve(async (req) => {
     }
 
     // Buscar assinatura
-    const allSubscriptions = await base44.asServiceRole.entities.Subscription.list();
+    const allSubscriptions = await alexis.asServiceRole.entities.Subscription.list();
     const subscription = allSubscriptions.find(s => s.id === subscription_id);
 
     if (!subscription) {
@@ -32,7 +32,7 @@ Deno.serve(async (req) => {
     }
 
     // Registrar disparo no log
-    await base44.asServiceRole.entities.PaymentLog.create({
+    await alexis.asServiceRole.entities.PaymentLog.create({
       subscription_id: subscription.id,
       customer_name: subscription.customer_name,
       event_type: 'cobranca_enviada',

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MessageCircle, Loader2, X, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function LeadModal({ isOpen, onOpenChange }) {
@@ -22,11 +22,11 @@ export default function LeadModal({ isOpen, onOpenChange }) {
     setIsSubmitting(true);
 
     try {
-      // Create lead in Base44
-      // We use base44.entities.SocialMediaLead.create if it exists, 
+      // Create lead in alexis
+      // We use alexis.entities.SocialMediaLead.create if it exists, 
       // otherwise it might show an error if the entity is not defined in the backend.
-      // However, Base44 often handles dynamic entity creation if configured.
-      await base44.entities.SocialMediaLead.create(formData);
+      // However, alexis often handles dynamic entity creation if configured.
+      await alexis.entities.SocialMediaLead.create(formData);
 
       toast({
         title: "Sucesso!",

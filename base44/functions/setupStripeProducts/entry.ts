@@ -20,8 +20,8 @@ const PLANS = [
 
 
 Deno.serve(async (req) => {
-  const base44 = createClientFromRequest(req);
-  const user = await base44.auth.me();
+  const alexis = createClientFromRequest(req);
+  const user = await alexis.auth.me();
 
   if (!user || user.role !== 'admin') {
     return Response.json({ error: 'Acesso negado' }, { status: 403 });

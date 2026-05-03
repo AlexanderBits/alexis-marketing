@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { Loader2, ShieldCheck, CheckCircle2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,7 +23,7 @@ export default function LoginPage() {
       setError(false);
       // Redireciona automaticamente após verificação bem sucedida (opcional delay)
       setTimeout(() => {
-        base44.auth.redirectToLogin(window.location.href);
+        alexis.auth.redirectToLogin(window.location.href);
       }, 800);
     } else {
       setError(true);

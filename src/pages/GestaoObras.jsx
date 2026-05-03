@@ -36,7 +36,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 
 // Software UI Component - ZERO GREEN
@@ -183,10 +183,11 @@ const GestaoObras = () => {
       });
       return;
     }
-    setIsProcessing(true);
+
+    setIsProcessing(true);
     try {
       // Fluxo de Compra - Segue para o Stripe
-      const response = await base44.functions.invoke('createSoftwareCheckout', {
+      const response = await alexis.functions.invoke('createSoftwareCheckout', {
         customer_name: customerData.name,
         customer_email: customerData.email,
         customer_whatsapp: customerData.whatsapp

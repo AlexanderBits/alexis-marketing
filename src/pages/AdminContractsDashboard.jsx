@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,13 +21,13 @@ export default function AdminContractsDashboard() {
 
   const { data: contracts = [], isLoading } = useQuery({
     queryKey: ['contracts'],
-    queryFn: () => base44.entities.Contract.list('-created_date'),
+    queryFn: () => alexis.entities.Contract.list('-created_date'),
     enabled: isAuthenticated
   });
 
   const { data: subscriptions = [] } = useQuery({
     queryKey: ['subscriptions-all'],
-    queryFn: () => base44.entities.Subscription.list('-created_date', 200),
+    queryFn: () => alexis.entities.Subscription.list('-created_date', 200),
     enabled: isAuthenticated
   });
 
@@ -38,7 +38,7 @@ export default function AdminContractsDashboard() {
   }, {});
 
   const deleteContractMutation = useMutation({
-    mutationFn: (contractId) => base44.entities.Contract.delete(contractId),
+    mutationFn: (contractId) => alexis.entities.Contract.delete(contractId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['contracts'] });
       toast({
@@ -105,7 +105,7 @@ export default function AdminContractsDashboard() {
           </CardHeader>
           <CardContent>
             <Button
-              onClick={() => base44.auth.redirectToLogin(window.location.pathname)}
+              onClick={() => alexis.auth.redirectToLogin(window.location.pathname)}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6"
             >
               Entrar com Google

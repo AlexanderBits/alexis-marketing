@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -19,12 +19,12 @@ export default function AdminSocialLeads() {
 
   const { data: leads = [], isLoading } = useQuery({
     queryKey: ['social-leads'],
-    queryFn: () => base44.entities.SocialMediaLead.list('-created_date'),
+    queryFn: () => alexis.entities.SocialMediaLead.list('-created_date'),
     enabled: isAuthenticated
   });
 
   const deleteLeadMutation = useMutation({
-    mutationFn: (leadId) => base44.entities.SocialMediaLead.delete(leadId),
+    mutationFn: (leadId) => alexis.entities.SocialMediaLead.delete(leadId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['social-leads'] });
       toast({
@@ -89,7 +89,7 @@ export default function AdminSocialLeads() {
           </CardHeader>
           <CardContent>
             <Button
-              onClick={() => base44.auth.redirectToLogin(window.location.pathname)}
+              onClick={() => alexis.auth.redirectToLogin(window.location.pathname)}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 text-lg tracking-wide shadow-lg shadow-indigo-500/20"
             >
               Entrar com Google <Lock className="ml-2 w-4 h-4" />

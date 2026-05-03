@@ -44,7 +44,7 @@ export default function AdminPesquisaSites() {
   const [analysisData, setAnalysisData] = useState(null);
   const [stats, setStats] = useState({ analyzed: 0, found: 0 });
 
-  // Histórico de monitoramento (Base44 ou LocalStorage)
+  // Histórico de monitoramento (alexis ou LocalStorage)
   const [savedDomains, setSavedDomains] = useState([]);
 
   useEffect(() => {
@@ -231,7 +231,7 @@ export default function AdminPesquisaSites() {
                 <Lock className="w-8 h-8 text-white" />
               </div>
             </div>
-            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter">Garimpo Antigravity</CardTitle>
+            <CardTitle className="text-white text-center text-2xl font-black tracking-tighter">Garimpo Alexis</CardTitle>
             <p className="text-white text-center text-[10px] font-black uppercase tracking-widest">Acesso restrito ao caçador de domínios</p>
           </CardHeader>
           <CardContent>
@@ -523,7 +523,7 @@ export default function AdminPesquisaSites() {
       {/* Footer com Status da Engine */}
       <footer className="max-w-7xl mx-auto py-12 px-6 border-t border-slate-900/50 flex justify-between items-center opacity-20 hover:opacity-100 transition-opacity mt-20">
         <div className="flex flex-col gap-2">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 italic">Antigravity Research Engine V2.5</p>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 italic">Alexis Research Engine V2.5</p>
           <div className="flex gap-4">
              <div className="flex items-center gap-1.5">
                 <div className="h-1 w-1 rounded-full bg-emerald-500"></div>
@@ -642,7 +642,7 @@ function DetailContent({ item, isAnalyzing, analysisData, getAuthorityColor, han
             </Button>
             
             <div className="text-center pt-8">
-               <p className="text-[9px] font-black text-white uppercase tracking-[0.8em]">Antigravity Intelligence Unit</p>
+               <p className="text-[9px] font-black text-white uppercase tracking-[0.8em]">Alexis Intelligence Unit</p>
             </div>
           </motion.div>
         ) : (

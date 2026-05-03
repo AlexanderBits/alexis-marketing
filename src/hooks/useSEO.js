@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 
 export function useSEO(path) {
   const [data, setData] = useState(null);
@@ -9,7 +9,7 @@ export function useSEO(path) {
     let active = true;
     const fetchSEO = async () => {
       try {
-        const { data: list } = await base44.entities.SiteMetadata.list();
+        const { data: list } = await alexis.entities.SiteMetadata.list();
         if (active) {
           setData(list.find(i => i.path === path));
         }

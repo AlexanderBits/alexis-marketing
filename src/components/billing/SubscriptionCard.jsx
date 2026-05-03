@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Send, Trash2, Phone, Mail, Calendar, DollarSign, Check } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 import SubscriptionStatusBadge from "./SubscriptionStatusBadge";
 
@@ -21,7 +21,7 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
 
   const handleSendBill = async () => {
     setSendingBill(true);
-    const res = await base44.functions.invoke("sendBillingWhatsApp", { subscription_id: subscription.id });
+    const res = await alexis.functions.invoke("sendBillingWhatsApp", { subscription_id: subscription.id });
     if (res.data?.success) {
       toast({ title: "Cobrança enviada! ✅", description: "Link de pagamento enviado via WhatsApp." });
     } else {
@@ -34,7 +34,7 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
   const handleDelete = async () => {
     if (!confirm(`Excluir assinatura de ${subscription.customer_name}?`)) return;
     setDeleting(true);
-    await base44.entities.Subscription.delete(subscription.id);
+    await alexis.entities.Subscription.delete(subscription.id);
     onRefresh?.();
     setDeleting(false);
   };
@@ -53,7 +53,7 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
       
       const nextDateStr = nextDate.toISOString().split('T')[0];
 
-      await base44.entities.Subscription.update(subscription.id, {
+      await alexis.entities.Subscription.update(subscription.id, {
         status: "ativo",
         due_date: nextDateStr,
         last_payment_date: new Date().toISOString()

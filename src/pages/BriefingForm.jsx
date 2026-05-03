@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 import {
   CheckCircle2, Loader2, ChevronRight, ChevronLeft, Target,
@@ -219,7 +219,7 @@ export default function BriefingForm() {
       status: "pendente",
     };
     try {
-      await base44.entities.CampaignBriefing.create(payload);
+      await alexis.entities.CampaignBriefing.create(payload);
       setSubmitted(true);
     } catch (err) {
       toast({ title: "Erro ao enviar", description: err.message || "Tente novamente.", variant: "destructive" });

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 import { FileText, CheckCircle2, Loader2, ChevronRight, MapPin } from "lucide-react";
 import Footer from "@/components/landing/Footer";
@@ -38,9 +38,9 @@ export default function ContractPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await alexis.auth.me();
         if (!user) {
-          base44.auth.redirectToLogin('/contrato');
+          alexis.auth.redirectToLogin('/contrato');
           return;
         }
         setCurrentUser(user);
@@ -51,7 +51,7 @@ export default function ContractPage() {
         }));
       } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
-        base44.auth.redirectToLogin('/contrato');
+        alexis.auth.redirectToLogin('/contrato');
       } finally {
         setIsLoadingAuth(false);
       }
@@ -112,13 +112,13 @@ export default function ContractPage() {
     setIsSubmitting(true);
 
     try {
-      const contractResponse = await base44.functions.invoke('submitContract', {
+      const contractResponse = await alexis.functions.invoke('submitContract', {
         ...formData,
         plan_value: planValues[formData.selected_plan]
       });
 
         if (contractResponse.data.success) {
-          const checkoutResponse = await base44.functions.invoke('createCheckoutSession', {
+          const checkoutResponse = await alexis.functions.invoke('createCheckoutSession', {
             selected_plan: formData.selected_plan,
             customer_email: formData.client_email,
             contract_id: contractResponse.data.contract_id || '',

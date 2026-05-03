@@ -2,10 +2,10 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.21';
 
 Deno.serve(async (req) => {
     try {
-        const base44 = createClientFromRequest(req);
+        const alexis = createClientFromRequest(req);
 
         // Verificar autenticação do usuário
-        const user = await base44.auth.me();
+        const user = await alexis.auth.me();
         if (!user) {
             return Response.json({ success: false, error: 'Não autorizado' }, { status: 401 });
         }
@@ -89,7 +89,7 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
             : '55';
 
         // Salvar contrato no banco de dados
-        const contract = await base44.asServiceRole.entities.Contract.create({
+        const contract = await alexis.asServiceRole.entities.Contract.create({
             client_type,
             client_name,
             client_cpf,
@@ -113,7 +113,7 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
         const dueDateStr = dueDate.toISOString().split('T')[0];
 
         // Criar Subscription automaticamente
-        await base44.asServiceRole.entities.Subscription.create({
+        await alexis.asServiceRole.entities.Subscription.create({
             customer_name: client_name,
             customer_email: client_email,
             customer_whatsapp: normalizedWhatsapp,

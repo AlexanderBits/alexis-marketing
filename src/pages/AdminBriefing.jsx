@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -127,7 +127,7 @@ export default function AdminBriefing() {
 
   const { data: briefings = [], isLoading } = useQuery({
     queryKey: ["campaign-briefings"],
-    queryFn: () => base44.entities.CampaignBriefing.list("-created_date"),
+    queryFn: () => alexis.entities.CampaignBriefing.list("-created_date"),
     enabled: isAuthenticated,
   });
 
@@ -173,7 +173,7 @@ export default function AdminBriefing() {
           </CardHeader>
           <CardContent className="mt-2">
             <Button
-              onClick={() => base44.auth.redirectToLogin(window.location.pathname)}
+              onClick={() => alexis.auth.redirectToLogin(window.location.pathname)}
               className="w-full bg-indigo-600 hover:bg-indigo-700 py-6 text-lg font-bold shadow-lg shadow-indigo-500/20"
             >
               Entrar com Google <Lock className="ml-2 w-4 h-4" />

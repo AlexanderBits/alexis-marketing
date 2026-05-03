@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 
 const PLAN_VALUES = { simples: 29.90, bronze: 49.90, prata: 99.90, ouro: 199.99 };
@@ -37,7 +37,7 @@ export default function ManualSubscriptionForm({ onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await base44.entities.Subscription.create(form);
+    await alexis.entities.Subscription.create(form);
     toast({ title: "Assinatura criada!", description: `${form.customer_name} adicionado com sucesso.` });
     setOpen(false);
     setForm({ customer_name: "", customer_email: "", customer_whatsapp: "", selected_plan: "bronze", amount: 49.90, due_date: "", notes: "", origin: "manual", status: "pendente" });

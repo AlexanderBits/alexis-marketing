@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -21,7 +21,7 @@ export default function AdminBilling() {
 
   const { data: subscriptions = [], isLoading } = useQuery({
     queryKey: ["subscriptions"],
-    queryFn: () => base44.entities.Subscription.list("-created_date", 200),
+    queryFn: () => alexis.entities.Subscription.list("-created_date", 200),
     enabled: isAuthenticated,
   });
 
@@ -57,7 +57,7 @@ export default function AdminBilling() {
             <Shield className="w-12 h-12 text-red-500 mx-auto" />
             <h2 className="text-white text-2xl font-black">Acesso Restrito</h2>
             <p className="text-slate-400 text-sm">Exclusivo para administradores.</p>
-            <Button onClick={() => base44.auth.redirectToLogin(window.location.pathname)} className="w-full bg-indigo-600 hover:bg-indigo-700">
+            <Button onClick={() => alexis.auth.redirectToLogin(window.location.pathname)} className="w-full bg-indigo-600 hover:bg-indigo-700">
               Entrar com Google
             </Button>
           </CardContent>
@@ -83,7 +83,7 @@ export default function AdminBilling() {
               onClick={async () => {
                 if(!confirm("Deseja sincronizar os produtos com o Stripe?")) return;
                 try {
-                  await base44.functions.invoke("setupStripeProducts");
+                  await alexis.functions.invoke("setupStripeProducts");
                   alert("Produtos sincronizados com sucesso!");
                   refresh();
                 } catch(e) {

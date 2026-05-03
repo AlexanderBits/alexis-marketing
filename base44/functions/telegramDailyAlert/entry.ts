@@ -22,14 +22,14 @@ async function sendTelegram(message) {
 }
 
 Deno.serve(async (req) => {
-  const base44 = createClientFromRequest(req);
+  const alexis = createClientFromRequest(req);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const todayStr = today.toISOString().split('T')[0];
 
   // Buscar assinaturas com vencimento hoje
-  const allSubs = await base44.asServiceRole.entities.Subscription.list('-due_date', 500);
+  const allSubs = await alexis.asServiceRole.entities.Subscription.list('-due_date', 500);
 
   const dueTodaySubs = allSubs.filter(s => {
     if (s.status === 'cancelado') return false;

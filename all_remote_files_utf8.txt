@@ -1,6 +1,6 @@
-﻿.gitignore
+.gitignore
 README.md
-base44/functions/submitContract/entry.ts
+alexis/functions/submitContract/entry.ts
 components.json
 components/landing/HeroSection
 eslint.config.js
@@ -11,7 +11,7 @@ package-lock.json
 package.json
 postcss.config.js
 src/App.jsx
-src/api/base44Client.js
+src/api/alexisClient.js
 src/assets/alexis-logo.png
 src/assets/combined-logo.png
 src/assets/consultant-new.jpg

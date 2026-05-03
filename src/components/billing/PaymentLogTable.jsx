@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { base44 } from "@/api/base44Client";
+import { alexis } from "@/api/alexisClient";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, XCircle, Send, Ban, Settings } from "lucide-react";
 
@@ -20,7 +20,7 @@ const WA_LABELS = {
 export default function PaymentLogTable() {
   const { data: logs = [], isLoading } = useQuery({
     queryKey: ["payment-logs"],
-    queryFn: () => base44.entities.PaymentLog.list("-created_date", 100),
+    queryFn: () => alexis.entities.PaymentLog.list("-created_date", 100),
   });
 
   if (isLoading) {

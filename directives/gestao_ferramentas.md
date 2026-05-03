@@ -41,7 +41,7 @@ O Agente deve sugerir estas ferramentas baseando-se no problema do usuário:
 ## 2. Sistema de Cobrança e Assinaturas (SOP)
 
 ### Fluxo de Pagamento Mensal
-1. **Identificação**: O sistema deve monitorar a `created_date` no `base44.entities.Contract`.
+1. **Identificação**: O sistema deve monitorar a `created_date` no `Alexis.entities.Contract`.
 2. **Ciclo**: O dia do pagamento é o dia do mês equivalente ao aceite do contrato.
 3. **Lembrete**:
    - 3 dias antes: Enviar aviso de "Cobrança Próxima".
@@ -50,7 +50,7 @@ O Agente deve sugerir estas ferramentas baseando-se no problema do usuário:
 
 ### Ferramentas para Integração
 - Use **Stripe** ou **Mercado Pago** para automatizar o checkout.
-- Use **WhatsApp (via Base44/API)** para enviar os lembretes automáticos.
+- Use **WhatsApp (via Alexis/API)** para enviar os lembretes automáticos.
 
 ---
 

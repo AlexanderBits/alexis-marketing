@@ -15,10 +15,10 @@ Deno.serve(async (req) => {
     return Response.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
   }
 
-  const base44 = createClientFromRequest(req);
+  const alexis = createClientFromRequest(req);
 
   // Idempotência: checar se já processamos este evento
-  const existingLogs = await base44.asServiceRole.entities.PaymentLog.filter({ stripe_event_id: event.id });
+  const existingLogs = await alexis.asServiceRole.entities.PaymentLog.filter({ stripe_event_id: event.id });
   if (existingLogs.length > 0) {
     return Response.json({ received: true, duplicate: true });
   }
@@ -34,13 +34,13 @@ Deno.serve(async (req) => {
 
     // Tentar encontrar pelo contractId no metadata
     if (contractId) {
-      const results = await base44.asServiceRole.entities.Subscription.filter({ id: contractId });
+      const results = await alexis.asServiceRole.entities.Subscription.filter({ id: contractId });
       subscription = results[0];
     }
 
     // Fallback: buscar pelo stripe_subscription_id
     if (!subscription && stripeSubscriptionId) {
-      const results = await base44.asServiceRole.entities.Subscription.filter({ stripe_subscription_id: stripeSubscriptionId });
+      const results = await alexis.asServiceRole.entities.Subscription.filter({ stripe_subscription_id: stripeSubscriptionId });
       subscription = results[0];
     }
 
@@ -50,7 +50,7 @@ Deno.serve(async (req) => {
       nextDue.setDate(nextDue.getDate() + 30);
       const nextDueStr = nextDue.toISOString().split('T')[0];
 
-      await base44.asServiceRole.entities.Subscription.update(subscription.id, {
+      await alexis.asServiceRole.entities.Subscription.update(subscription.id, {
         status: 'ativo',
         last_payment_date: new Date().toISOString().split('T')[0],
         due_date: nextDueStr,
@@ -59,7 +59,7 @@ Deno.serve(async (req) => {
       });
 
       // Registrar no log
-      await base44.asServiceRole.entities.PaymentLog.create({
+      await alexis.asServiceRole.entities.PaymentLog.create({
         subscription_id: subscription.id,
         customer_name: subscription.customer_name,
         event_type: 'pagamento_confirmado',
@@ -75,14 +75,14 @@ Deno.serve(async (req) => {
     const obj = event.data.object;
     const stripeSubscriptionId = obj.subscription || obj.id;
 
-    const results = await base44.asServiceRole.entities.Subscription.filter({ stripe_subscription_id: stripeSubscriptionId });
+    const results = await alexis.asServiceRole.entities.Subscription.filter({ stripe_subscription_id: stripeSubscriptionId });
     const subscription = results[0];
 
     if (subscription) {
       const newStatus = event.type === 'customer.subscription.deleted' ? 'cancelado' : 'atrasado';
-      await base44.asServiceRole.entities.Subscription.update(subscription.id, { status: newStatus });
+      await alexis.asServiceRole.entities.Subscription.update(subscription.id, { status: newStatus });
 
-      await base44.asServiceRole.entities.PaymentLog.create({
+      await alexis.asServiceRole.entities.PaymentLog.create({
         subscription_id: subscription.id,
         customer_name: subscription.customer_name,
         event_type: event.type === 'customer.subscription.deleted' ? 'cancelamento' : 'pagamento_falhou',

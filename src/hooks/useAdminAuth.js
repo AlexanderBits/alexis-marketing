@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { alexis } from '@/api/alexisClient';
 
 /**
  * Hook de autenticação administrativa.
@@ -13,7 +13,7 @@ export function useAdminAuth() {
   useEffect(() => {
     const checkAdmin = async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await alexis.auth.me();
         if (user && user.role === 'admin') {
           setIsAuthenticated(true);
         } else {
@@ -29,7 +29,7 @@ export function useAdminAuth() {
   }, []);
 
   const logout = () => {
-    base44.auth.logout('/');
+    alexis.auth.logout('/');
   };
 
   return {

@@ -5,7 +5,7 @@ const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
 Deno.serve(async (req) => {
   try {
-    const base44 = createClientFromRequest(req);
+    const alexis = createClientFromRequest(req);
     
     // Recebendo dados do formulário
     const body = await req.json();

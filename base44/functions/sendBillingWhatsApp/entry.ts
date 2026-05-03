@@ -100,8 +100,8 @@ async function createStripePaymentLink(subscription) {
 }
 
 Deno.serve(async (req) => {
-  const base44 = createClientFromRequest(req);
-  const user = await base44.auth.me();
+  const alexis = createClientFromRequest(req);
+  const user = await alexis.auth.me();
 
   if (!user || user.role !== 'admin') {
     return Response.json({ error: 'Acesso negado' }, { status: 403 });
@@ -120,7 +120,7 @@ Deno.serve(async (req) => {
     });
   }
 
-  const allSubscriptions = await base44.asServiceRole.entities.Subscription.list();
+  const allSubscriptions = await alexis.asServiceRole.entities.Subscription.list();
   const subscription = allSubscriptions.find(s => s.id === subscription_id);
 
   if (!subscription) {
@@ -155,7 +155,7 @@ Deno.serve(async (req) => {
   }
 
   // Registrar no log
-  await base44.asServiceRole.entities.PaymentLog.create({
+  await alexis.asServiceRole.entities.PaymentLog.create({
     subscription_id: subscription.id,
     customer_name: subscription.customer_name,
     event_type: 'cobranca_enviada',

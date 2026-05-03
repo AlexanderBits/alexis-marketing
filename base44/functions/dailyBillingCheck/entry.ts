@@ -90,12 +90,12 @@ async function createStripePaymentLink(subscription) {
 }
 
 Deno.serve(async (req) => {
-  const base44 = createClientFromRequest(req);
+  const alexis = createClientFromRequest(req);
 
   // Aceitar tanto chamada agendada (sem user) quanto manual (admin)
   let isScheduled = false;
   try {
-    const user = await base44.auth.me();
+    const user = await alexis.auth.me();
     if (!user || user.role !== 'admin') {
       return Response.json({ error: 'Acesso negado' }, { status: 403 });
     }
@@ -108,7 +108,7 @@ Deno.serve(async (req) => {
   const todayStr = today.toISOString().split('T')[0];
 
   // Buscar assinaturas
-  const allSubs = await base44.asServiceRole.entities.Subscription.list('-due_date', 500);
+  const allSubs = await alexis.asServiceRole.entities.Subscription.list('-due_date', 500);
 
   // FILTRO: Apenas quem vence EXATAMENTE HOJE
   const dueSubs = allSubs.filter(s => {
@@ -150,11 +150,11 @@ Deno.serve(async (req) => {
     const dueDate = new Date(sub.due_date);
     dueDate.setHours(0, 0, 0, 0);
     if (dueDate < today && sub.status !== 'atrasado') {
-      await base44.asServiceRole.entities.Subscription.update(sub.id, { status: 'atrasado' });
+      await alexis.asServiceRole.entities.Subscription.update(sub.id, { status: 'atrasado' });
     }
 
     // Registrar log
-    await base44.asServiceRole.entities.PaymentLog.create({
+    await alexis.asServiceRole.entities.PaymentLog.create({
       subscription_id: sub.id,
       customer_name: sub.customer_name,
       event_type: 'cobranca_enviada',
