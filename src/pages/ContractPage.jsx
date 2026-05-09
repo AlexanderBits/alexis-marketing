@@ -451,18 +451,6 @@ export default function ContractPage() {
                     </div>
                   </div>
 
-                  {serviceType === "nortecnet" && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 p-4 border border-brand-lime/20 bg-brand-lime/5">
-                      <div>
-                        <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2 block">E-mail @nortecnet.com.br a recuperar</Label>
-                        <Input id="nortecnet_email" name="nortecnet_email" value={formData.nortecnet_email} onChange={handleInputChange} placeholder="exemplo@nortecnet.com.br" required={serviceType === "nortecnet"} className="bg-black/40 border-white/10 rounded-none h-12" />
-                      </div>
-                      <div>
-                        <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2 block">Gmail de Destino</Label>
-                        <Input id="target_email" name="target_email" value={formData.target_email} onChange={handleInputChange} placeholder="seu.email@gmail.com" required={serviceType === "nortecnet"} className="bg-black/40 border-white/10 rounded-none h-12" />
-                      </div>
-                    </div>
-                  )}
                 </div>
 
                 <div>
@@ -498,6 +486,19 @@ export default function ContractPage() {
                   ))}
                 </div>
                 </div>
+
+                {serviceType === "nortecnet" && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 p-4 border border-brand-lime/20 bg-brand-lime/5">
+                    <div>
+                      <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2 block">E-mail @nortecnet.com.br a recuperar</Label>
+                      <Input id="nortecnet_email" name="nortecnet_email" value={formData.nortecnet_email} onChange={handleInputChange} placeholder="exemplo@nortecnet.com.br" required={serviceType === "nortecnet"} className="bg-black/40 border-white/10 rounded-none h-12" />
+                    </div>
+                    <div>
+                      <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2 block">Gmail de Destino</Label>
+                      <Input id="target_email" name="target_email" value={formData.target_email} onChange={handleInputChange} placeholder="seu.email@gmail.com" required={serviceType === "nortecnet"} className="bg-black/40 border-white/10 rounded-none h-12" />
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="flex items-start gap-4 pt-8 border-t border-white/5">
