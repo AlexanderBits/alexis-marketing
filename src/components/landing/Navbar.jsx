@@ -9,7 +9,8 @@ import {
   Instagram, 
   MapPin, 
   Cpu, 
-  ArrowLeft 
+  ArrowLeft,
+  Mail
 } from "lucide-react";
 import {
   Sheet,
@@ -47,6 +48,12 @@ const Navbar = ({ variant = "default" }) => {
       icon: <Cpu className="w-4 h-4 text-brand-lime" />,
       title: "Desenvolvimento",
       subtitle: "Sites Next-Gen"
+    },
+    {
+      to: "/reativacao-email-nortecnet",
+      icon: <Mail className="w-4 h-4 text-brand-lime" />,
+      title: "E-mail Nortecnet",
+      subtitle: "Recuperação & Redirecionamento"
     }
   ];
 

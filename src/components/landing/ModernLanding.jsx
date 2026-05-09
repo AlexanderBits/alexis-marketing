@@ -30,7 +30,8 @@ import {
   Facebook,
   Shield,
   Menu,
-  X
+  X,
+  Mail
 } from "lucide-react";
 import ModernLogo from "@/assets/alexis-logo.png";
 import Footer from "@/components/landing/Footer";
@@ -85,6 +86,23 @@ const ModernLanding = () => {
       title: "Estratégia Digital",
       description: "Consultoria completa para dominar o mercado e escalar seu faturamento online.",
       link: "/"
+    },
+    {
+      icon: <Mail className="w-6 h-6 text-brand-lime" />,
+      title: "Recuperação de E-mail",
+      description: "Recupere seu antigo e-mail @nortecnet.com.br e direcione para seu Gmail.",
+      link: "/reativacao-email-nortecnet"
+    },
+    {
+      icon: (
+        <div className="flex gap-3 items-center">
+          <img src="https://www.vectorlogo.zone/logos/google_ads/google_ads-icon.svg" className="w-5 h-5" alt="Google Ads" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" className="w-6 h-auto" alt="Meta" />
+        </div>
+      ),
+      title: "Assessoria em Marketing",
+      description: "Gestão de tráfego pago em Google Ads e Meta Ads para escala.",
+      link: "/contrato?service=scale"
     }
 
   ];
