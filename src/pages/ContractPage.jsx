@@ -7,6 +7,7 @@ import { alexis } from "@/api/alexisClient";
 import { useToast } from "@/components/ui/use-toast";
 import { FileText, CheckCircle2, Loader2, ChevronRight, MapPin } from "lucide-react";
 import Footer from "@/components/landing/Footer";
+import pixQrCode from "@/assets/pix-qr-code.png";
 
 export default function ContractPage() {
   const { toast } = useToast();
@@ -30,7 +31,8 @@ export default function ContractPage() {
     client_state: "",
     selected_plan: urlParams.get('plan') || (initialService === "nortecnet" ? "simple" : "bronze"),
     nortecnet_email: "",
-    target_email: ""
+    target_email: "",
+    payment_method: "stripe"
   });
 
   const [accepted, setAccepted] = useState(false);
@@ -122,16 +124,24 @@ export default function ContractPage() {
       });
 
         if (contractResponse.data.success) {
-          const checkoutResponse = await alexis.functions.invoke('createCheckoutSession', {
-            selected_plan: formData.selected_plan,
-            customer_email: formData.client_email,
-            contract_id: contractResponse.data.contract_id || '',
-          });
-
-          if (checkoutResponse.data.url) {
-            window.location.href = checkoutResponse.data.url;
-          } else {
+          if (formData.payment_method === "pix") {
             setSubmitted(true);
+            toast({
+              title: "Contrato Assinado!",
+              description: "Agora realize o pagamento via PIX e envie o comprovante.",
+            });
+          } else {
+            const checkoutResponse = await alexis.functions.invoke('createCheckoutSession', {
+              selected_plan: formData.selected_plan,
+              customer_email: formData.client_email,
+              contract_id: contractResponse.data.contract_id || '',
+            });
+
+            if (checkoutResponse.data.url) {
+              window.location.href = checkoutResponse.data.url;
+            } else {
+              setSubmitted(true);
+            }
           }
         } else {
           toast({
@@ -174,10 +184,25 @@ export default function ContractPage() {
           <div className="w-20 h-20 bg-brand-lime/10 border border-brand-lime/20 flex items-center justify-center mx-auto mb-8">
             <CheckCircle2 className="w-10 h-10 text-brand-lime" />
           </div>
-          <h1 className="text-4xl font-['Outfit'] font-extrabold text-white mb-4 tracking-tight">Contrato <span className="text-brand-lime">Ativado!</span></h1>
+          <h1 className="text-4xl font-['Outfit'] font-extrabold text-white mb-4 tracking-tight">
+            {formData.payment_method === "pix" ? "Contrato Gerado!" : <>Contrato <span className="text-brand-lime">Ativado!</span></>}
+          </h1>
           <p className="text-white/50 text-sm mb-10 leading-relaxed uppercase tracking-widest font-bold">
-            Seu contrato foi processado pela Engine da Alexis Dev. Próximo passo: <span className="text-white">Briefing de Campanha</span>.
+            {formData.payment_method === "pix" ? (
+              <>Realize o pagamento via PIX e <span className="text-white">envie o comprovante para o nosso WhatsApp</span>.</>
+            ) : (
+              <>Seu contrato foi processado pela Engine da Alexis Dev. Próximo passo: <span className="text-white">Briefing de Campanha</span>.</>
+            )}
           </p>
+
+          {formData.payment_method === "pix" && (
+            <div className="mb-8 p-4 border border-brand-lime/20 bg-brand-lime/5 flex flex-col items-center">
+              <img src={pixQrCode} alt="QR Code PIX" className="w-40 h-40 mb-4" />
+              <p className="text-brand-lime text-xs font-bold uppercase tracking-wider">
+                Aguardando comprovante no WhatsApp
+              </p>
+            </div>
+          )}
           
           <div className="space-y-4">
             <Button 
@@ -499,6 +524,51 @@ export default function ContractPage() {
                     </div>
                   </div>
                 )}
+
+                <div>
+                  <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-4 block">Forma de Pagamento</Label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div
+                      onClick={() => setFormData({ ...formData, payment_method: "stripe" })}
+                      className={`relative cursor-pointer p-4 rounded-none border-2 transition-all ${
+                        formData.payment_method === "stripe"
+                          ? "border-brand-lime bg-brand-lime/5"
+                          : "border-white/5 bg-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      <h3 className={`text-xs font-['Outfit'] font-bold capitalize mb-1 ${formData.payment_method === "stripe" ? "text-brand-lime" : "text-white"}`}>
+                        Cartão de Crédito
+                      </h3>
+                      <p className="text-white/40 text-xs">Pague via Stripe com segurança.</p>
+                    </div>
+
+                    <div
+                      onClick={() => setFormData({ ...formData, payment_method: "pix" })}
+                      className={`relative cursor-pointer p-4 rounded-none border-2 transition-all ${
+                        formData.payment_method === "pix"
+                          ? "border-brand-lime bg-brand-lime/5"
+                          : "border-white/5 bg-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      <h3 className={`text-xs font-['Outfit'] font-bold capitalize mb-1 ${formData.payment_method === "pix" ? "text-brand-lime" : "text-white"}`}>
+                        PIX
+                      </h3>
+                      <p className="text-white/40 text-xs">Pague via QR Code e envie o comprovante.</p>
+                    </div>
+                  </div>
+
+                  {formData.payment_method === "pix" && (
+                    <div className="mt-4 p-4 border border-brand-lime/20 bg-brand-lime/5 flex flex-col items-center">
+                      <p className="text-white/60 text-sm mb-4 text-center">
+                        Escaneie o QR Code abaixo para pagar. Após o pagamento, **envie o comprovante para o nosso WhatsApp**.
+                      </p>
+                      <img src={pixQrCode} alt="QR Code PIX" className="w-48 h-48 mb-4" />
+                      <p className="text-brand-lime text-xs font-bold uppercase tracking-wider">
+                        Aguardando envio do comprovante
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="flex items-start gap-4 pt-8 border-t border-white/5">
