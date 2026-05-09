@@ -58,7 +58,8 @@ const ReativacaoEmailNortecnet = () => {
               Seu antigo e-mail <span className="text-brand-lime">@nortecnet.com.br</span> pode voltar a funcionar
             </h1>
             <p className="text-white/60 text-lg mb-10 max-w-md leading-relaxed">
-              Durante muitos anos, diversas pessoas em **Janaúba MG** utilizaram e-mails da Nortecnet. Se você perdeu o acesso a contas, contatos ou mensagens importantes, nós podemos ajudar a reativar seu endereço.
+              <strong>Atenção ex-usuários da Nortecnet em Janaúba, Porteirinha, Jaíba e Monte Azul!</strong><br /><br />
+              Você utilizava o famoso <strong>Webmail da Nortecnet</strong> na época da internet discada e precisa recuperar o acesso às mensagens ou redirecionar novas mensagens enviadas para o seu endereço antigo? Nós oferecemos o serviço de resgate e redirecionamento de e-mails para o seu Gmail atual.
             </p>
             
             <div className="flex flex-wrap items-center gap-4 mb-12">
