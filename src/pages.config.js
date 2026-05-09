@@ -11,6 +11,7 @@ import AdminPesquisaSites from './pages/AdminPesquisaSites';
 import ContractPage from './pages/ContractPage';
 import HunterDom from './pages/HunterDom';
 import GestaoObras from './pages/GestaoObras';
+import ReativacaoEmailNortecnet from './pages/ReativacaoEmailNortecnet';
 
 
 
@@ -29,6 +30,7 @@ export const PAGES = {
     "login": LoginPage,
     "performance": HunterDom,
     "gestao-obras": GestaoObras,
+    "reativacao-email-nortecnet": ReativacaoEmailNortecnet,
 }
 
 

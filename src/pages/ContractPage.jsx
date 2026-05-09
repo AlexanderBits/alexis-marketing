@@ -12,6 +12,9 @@ export default function ContractPage() {
   const { toast } = useToast();
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  const urlParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const initialService = urlParams.get('service') || "default";
+
   const [formData, setFormData] = useState({
     client_type: "cpf",
     client_name: "",
@@ -25,12 +28,13 @@ export default function ContractPage() {
     client_neighborhood: "",
     client_city: "",
     client_state: "",
-    client_city: "",
-    client_state: "",
-    selected_plan: new URLSearchParams(window.location.search).get('plan') || "bronze"
+    selected_plan: urlParams.get('plan') || (initialService === "nortecnet" ? "simple" : "bronze"),
+    nortecnet_email: "",
+    target_email: ""
   });
 
   const [accepted, setAccepted] = useState(false);
+  const [serviceType, setServiceType] = useState(initialService);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isLoadingCep, setIsLoadingCep] = useState(false);
@@ -63,7 +67,7 @@ export default function ContractPage() {
     simple: 29.90,
     bronze: 49.90,
     prata: 99.90,
-    ouro: 199.99,
+    ouro: 199.90,
     entry: 400.00,
     starter: 1000.00,
     growth: 2500.00,
@@ -264,15 +268,23 @@ export default function ContractPage() {
                 1.2. Os serviços incluem, mas não se limitam a: otimização de sites, estratégias de conteúdo, análise de performance, 
                 treinamento em ferramentas de gerenciamento de conteúdo.
               </p>
+              <p className="mb-4">
+                1.3. Para os planos de Assessoria em Marketing (Níveis de Escala), o serviço engloba a gestão e otimização de campanhas de tráfego pago nas plataformas Google Ads, Facebook Ads e Instagram, visando a escala e performance do negócio.
+              </p>
+              {serviceType === "nortecnet" && (
+                <p className="mb-4 text-brand-lime font-bold">
+                  1.4. Especificamente para o serviço de Redirecionamento de E-mail, fica acordado o encaminhamento de todas as mensagens recebidas no endereço <span className="underline">{formData.nortecnet_email || "[E-mail Nortecnet]"}</span> para o endereço de destino <span className="underline">{formData.target_email || "[Gmail de Destino]"}</span>.
+                </p>
+              )}
 
               <h3 className="text-xl font-['Outfit'] font-bold text-white mt-10 mb-4 border-b border-white/5 pb-2">CLÁUSULA SEGUNDA – DO PLANO E VALOR MENSAL</h3>
               <p className="mb-4">2.1. O CONTRATANTE opta por um dos seguintes planos de serviços, com o valor mensal correspondente:</p>
               <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Essencial:</strong> R$ 29,90/mês</li>
-                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Bronze:</strong> R$ 49,90/mês</li>
-                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Prata:</strong> R$ 99,90/mês</li>
-                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Plano Ouro:</strong> R$ 199,99/mês</li>
-                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Níveis de Escala (Performance):</strong> R$ 400 a R$ 5.000/mês</li>
+                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Simple:</strong> R$ 29,90/mês</li>
+                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Bronze:</strong> R$ 49,90/mês</li>
+                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Prata:</strong> R$ 99,90/mês</li>
+                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Ouro:</strong> R$ 199,90/mês</li>
+                <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-brand-lime" /> <strong className="text-white">Assessoria em Marketing (Níveis de Escala):</strong> R$ 400 a R$ 5.000/mês</li>
               </ul>
 
               <p className="mb-4 italic text-xs text-white/40">
@@ -284,7 +296,10 @@ export default function ContractPage() {
                 3.1. As partes acordam um período de fidelidade de 1 (um) ano, conforme proposta comercial.
               </p>
               <p className="mb-4 text-brand-lime/80 font-medium">
-                3.2. Caso a proposta tenha sido "sem fidelidade", esta cláusula fica dispensada sem custos adicionais.
+                3.2. Caso a proposta tenha sido "sem fidelidade" para compradores do site, esta cláusula fica dispensada sem custos adicionais.
+              </p>
+              <p className="mb-4 text-brand-lime/80 font-medium">
+                3.3. Especificamente para o serviço de Redirecionamento de E-mail Nortecnet, o período de fidelidade será de 12 (doze) meses para o plano Simple (R$ 29,90) e de 6 (seis) meses para o plano Bronze (R$ 49,90).
               </p>
 
               <h3 className="text-xl font-['Outfit'] font-bold text-white mt-10 mb-4 border-b border-white/5 pb-2">CLÁUSULA QUARTA – DA PLATAFORMA (BÔNUS)</h3>
@@ -382,10 +397,84 @@ export default function ContractPage() {
                 </div>
               </div>
 
-              <div>
-                <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-8 block">Seleção do Plano Estratégico</Label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {Object.keys(planValues).map((plan) => (
+              <div className="space-y-8">
+                <div>
+                  <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-4 block">Tipo de Serviço</Label>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div
+                      onClick={() => {
+                        setServiceType("default");
+                        setFormData(prev => ({ ...prev, selected_plan: "bronze" }));
+                      }}
+                      className={`relative cursor-pointer p-6 border-2 transition-all ${
+                        serviceType === "default"
+                          ? "border-brand-lime bg-brand-lime/5"
+                          : "border-white/5 bg-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      <h3 className={`text-sm font-['Outfit'] font-bold mb-1 ${serviceType === "default" ? "text-brand-lime" : "text-white"}`}>
+                        Consultoria Host
+                      </h3>
+                      <p className="text-white/40 text-xs">Planos padrão de marketing e presença digital.</p>
+                    </div>
+                    <div
+                      onClick={() => {
+                        setServiceType("nortecnet");
+                        setFormData(prev => ({ ...prev, selected_plan: "simple" }));
+                      }}
+                      className={`relative cursor-pointer p-6 border-2 transition-all ${
+                        serviceType === "nortecnet"
+                          ? "border-brand-lime bg-brand-lime/5"
+                          : "border-white/5 bg-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      <h3 className={`text-sm font-['Outfit'] font-bold mb-1 ${serviceType === "nortecnet" ? "text-brand-lime" : "text-white"}`}>
+                        Redirecionamento de E-mail
+                      </h3>
+                      <p className="text-white/40 text-xs">Encaminhamento de antigo endereço NORTECNET.COM.BR para Gmail.</p>
+                    </div>
+                    <div
+                      onClick={() => {
+                        setServiceType("scale");
+                        setFormData(prev => ({ ...prev, selected_plan: "entry" }));
+                      }}
+                      className={`relative cursor-pointer p-6 border-2 transition-all ${
+                        serviceType === "scale"
+                          ? "border-brand-lime bg-brand-lime/5"
+                          : "border-white/5 bg-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      <h3 className={`text-sm font-['Outfit'] font-bold mb-1 ${serviceType === "scale" ? "text-brand-lime" : "text-white"}`}>
+                        Assessoria em Marketing
+                      </h3>
+                      <p className="text-white/40 text-xs">Níveis de Escala e Performance.</p>
+                    </div>
+                  </div>
+
+                  {serviceType === "nortecnet" && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 p-4 border border-brand-lime/20 bg-brand-lime/5">
+                      <div>
+                        <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2 block">E-mail @nortecnet.com.br a recuperar</Label>
+                        <Input id="nortecnet_email" name="nortecnet_email" value={formData.nortecnet_email} onChange={handleInputChange} placeholder="exemplo@nortecnet.com.br" required={serviceType === "nortecnet"} className="bg-black/40 border-white/10 rounded-none h-12" />
+                      </div>
+                      <div>
+                        <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2 block">Gmail de Destino</Label>
+                        <Input id="target_email" name="target_email" value={formData.target_email} onChange={handleInputChange} placeholder="seu.email@gmail.com" required={serviceType === "nortecnet"} className="bg-black/40 border-white/10 rounded-none h-12" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-4 block">Seleção do Plano Estratégico</Label>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {Object.keys(planValues)
+                      .filter(plan => {
+                        if (serviceType === "nortecnet") return ["simple", "bronze"].includes(plan);
+                        if (serviceType === "scale") return ["entry", "starter", "growth", "scale"].includes(plan);
+                        return ["simple", "bronze", "prata", "ouro"].includes(plan);
+                      })
+                      .map((plan) => (
                     <div
                       key={plan}
                       onClick={() => setFormData({ ...formData, selected_plan: plan })}
@@ -398,11 +487,17 @@ export default function ContractPage() {
                       <h3 className={`text-xs font-['Outfit'] font-bold capitalize mb-1 ${formData.selected_plan === plan ? "text-brand-lime" : "text-white"}`}>
                         {plan}
                       </h3>
-                      <p className="text-sm font-black text-white/80">R$ {planValues[plan].toFixed(0)}</p>
+                      <p className="text-sm font-black text-white/80">R$ {planValues[plan].toFixed(2).replace('.', ',')}</p>
+                      {serviceType === "nortecnet" && plan === "simple" && (
+                        <p className="text-[10px] text-brand-lime font-bold mt-1">Fidelidade 12 meses</p>
+                      )}
+                      {serviceType === "nortecnet" && plan === "bronze" && (
+                        <p className="text-[10px] text-brand-lime font-bold mt-1">Fidelidade 6 meses</p>
+                      )}
                     </div>
                   ))}
                 </div>
-
+                </div>
               </div>
 
               <div className="flex items-start gap-4 pt-8 border-t border-white/5">
