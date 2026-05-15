@@ -91,11 +91,33 @@
     "pillar_6_creatives",
     "pillar_7_structure"
   ],
-  "policies": {
-    "list": "auth.role == 'admin'",
-    "get": "auth.role == 'admin'",
-    "create": "true",
-    "update": "auth.role == 'admin'",
-    "delete": "auth.role == 'admin'"
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "user"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
   }
 }
