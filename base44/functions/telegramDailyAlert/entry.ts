@@ -24,6 +24,14 @@ async function sendTelegram(message) {
 Deno.serve(async (req) => {
   const alexis = createClientFromRequest(req);
 
+  // Proteção contra chamadas não autorizadas
+  const authHeader = req.headers.get('Authorization');
+  const cronSecret = Deno.env.get('CRON_SECRET');
+  
+  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+    return Response.json({ error: 'Não autorizado' }, { status: 401 });
+  }
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const todayStr = today.toISOString().split('T')[0];

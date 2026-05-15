@@ -5,7 +5,7 @@ import App from '@/App.jsx';
 import '@/index.css';
 import { queryClientInstance } from '@/lib/query-client';
 
-const CACHE_BUST = 'alexis_v20260322';
+const CACHE_BUST = 'alexis_v20260515_1811';
 
 // Service Worker cleanup
 if ('serviceWorker' in navigator) {

@@ -91,16 +91,28 @@ async function createStripePaymentLink(subscription) {
 
 Deno.serve(async (req) => {
   const alexis = createClientFromRequest(req);
+  const authHeader = req.headers.get('Authorization');
+  const cronSecret = Deno.env.get('CRON_SECRET');
 
-  // Aceitar tanto chamada agendada (sem user) quanto manual (admin)
-  let isScheduled = false;
+  let isAuthorized = false;
+
+  // 1. Tentar autenticação via Usuário Admin
   try {
     const user = await alexis.auth.me();
-    if (!user || user.role !== 'admin') {
-      return Response.json({ error: 'Acesso negado' }, { status: 403 });
+    if (user && user.role === 'admin') {
+      isAuthorized = true;
     }
   } catch {
-    isScheduled = true;
+    // Não é admin logado
+  }
+
+  // 2. Tentar autenticação via Secret (para CRON jobs)
+  if (!isAuthorized && cronSecret && authHeader === `Bearer ${cronSecret}`) {
+    isAuthorized = true;
+  }
+
+  if (!isAuthorized) {
+    return Response.json({ error: 'Acesso negado' }, { status: 403 });
   }
 
   const today = new Date();

@@ -7,6 +7,12 @@ Deno.serve(async (req) => {
   try {
     const alexis = createClientFromRequest(req);
     
+    // Validar se o usuário está autenticado para evitar abusos
+    const user = await alexis.auth.me();
+    if (!user) {
+      return Response.json({ error: 'Autenticação necessária para realizar checkout.' }, { status: 401 });
+    }
+
     // Recebendo dados do formulário
     const body = await req.json();
     const { customer_name, customer_email, customer_whatsapp } = body;
