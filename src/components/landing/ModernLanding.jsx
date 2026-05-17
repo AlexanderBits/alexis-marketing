@@ -149,7 +149,7 @@ const ModernLanding = () => {
             transition={{ duration: 0.8 }}>
             
             <div className="mb-6">
-               <img src="https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png" alt="Google Partner" className="w-[250px] h-auto opacity-80 hidden" />
+               
             </div>
             <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-['Outfit'] font-extrabold leading-[1.1] mb-8">
               Criação de <br className="hidden xs:block" />Sites Profissionais <br className="hidden xs:block" />Next-Gen
