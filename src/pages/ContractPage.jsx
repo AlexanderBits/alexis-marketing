@@ -206,10 +206,10 @@ export default function ContractPage() {
           
           <div className="space-y-4">
             <Button 
-              onClick={() => window.location.href = "/briefing"} 
+              onClick={() => window.location.href = "/"} 
               className="w-full bg-brand-lime hover:bg-brand-lime/90 text-black py-8 rounded-none text-sm font-black uppercase tracking-[0.2em] group"
             >
-              Ir para o Briefing
+              Voltar para o Início
               <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
             </Button>
             
