@@ -24,23 +24,22 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
     const plano = (subscription.selected_plan || "").toUpperCase();
     const chave = "t.i@desenvolvimentodesites.dev.br";
 
-    const msg = 
+    const vencimento = subscription.due_date || "hoje";
+
+    const msg =
 `Olá ${nome}! 👋
 
-Aqui é da *Alexis Marketing & Dev*. Passando para lembrar sobre o pagamento da sua mensalidade:
+Passando para lembrar a mensalidade:
 
-📦 *Plano:* ${plano}
+📦 *Plano:* ${plano} — vence hoje em ${vencimento}
 💰 *Valor:* R$ ${valor}
 
 💳 *Pagamento via PIX:*
-Chave para copiar e colar:
+Favor enviar o comprovante. Segue a chave para copiar e colar:
+
 \`${chave}\`
 
-🔳 Ou escaneie o QR Code enviado pelo site:
-https://res.cloudinary.com/deivliasb/image/upload/v1774740064/pix-qr-code.png
-
-Após o pagamento, envie o comprovante aqui no WhatsApp. ✅
-Qualquer dúvida, estamos à disposição! 🚀`;
+Obrigado! 🙏`;
 
     const phone = (subscription.customer_whatsapp || "").replace(/\D/g, "");
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
