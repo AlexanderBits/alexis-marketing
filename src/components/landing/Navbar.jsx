@@ -19,7 +19,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import ModernLogo from "@/assets/alexis-logo.png";
+const ModernLogo = "https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png";
 
 const Navbar = ({ variant = "default" }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);

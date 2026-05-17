@@ -33,7 +33,7 @@ import {
   X,
   Mail
 } from "lucide-react";
-import ModernLogo from "@/assets/alexis-logo.png";
+// Logo served via Navbar component
 import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/landing/Navbar";
 import { Badge } from "@/components/ui/badge";
@@ -409,7 +409,7 @@ const ModernLanding = () => {
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.1 }}
-                      className="absolute ${logo.pos} p-4 bg-brand-card border border-white/10 rounded-none shadow-xl backdrop-blur-sm"
+                      className={`absolute ${logo.pos} p-4 bg-brand-card border border-white/10 rounded-none shadow-xl backdrop-blur-sm`}
                     >
                       <div className="text-brand-lime">{logo.icon}</div>
                     </motion.div>

@@ -11,6 +11,7 @@ import {
   DollarSign, BarChart2, Users, BookOpen, Image, Layers, User, Building2
 } from "lucide-react";
 import RichTextEditor from "@/components/editor/RichTextEditor";
+import Footer from "@/components/landing/Footer";
 
 // ─────────────────────────────────────────────
 // Configuração dos 8 passos (0 = Identificação + 7 Pilares)

@@ -47,6 +47,7 @@ const AuthenticatedApp = () => {
       navigateToLogin();
       return null;
     }
+    // Para rotas públicas, ignora o erro e renderiza normalmente
   }
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { 
-  Globe, Search, Zap, Trash2, ExternalLink, 
+  Globe, Search, Zap, Trash2, ExternalLink, Shield,
   BarChart3, ShieldCheck, Clock, CheckCircle2,
   Lock, AlertCircle, Trophy, Activity,
   Info, History, ArrowRight, MousePointer2,
