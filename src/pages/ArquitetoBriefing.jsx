@@ -80,7 +80,7 @@ export default function ArquitetoBriefing() {
   }));
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
+    <div className="h-screen bg-[#0A0A0A] flex flex-col overflow-hidden">
       {/* Header */}
       <header className="border-b border-white/10 px-4 py-4 flex items-center gap-3 bg-[#0A0A0A] sticky top-0 z-10">
         <div className="w-9 h-9 bg-[#D4FF33] flex items-center justify-center">
@@ -97,7 +97,7 @@ export default function ArquitetoBriefing() {
       </header>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-2xl mx-auto w-full">
+      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-6 space-y-4 max-w-2xl mx-auto w-full">
         {starting && (
           <div className="flex items-center gap-2 text-white/40 text-sm">
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -188,7 +188,6 @@ export default function ArquitetoBriefing() {
         </p>
       </div>
 
-      <Footer />
     </div>
   );
 }
