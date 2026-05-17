@@ -1,0 +1,76 @@
+{
+  "name": "WebsitePrompt",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Nome do cliente ou neg\u00f3cio"
+    },
+    "segment": {
+      "type": "string",
+      "description": "Segmento de atua\u00e7\u00e3o do neg\u00f3cio"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Resumo do projeto gerado pelo agente"
+    },
+    "master_prompt": {
+      "type": "string",
+      "description": "Prompt mestre completo para IA codificadora"
+    },
+    "sitemap": {
+      "type": "string",
+      "description": "Mapa do site proposto"
+    },
+    "text_blocks": {
+      "type": "string",
+      "description": "Blocos de texto para o site"
+    },
+    "next_steps": {
+      "type": "string",
+      "description": "Pr\u00f3ximos passos"
+    },
+    "conversation_id": {
+      "type": "string",
+      "description": "ID da conversa do agente que gerou este prompt"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "em_andamento",
+        "concluido",
+        "revisao"
+      ],
+      "default": "em_andamento",
+      "description": "Status do briefing"
+    }
+  },
+  "required": [
+    "client_name"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

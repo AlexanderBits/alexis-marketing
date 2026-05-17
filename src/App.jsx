@@ -13,7 +13,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import CookieConsent from '@/components/landing/CookieConsent';
 import ContractPage from './pages/ContractPage';
 import AdminContractsDashboard from './pages/AdminContractsDashboard';
-import BriefingForm from './pages/BriefingForm';
+import ArquitetoBriefing from './pages/ArquitetoBriefing';
 import AdminBriefing from './pages/AdminBriefing';
 import AdminBilling from './pages/AdminBilling';
 
@@ -70,7 +70,7 @@ const AuthenticatedApp = () => {
       ))}
       <Route path="/contrato" element={<ContractPage />} />
       <Route path="/admin-contratos" element={<AdminContractsDashboard />} />
-      <Route path="/briefing" element={<BriefingForm />} />
+      <Route path="/briefing" element={<ArquitetoBriefing />} />
       <Route path="/admin-briefing" element={<AdminBriefing />} />
       <Route path="/admin-billing" element={<AdminBilling />} />
       <Route path="*" element={<PageNotFound />} />
