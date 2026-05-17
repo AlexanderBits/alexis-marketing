@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +7,10 @@ import { Send, Bot, Loader2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Footer from "@/components/landing/Footer";
 
+const BRIEFING_DONE_MARKER = "[BRIEFING_CONCLUIDO]";
+
 export default function ArquitetoBriefing() {
+  const navigate = useNavigate();
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -22,6 +26,14 @@ export default function ArquitetoBriefing() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Detecta marcador de conclusão e redireciona para o contrato
+  useEffect(() => {
+    const lastAssistant = [...messages].reverse().find(m => m.role === "assistant");
+    if (lastAssistant?.content?.includes(BRIEFING_DONE_MARKER)) {
+      setTimeout(() => navigate("/contrato"), 2500);
+    }
+  }, [messages, navigate]);
+
   async function initConversation() {
     setStarting(true);
     const conv = await base44.agents.createConversation({
@@ -34,10 +46,10 @@ export default function ArquitetoBriefing() {
       setMessages(data.messages || []);
     });
 
-    // send initial greeting trigger
+    // Dispara a saudação inicial do agente
     await base44.agents.addMessage(conv, {
       role: "user",
-      content: "Olá! Quero criar um site.",
+      content: "__init__",
     });
 
     setStarting(false);
@@ -61,8 +73,11 @@ export default function ArquitetoBriefing() {
   }
 
   const visibleMessages = messages.filter(
-    (m) => m.role === "user" || m.role === "assistant"
-  );
+    (m) => (m.role === "user" && m.content !== "__init__") || m.role === "assistant"
+  ).map(m => ({
+    ...m,
+    content: m.role === "assistant" ? m.content.replace(BRIEFING_DONE_MARKER, "").trim() : m.content
+  }));
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
