@@ -492,9 +492,9 @@ const ModernLanding = () => {
           <p className="text-white/50 text-lg mb-12 max-w-xl mx-auto">
             Agende uma consultoria gratuita com um Especialista Google Partner e descubra como dominar seu mercado online.
           </p>
-          <button className="bg-brand-lime text-black px-10 py-4 rounded-none font-bold flex items-center gap-3 mx-auto hover:scale-105 transition-transform">
+          <a href="https://wa.me/5532987037221?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Alexis%20Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener noreferrer" className="bg-brand-lime text-black px-10 py-4 rounded-none font-bold flex items-center gap-3 mx-auto hover:scale-105 transition-transform">
             Falar com Especialista <ChevronRight className="w-5 h-5" />
-          </button>
+          </a>
         </motion.div>
       </section>
 
