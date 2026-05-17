@@ -1,15 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { 
-  Download, 
-  ChevronRight, 
-  Star, 
-  Cpu, 
-  Code2, 
-  GitBranch, 
-  PlusCircle, 
-  Play, 
+import {
+  Download,
+  ChevronRight,
+  Star,
+  Cpu,
+  Code2,
+  GitBranch,
+  PlusCircle,
+  Play,
   Search,
   Globe,
   Github,
@@ -31,8 +31,8 @@ import {
   Shield,
   Menu,
   X,
-  Mail
-} from "lucide-react";
+  Mail } from
+"lucide-react";
 // Logo served via Navbar component
 import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/landing/Navbar";
@@ -51,82 +51,82 @@ const ModernLanding = () => {
   };
 
   const services = [
-    {
-      icon: <Zap className="w-6 h-6 text-brand-lime" />,
-      title: "Performance & Tráfego",
-      description: "Campanhas de Google Ads focadas em ROI. Transforme seu site em uma máquina de vendas.",
-      link: "/performance"
-    },
-    {
-      icon: <Instagram className="w-6 h-6 text-brand-lime" />,
-      title: "Redes Sociais",
-      description: "Posicionamento estratégico no Instagram, TikTok e YouTube para criar autoridade.",
-      link: "/gestao-de-redes-sociais"
-    },
-    {
-      icon: <Cpu className="w-6 h-6 text-brand-lime" />,
-      title: "Sites Next-Gen",
-      description: "Desenvolvimento com as tecnologias mais rápidas do mercado como React e Next.js.",
-      link: "/"
-    },
-    {
-      icon: <Layout className="w-6 h-6 text-brand-lime" />,
-      title: "Landing Pages",
-      description: "Páginas otimizadas para converter visitantes em clientes reais de forma automática.",
-      link: "/"
-    },
-    {
-      icon: <MapPin className="w-6 h-6 text-brand-lime" />,
-      title: "Google Maps",
-      description: "Domine o Google Maps e apareça para clientes locais que buscam seu serviço agora.",
-      link: "/google-meu-negocio"
-    },
-    {
-      icon: <Layers className="w-6 h-6 text-brand-lime" />,
-      title: "Estratégia Digital",
-      description: "Consultoria completa para dominar o mercado e escalar seu faturamento online.",
-      link: "/"
-    },
-    {
-      icon: <Mail className="w-6 h-6 text-brand-lime" />,
-      title: "Recuperação de E-mail",
-      description: "Recupere seu antigo e-mail @nortecnet.com.br e direcione para seu Gmail.",
-      link: "/reativacao-email-nortecnet"
-    },
-    {
-      icon: (
-        <div className="flex gap-3 items-center">
+  {
+    icon: <Zap className="w-6 h-6 text-brand-lime" />,
+    title: "Performance & Tráfego",
+    description: "Campanhas de Google Ads focadas em ROI. Transforme seu site em uma máquina de vendas.",
+    link: "/performance"
+  },
+  {
+    icon: <Instagram className="w-6 h-6 text-brand-lime" />,
+    title: "Redes Sociais",
+    description: "Posicionamento estratégico no Instagram, TikTok e YouTube para criar autoridade.",
+    link: "/gestao-de-redes-sociais"
+  },
+  {
+    icon: <Cpu className="w-6 h-6 text-brand-lime" />,
+    title: "Sites Next-Gen",
+    description: "Desenvolvimento com as tecnologias mais rápidas do mercado como React e Next.js.",
+    link: "/"
+  },
+  {
+    icon: <Layout className="w-6 h-6 text-brand-lime" />,
+    title: "Landing Pages",
+    description: "Páginas otimizadas para converter visitantes em clientes reais de forma automática.",
+    link: "/"
+  },
+  {
+    icon: <MapPin className="w-6 h-6 text-brand-lime" />,
+    title: "Google Maps",
+    description: "Domine o Google Maps e apareça para clientes locais que buscam seu serviço agora.",
+    link: "/google-meu-negocio"
+  },
+  {
+    icon: <Layers className="w-6 h-6 text-brand-lime" />,
+    title: "Estratégia Digital",
+    description: "Consultoria completa para dominar o mercado e escalar seu faturamento online.",
+    link: "/"
+  },
+  {
+    icon: <Mail className="w-6 h-6 text-brand-lime" />,
+    title: "Recuperação de E-mail",
+    description: "Recupere seu antigo e-mail @nortecnet.com.br e direcione para seu Gmail.",
+    link: "/reativacao-email-nortecnet"
+  },
+  {
+    icon:
+    <div className="flex gap-3 items-center">
           <img src="https://www.vectorlogo.zone/logos/google_ads/google_ads-icon.svg" className="w-5 h-5" alt="Google Ads" />
           <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" className="w-6 h-auto" alt="Meta" />
-        </div>
-      ),
-      title: "Assessoria em Marketing",
-      description: "Gestão de tráfego pago em Google Ads e Meta Ads para escala.",
-      link: "/contrato?service=scale"
-    }
+        </div>,
 
-  ];
+    title: "Assessoria em Marketing",
+    description: "Gestão de tráfego pago em Google Ads e Meta Ads para escala.",
+    link: "/contrato?service=scale"
+  }];
+
+
 
   const cases = [
-    {
-      company: "ABME",
-      fullName: "Associação Brasileira de Mídias Evangélicas",
-      text: "Plataforma institucional completa desenvolvida para fortalecer veículos de comunicação cristãos em todo o Brasil. Sistema moderno com gestão avançada.",
-      url: "https://abme.com.br/"
-    },
-    {
-      company: "CEMAD-RJ",
-      fullName: "Convenção Assembleias de Deus - RJ",
-      text: "Portal institucional que integra diretórios regionais e área ministerial completa. Ferramentas modernas para o trabalho evangélico no Rio.",
-      url: "https://convencaocemad.com.br/"
-    },
-    {
-      company: "OMB-RJ",
-      fullName: "Ordem dos Músicos do Brasil • RJ",
-      text: "Autarquia Federal oficial de valorização profissional dos músicos. Garantindo direitos e regulamentação para a classe musical.",
-      url: "https://novaombrj.org.br"
-    }
-  ];
+  {
+    company: "ABME",
+    fullName: "Associação Brasileira de Mídias Evangélicas",
+    text: "Plataforma institucional completa desenvolvida para fortalecer veículos de comunicação cristãos em todo o Brasil. Sistema moderno com gestão avançada.",
+    url: "https://abme.com.br/"
+  },
+  {
+    company: "CEMAD-RJ",
+    fullName: "Convenção Assembleias de Deus - RJ",
+    text: "Portal institucional que integra diretórios regionais e área ministerial completa. Ferramentas modernas para o trabalho evangélico no Rio.",
+    url: "https://convencaocemad.com.br/"
+  },
+  {
+    company: "OMB-RJ",
+    fullName: "Ordem dos Músicos do Brasil • RJ",
+    text: "Autarquia Federal oficial de valorização profissional dos músicos. Garantindo direitos e regulamentação para a classe musical.",
+    url: "https://novaombrj.org.br"
+  }];
+
 
   return (
     <div className="bg-brand-dark text-white font-['Inter'] selection:bg-brand-lime selection:text-black overflow-x-hidden">
@@ -143,13 +143,13 @@ const ModernLanding = () => {
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+            transition={{ duration: 0.8 }}>
+            
             <div className="mb-6">
-               <img src="https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png" alt="Google Partner" className="w-[250px] h-auto opacity-80" />
+               <img src="https://res.cloudinary.com/deivliasb/image/upload/v1774740064/patner_s65hfp.png" alt="Google Partner" className="w-[250px] h-auto opacity-80 hidden" />
             </div>
             <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-['Outfit'] font-extrabold leading-[1.1] mb-8">
               Criação de <br className="hidden xs:block" />Sites Profissionais <br className="hidden xs:block" />Next-Gen
@@ -173,7 +173,7 @@ const ModernLanding = () => {
               <span className="text-sm text-white/40">Especialista Google Partner | Todo o Brasil</span>
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
-                  {[1, 2, 3, 4].map(i => <Star key={i} className="w-4 h-4 fill-brand-lime text-brand-lime" />)}
+                  {[1, 2, 3, 4].map((i) => <Star key={i} className="w-4 h-4 fill-brand-lime text-brand-lime" />)}
                   <Star className="w-4 h-4 text-brand-lime fill-brand-lime/30" />
                 </div>
                 <span className="text-sm font-bold">4.9 Expertise</span>
@@ -182,12 +182,12 @@ const ModernLanding = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative"
-          >
+            className="relative">
+            
             {/* Visual Code Peek */}
             <div className="bg-[#1e1e1e] border border-white/10 rounded-none overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
               <div className="bg-[#252526] px-4 py-2 flex items-center gap-2 border-b border-white/5">
@@ -220,21 +220,21 @@ const ModernLanding = () => {
             </div>
 
             {/* Floating Checklist */}
-            <motion.div 
+            <motion.div
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute -bottom-10 -right-4 md:-right-10 bg-brand-card border border-white/10 p-6 rounded-none shadow-2xl max-w-[280px]"
-            >
+              className="absolute -bottom-10 -right-4 md:-right-10 bg-brand-card border border-white/10 p-6 rounded-none shadow-2xl max-w-[280px]">
+              
               <ul className="space-y-3">
-                {["Design Exclusivo", "SEO Nativo", "Mobile-First", "Alta Performance"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm font-medium">
+                {["Design Exclusivo", "SEO Nativo", "Mobile-First", "Alta Performance"].map((item, i) =>
+                <li key={i} className="flex items-center gap-3 text-sm font-medium">
                     <div className="w-4 h-4 rounded-none border border-brand-lime flex items-center justify-center">
                       <div className="w-2 h-2 rounded-none bg-brand-lime" />
                     </div>
                     {item}
                   </li>
-                ))}
+                )}
               </ul>
             </motion.div>
           </motion.div>
@@ -290,12 +290,12 @@ const ModernLanding = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <Link 
-                to={service.link}
-                key={i}
-                className="bg-brand-card border border-white/5 p-8 rounded-none hover:border-brand-lime/30 transition-all group block"
-              >
+            {services.map((service, i) =>
+            <Link
+              to={service.link}
+              key={i}
+              className="bg-brand-card border border-white/5 p-8 rounded-none hover:border-brand-lime/30 transition-all group block">
+              
                 <div className="mb-6 p-3 bg-white/5 rounded-none w-fit group-hover:bg-brand-lime/10 transition-colors">
                   {service.icon}
                 </div>
@@ -307,7 +307,7 @@ const ModernLanding = () => {
                   Saber mais <ChevronRight className="w-4 h-4" />
                 </div>
               </Link>
-            ))}
+            )}
           </div>
 
         </div>
@@ -397,23 +397,23 @@ const ModernLanding = () => {
             <div className="absolute inset-0 flex items-center justify-center">
                <div className="relative w-full h-full">
                   {[
-                    { icon: <MessageSquare className="w-8 h-8"/>, pos: "top-10 left-20" },
-                    { icon: <Github className="w-8 h-8"/>, pos: "top-0 right-20" },
-                    { icon: <Globe className="w-8 h-8"/>, pos: "top-[40%] left-[10%]" },
-                    { icon: <MousePointer2 className="w-8 h-8"/>, pos: "bottom-10 right-[30%]" },
-                    { icon: <Zap className="w-8 h-8"/>, pos: "bottom-[20%] left-[30%]" },
-                    { icon: <Box className="w-8 h-8"/>, pos: "top-[60%] right-[10%]" }
-                  ].map((logo, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.1 }}
-                      className={`absolute ${logo.pos} p-4 bg-brand-card border border-white/10 rounded-none shadow-xl backdrop-blur-sm`}
-                    >
+                { icon: <MessageSquare className="w-8 h-8" />, pos: "top-10 left-20" },
+                { icon: <Github className="w-8 h-8" />, pos: "top-0 right-20" },
+                { icon: <Globe className="w-8 h-8" />, pos: "top-[40%] left-[10%]" },
+                { icon: <MousePointer2 className="w-8 h-8" />, pos: "bottom-10 right-[30%]" },
+                { icon: <Zap className="w-8 h-8" />, pos: "bottom-[20%] left-[30%]" },
+                { icon: <Box className="w-8 h-8" />, pos: "top-[60%] right-[10%]" }].
+                map((logo, i) =>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`absolute ${logo.pos} p-4 bg-brand-card border border-white/10 rounded-none shadow-xl backdrop-blur-sm`}>
+                  
                       <div className="text-brand-lime">{logo.icon}</div>
                     </motion.div>
-                  ))}
+                )}
                </div>
             </div>
           </div>
@@ -428,8 +428,8 @@ const ModernLanding = () => {
         </div>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-           {cases.map((item, i) => (
-             <motion.div key={i} {...fadeInUp} className="bg-brand-card border border-white/5 p-8 rounded-none hover:border-brand-lime/20 transition-all flex flex-col h-full">
+           {cases.map((item, i) =>
+          <motion.div key={i} {...fadeInUp} className="bg-brand-card border border-white/5 p-8 rounded-none hover:border-brand-lime/20 transition-all flex flex-col h-full">
                 <h4 className="font-bold text-xl text-brand-lime mb-2">{item.company}</h4>
                 <p className="text-white/30 text-xs mb-4 uppercase tracking-widest">{item.fullName}</p>
                 <p className="text-white/60 mb-8 leading-relaxed flex-grow italic">"{item.text}"</p>
@@ -437,7 +437,7 @@ const ModernLanding = () => {
                    Ver Projeto <ExternalLink className="w-4 h-4" />
                 </a>
              </motion.div>
-           ))}
+          )}
         </div>
       </section>
 
@@ -481,11 +481,11 @@ const ModernLanding = () => {
 
       {/* Final CTA */}
       <section id="contato" className="py-32 px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="max-w-5xl mx-auto bg-gradient-to-r from-brand-lime/10 to-emerald-500/10 border border-brand-lime/20 rounded-none p-12 md:p-20 text-center relative overflow-hidden"
-        >
+          className="max-w-5xl mx-auto bg-gradient-to-r from-brand-lime/10 to-emerald-500/10 border border-brand-lime/20 rounded-none p-12 md:p-20 text-center relative overflow-hidden">
+          
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-brand-lime/50 to-transparent" />
           
           <h2 className="text-4xl md:text-5xl font-['Outfit'] font-bold mb-8">Pronto para transformar sua <br />presença digital?</h2>
@@ -499,8 +499,8 @@ const ModernLanding = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default ModernLanding;
