@@ -15,20 +15,36 @@ const PLAN_COLORS = {
 
 export default function SubscriptionCard({ subscription, onRefresh }) {
   const { toast } = useToast();
-  const [sendingBill, setSendingBill] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [markingPaid, setMarkingPaid] = useState(false);
 
-  const handleSendBill = async () => {
-    setSendingBill(true);
-    const res = await alexis.functions.invoke("sendBillingWhatsApp", { subscription_id: subscription.id });
-    if (res.data?.success) {
-      toast({ title: "Cobrança enviada! ✅", description: "Link de pagamento enviado via WhatsApp." });
-    } else {
-      toast({ title: "Falha no envio ⚠️", description: res.data?.whatsapp_status || "Erro ao enviar.", variant: "destructive" });
-    }
-    setSendingBill(false);
-    onRefresh?.();
+  const handleSendBill = () => {
+    const nome = subscription.customer_name || "Cliente";
+    const valor = subscription.amount?.toFixed(2).replace(".", ",") || "0,00";
+    const plano = (subscription.selected_plan || "").toUpperCase();
+    const chave = "t.i@desenvolvimentodesites.dev.br";
+
+    const msg = 
+`Olá ${nome}! 👋
+
+Aqui é da *Alexis Marketing & Dev*. Passando para lembrar sobre o pagamento da sua mensalidade:
+
+📦 *Plano:* ${plano}
+💰 *Valor:* R$ ${valor}
+
+💳 *Pagamento via PIX:*
+Chave para copiar e colar:
+\`${chave}\`
+
+🔳 Ou escaneie o QR Code enviado pelo site:
+https://res.cloudinary.com/deivliasb/image/upload/v1774740064/pix-qr-code.png
+
+Após o pagamento, envie o comprovante aqui no WhatsApp. ✅
+Qualquer dúvida, estamos à disposição! 🚀`;
+
+    const phone = (subscription.customer_whatsapp || "").replace(/\D/g, "");
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
   };
 
   const handleDelete = async () => {
@@ -102,11 +118,11 @@ export default function SubscriptionCard({ subscription, onRefresh }) {
             <Button
               size="sm"
               onClick={handleSendBill}
-              disabled={sendingBill || subscription.status === 'cancelado'}
+              disabled={subscription.status === 'cancelado'}
               className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 gap-1"
             >
               <Send className="w-3 h-3" />
-              {sendingBill ? "Enviando..." : "Cobrar"}
+              Cobrar
             </Button>
             <Button
               size="sm"
