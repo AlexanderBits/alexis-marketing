@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   Shield, Loader2, Lock, Search, X, Download, Copy, ClipboardCheck,
   Target, DollarSign, BarChart2, Users, BookOpen, Image, Layers,
-  CheckCircle2, Clock, Star, ArrowLeft, Building2, User
+  CheckCircle2, Clock, Star, ArrowLeft, Building2, User, Trash2, Sparkles
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
@@ -125,11 +125,25 @@ export default function AdminBriefing() {
   const [selected, setSelected] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  const { data: briefings = [], isLoading } = useQuery({
+  const { data: briefings = [], isLoading, refetch } = useQuery({
     queryKey: ["campaign-briefings"],
     queryFn: () => alexis.entities.CampaignBriefing.list("-created_date"),
     enabled: isAuthenticated,
   });
+
+  const deleteBriefing = async (e, id) => {
+    e.stopPropagation();
+    if (!confirm("Apagar este briefing? Esta ação não pode ser desfeita.")) return;
+    await alexis.entities.CampaignBriefing.delete(id);
+    toast({ title: "Briefing apagado." });
+    refetch();
+  };
+
+  const sendToAI = (b) => {
+    const prompt = generateAIPrompt(b);
+    const encoded = encodeURIComponent(prompt);
+    window.open(`https://chatgpt.com/?q=${encoded}`, "_blank");
+  };
 
   const copyPrompt = async (briefing) => {
     const prompt = generateAIPrompt(briefing);
@@ -310,17 +324,25 @@ export default function AdminBriefing() {
                 <p className="text-white font-medium">{STRUCTURE_LABELS[b.pillar_7_structure] || b.pillar_7_structure}</p>
               </div>
 
-              {/* Exportar Prompt */}
-              <Button
-                onClick={() => copyPrompt(b)}
-                className="w-full bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold py-6 text-base shadow-lg shadow-violet-500/20 hover:opacity-90 transition-opacity"
-              >
-                {copied ? (
-                  <><ClipboardCheck className="w-5 h-5 mr-2" /> Prompt Copiado!</>
-                ) : (
-                  <><Copy className="w-5 h-5 mr-2" /> Exportar Prompt de IA (Copiar)</>
-                )}
-              </Button>
+              {/* Ações de IA */}
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => copyPrompt(b)}
+                  className="flex-1 bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold py-6 text-sm shadow-lg shadow-violet-500/20 hover:opacity-90 transition-opacity"
+                >
+                  {copied ? (
+                    <><ClipboardCheck className="w-5 h-5 mr-2" /> Copiado!</>
+                  ) : (
+                    <><Copy className="w-5 h-5 mr-2" /> Copiar Prompt</>
+                  )}
+                </Button>
+                <Button
+                  onClick={() => sendToAI(b)}
+                  className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-6 text-sm shadow-lg hover:opacity-90 transition-opacity"
+                >
+                  <Sparkles className="w-5 h-5 mr-2" /> Enviar para IA
+                </Button>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -420,9 +442,18 @@ export default function AdminBriefing() {
                             </p>
                           </div>
                         </div>
-                        <span className={`text-xs font-bold px-2 py-1 rounded-full border ${status.color}`}>
-                          {status.label}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className={`text-xs font-bold px-2 py-1 rounded-full border ${status.color}`}>
+                            {status.label}
+                          </span>
+                          <button
+                            onClick={(e) => deleteBriefing(e, b.id)}
+                            className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-colors"
+                            title="Apagar briefing"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent className="pt-4 space-y-3">
