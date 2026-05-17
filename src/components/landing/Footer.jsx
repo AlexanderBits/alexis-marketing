@@ -42,7 +42,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link to="/" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Início</Link></li>
               <li><Link to="/google-meu-negocio" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Google Meu Negócio</Link></li>
-              <li><Link to="/contrato" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Contrato</Link></li>
+              <li><Link to="/briefing" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Contrato</Link></li>
               <li><a href="/#servicos" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Serviços</a></li>
               <li><a href="/#portfolio" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Portfólio</a></li>
               <li><a href="/#sobre-nos" className="text-white/60 hover:text-brand-lime transition-colors text-sm">Sobre Nós</a></li>
@@ -101,7 +101,7 @@ export default function Footer() {
             <Link to="/termos-de-uso" className="text-white/40 hover:text-brand-lime text-[10px] uppercase font-black tracking-widest transition-colors">
               Termos
             </Link>
-            <Link to="/contrato" className="text-white/40 hover:text-brand-lime text-[10px] uppercase font-black tracking-widest transition-colors">
+            <Link to="/briefing" className="text-white/40 hover:text-brand-lime text-[10px] uppercase font-black tracking-widest transition-colors">
               Contrato
             </Link>
             <Link to="/admin-leads" className="text-white hover:text-white transition-colors" title="Admin">

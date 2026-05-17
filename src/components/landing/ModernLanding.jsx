@@ -102,7 +102,7 @@ const ModernLanding = () => {
 
     title: "Assessoria em Marketing",
     description: "Gestão de tráfego pago em Google Ads e Meta Ads para escala.",
-    link: "/contrato?service=scale"
+    link: "/briefing"
   }];
 
 
