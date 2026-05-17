@@ -73,10 +73,10 @@ export default function ArquitetoBriefing() {
         </div>
         <div>
           <h1 className="text-white font-bold text-base leading-tight">
-            Arquiteto de Prompts
+            Alexis Marketing & Dev
           </h1>
           <p className="text-white/50 text-xs">
-            Crie o briefing do seu site com IA
+            Consultoria para criação do seu site
           </p>
         </div>
       </header>
