@@ -25,6 +25,40 @@ const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
   : <>{children}</>;
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    console.error('App render error:', error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#0A0A0A] text-white gap-4">
+          <p className="text-white/60 text-center px-4">Algo deu errado. Por favor, recarregue a página.</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-[#CBFF4D] text-black px-6 py-2 font-bold hover:bg-white transition-colors"
+          >
+            Recarregar
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+const PROTECTED_ROUTES = ['/contrato', '/briefing', '/admin-contratos', '/admin-briefing', '/admin-billing', '/admin-leads'];
+
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
@@ -36,17 +70,15 @@ const AuthenticatedApp = () => {
     );
   }
 
-  if (authError) {
-    if (authError.type === 'user_not_registered') return <UserNotRegisteredError />;
-    
-    // Lista de rotas que exigem autenticação
-    const protectedRoutes = ['/contrato', '/briefing', '/admin-contratos', '/admin-briefing', '/admin-billing', '/admin-leads'];
-    const isProtectedRoute = protectedRoutes.some(route => window.location.pathname.startsWith(route));
+  if (authError?.type === 'user_not_registered') {
+    return <UserNotRegisteredError />;
+  }
 
-    if (authError.type === 'auth_required' && isProtectedRoute && window.location.pathname !== '/login') {
-      navigateToLogin();
-      return null;
-    }
+  const isProtectedRoute = PROTECTED_ROUTES.some(route => window.location.pathname.startsWith(route));
+
+  if (authError?.type === 'auth_required' && isProtectedRoute && window.location.pathname !== '/login') {
+    navigateToLogin();
+    return null;
   }
 
   return (
@@ -79,16 +111,20 @@ const AuthenticatedApp = () => {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <GlobalSEO />
-          <NavigationTracker />
-          <AuthenticatedApp />
-          <CookieConsent />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <GlobalSEO />
+            <NavigationTracker />
+            <ErrorBoundary>
+              <AuthenticatedApp />
+            </ErrorBoundary>
+            <CookieConsent />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
