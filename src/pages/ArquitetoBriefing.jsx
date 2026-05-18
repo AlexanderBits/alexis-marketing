@@ -42,7 +42,12 @@ export default function ArquitetoBriefing() {
     setConversation(conv);
 
     const unsubscribe = base44.agents.subscribeToConversation(conv.id, (data) => {
-      setMessages(data.messages || []);
+      const msgs = data.messages || [];
+      setMessages(msgs);
+      // Remove o loading assim que o agente responder pela primeira vez
+      if (msgs.some(m => m.role === "assistant")) {
+        setStarting(false);
+      }
     });
 
     // Dispara a saudação inicial do agente
@@ -51,7 +56,6 @@ export default function ArquitetoBriefing() {
       content: "__init__",
     });
 
-    setStarting(false);
     return () => unsubscribe();
   }
 
