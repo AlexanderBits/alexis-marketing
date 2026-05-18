@@ -7,7 +7,6 @@ import { useAdminAuth } from "@/hooks/useAdminAuth";
 const NAV_ITEMS = [
   { label: "Leads", path: "/admin-leads", icon: Users },
   { label: "Contratos", path: "/admin-contratos", icon: FileText },
-  { label: "Briefings", path: "/admin-briefing", icon: Target },
   { label: "Cobrança", path: "/admin-billing", icon: CreditCard },
   { label: "SEO", path: "/admin-seo", icon: Search },
   { label: "Sites", path: "/admin-website-briefing", icon: MonitorSmartphone },
