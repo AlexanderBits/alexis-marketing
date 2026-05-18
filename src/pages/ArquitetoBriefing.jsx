@@ -97,7 +97,11 @@ export default function ArquitetoBriefing() {
 
       {/* Revisão OU Chat */}
       {showReview ? (
-        <BriefingReview conversationId={conversation?.id} />
+        <BriefingReview 
+          conversationId={conversation?.id} 
+          messages={messages} 
+          onBackToChat={() => setShowReview(false)} 
+        />
       ) : (
         <>
           {/* Messages */}
