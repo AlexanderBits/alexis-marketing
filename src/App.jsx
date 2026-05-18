@@ -14,7 +14,6 @@ import CookieConsent from '@/components/landing/CookieConsent';
 import ContractPage from './pages/ContractPage';
 import AdminContractsDashboard from './pages/AdminContractsDashboard';
 import ArquitetoBriefing from './pages/ArquitetoBriefing';
-import BriefingForm from './pages/BriefingForm';
 import AdminBriefing from './pages/AdminBriefing';
 import AdminBilling from './pages/AdminBilling';
 import AdminWebsiteBriefing from './pages/AdminWebsiteBriefing';
@@ -72,7 +71,7 @@ const AuthenticatedApp = () => {
       ))}
       <Route path="/contrato" element={<ContractPage />} />
       <Route path="/admin-contratos" element={<AdminContractsDashboard />} />
-      <Route path="/briefing" element={<BriefingForm />} />
+
       <Route path="/onboarding" element={<ArquitetoBriefing />} />
       <Route path="/admin-briefing" element={<AdminBriefing />} />
       <Route path="/admin-billing" element={<AdminBilling />} />
