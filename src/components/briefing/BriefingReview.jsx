@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader2, ArrowLeft, ShieldCheck } from "lucide-react";
 import { alexis } from "@/api/alexisClient";
 import { useAuth } from "@/lib/AuthContext";
 
 export default function BriefingReview({ conversationId, messages = [], onBackToChat }) {
-  const navigate = useNavigate();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [hasContract, setHasContract] = useState(false);
   const [briefingData, setBriefingData] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -78,8 +77,8 @@ export default function BriefingReview({ conversationId, messages = [], onBackTo
       const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
       window.open(waUrl, '_blank');
 
-      // Redirecionar para o contrato
-      navigate("/contrato");
+      // Briefing concluído — mostrar confirmação final
+      setSubmitted(true);
     } catch (err) {
       console.error("Erro ao confirmar briefing:", err);
     } finally {
@@ -94,6 +93,27 @@ export default function BriefingReview({ conversationId, messages = [], onBackTo
         <p className="text-white/40 text-[10px] font-black uppercase tracking-widest animate-pulse">
           Carregando dados do briefing...
         </p>
+      </div>
+    );
+  }
+
+  if (submitted) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center gap-6 bg-[#0A0A0A] px-6 text-center">
+        <div className="w-20 h-20 bg-[#D4FF33]/10 border border-[#D4FF33]/20 flex items-center justify-center">
+          <ShieldCheck className="w-10 h-10 text-[#D4FF33]" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-white text-2xl font-black uppercase tracking-tight font-['Outfit']">
+            Briefing Enviado!
+          </h2>
+          <p className="text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
+            Seu briefing foi enviado para a equipe Alexis. Em breve entraremos em contato via WhatsApp para os próximos passos.
+          </p>
+        </div>
+        <div className="bg-[#D4FF33]/5 border border-[#D4FF33]/20 px-6 py-4 text-[#D4FF33] text-xs font-black uppercase tracking-widest">
+          ✅ Projeto registrado com sucesso
+        </div>
       </div>
     );
   }
