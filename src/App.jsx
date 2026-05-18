@@ -14,6 +14,7 @@ import CookieConsent from '@/components/landing/CookieConsent';
 import ContractPage from './pages/ContractPage';
 import AdminContractsDashboard from './pages/AdminContractsDashboard';
 import ArquitetoBriefing from './pages/ArquitetoBriefing';
+import BriefingForm from './pages/BriefingForm';
 import AdminBriefing from './pages/AdminBriefing';
 import AdminBilling from './pages/AdminBilling';
 import AdminWebsiteBriefing from './pages/AdminWebsiteBriefing';
@@ -41,7 +42,7 @@ const AuthenticatedApp = () => {
     if (authError.type === 'user_not_registered') return <UserNotRegisteredError />;
     
     // Lista de rotas que exigem autenticação
-    const protectedRoutes = ['/contrato', '/briefing', '/admin-contratos', '/admin-briefing', '/admin-billing', '/admin-leads'];
+    const protectedRoutes = ['/contrato', '/briefing', '/admin-contratos', '/admin-briefing', '/admin-billing', '/admin-leads', '/onboarding', '/admin-website-briefing'];
     const isProtectedRoute = protectedRoutes.some(route => window.location.pathname.startsWith(route));
 
     if (authError.type === 'auth_required' && isProtectedRoute && window.location.pathname !== '/login') {
@@ -71,7 +72,8 @@ const AuthenticatedApp = () => {
       ))}
       <Route path="/contrato" element={<ContractPage />} />
       <Route path="/admin-contratos" element={<AdminContractsDashboard />} />
-      <Route path="/briefing" element={<ArquitetoBriefing />} />
+      <Route path="/briefing" element={<BriefingForm />} />
+      <Route path="/onboarding" element={<ArquitetoBriefing />} />
       <Route path="/admin-briefing" element={<AdminBriefing />} />
       <Route path="/admin-billing" element={<AdminBilling />} />
       <Route path="/admin-website-briefing" element={<AdminWebsiteBriefing />} />

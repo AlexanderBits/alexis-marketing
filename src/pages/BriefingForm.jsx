@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -151,6 +151,29 @@ export default function BriefingForm() {
   const urlParams = new URLSearchParams(window.location.search);
   const paymentSuccess = urlParams.get('payment') === 'success';
 
+  const [loadingContract, setLoadingContract] = useState(true);
+  const [latestContract, setLatestContract] = useState(null);
+
+  useEffect(() => {
+    if (paymentSuccess) {
+      setLoadingContract(true);
+      alexis.entities.Contract.list('-created_date', 1)
+        .then(contracts => {
+          if (contracts && contracts.length > 0) {
+            setLatestContract(contracts[0]);
+          }
+        })
+        .catch(err => {
+          console.error("Erro ao buscar contrato:", err);
+        })
+        .finally(() => {
+          setLoadingContract(false);
+        });
+    } else {
+      setLoadingContract(false);
+    }
+  }, [paymentSuccess]);
+
   const totalSteps = STEPS.length;
   const currentStep = STEPS[step];
   const Icon = currentStep.icon;
@@ -229,8 +252,24 @@ export default function BriefingForm() {
     }
   };
 
+  // ── Tela de carregamento do contrato ──
+  if (paymentSuccess && loadingContract) {
+    return (
+      <div className="min-h-screen bg-brand-dark flex items-center justify-center px-4">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-12 h-12 animate-spin text-brand-lime mx-auto" />
+          <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
+            Carregando detalhes do seu plano...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   // ── Tela de pagamento confirmado ──
   if (paymentSuccess) {
+    const isWebsitePlan = latestContract && ['simple', 'bronze', 'prata', 'ouro'].includes(latestContract.selected_plan);
+
     return (
       <div className="min-h-screen bg-brand-dark flex items-center justify-center px-4">
         <motion.div
@@ -244,19 +283,44 @@ export default function BriefingForm() {
             <CheckCircle2 className="w-12 h-12 text-brand-lime" />
           </div>
           <h1 className="text-3xl font-['Outfit'] font-black text-white mb-3 tracking-tighter uppercase italic">Pagamento Confirmado! 🎉</h1>
-          <p className="text-white/40 mb-6 leading-relaxed text-sm font-medium uppercase tracking-widest">
-            Sua assinatura foi ativada com sucesso. Agora preencha o <strong className="text-white italic">Blueprint de Campanha</strong> para iniciarmos sua estratégia.
+          {isWebsitePlan ? (
+            <>
+              <p className="text-white/40 mb-6 leading-relaxed text-sm font-medium uppercase tracking-widest">
+                Sua assinatura foi ativada com sucesso. Nosso time já recebeu o briefing do seu <strong className="text-white italic">Site Next-Gen</strong> gerado pelo assistente e estamos iniciando o desenvolvimento!
+              </p>
+              <div className="mb-8 p-4 bg-brand-lime/5 border border-brand-lime/20">
+                <p className="text-brand-lime text-[10px] font-black uppercase tracking-widest">
+                  🚀 Status: Briefing Coletado & Desenvolvimento Iniciado
+                </p>
+              </div>
+              <Button
+                onClick={() => window.location.href = '/'}
+                className="w-full bg-brand-lime text-black font-black uppercase tracking-[0.2em] py-8 shadow-xl shadow-brand-lime/10 hover:bg-white rounded-none text-xs"
+              >
+                Ir para a Página Inicial <ChevronRight className="w-5 h-5 ml-4" />
+              </Button>
+            </>
+          ) : (
+            <>
+              <p className="text-white/40 mb-6 leading-relaxed text-sm font-medium uppercase tracking-widest">
+                Sua assinatura foi ativada com sucesso. Agora preencha o <strong className="text-white italic">Blueprint de Campanha</strong> para iniciarmos sua estratégia.
+              </p>
+              <div className="mb-8 p-4 bg-brand-lime/5 border border-brand-lime/20">
+                <p className="text-brand-lime text-[10px] font-black uppercase tracking-widest">
+                  ✅ Engine Ativa — Você já faz parte da Alexis Marketing!
+                </p>
+              </div>
+              <Button
+                onClick={() => window.location.href = '/briefing'}
+                className="w-full bg-brand-lime text-black font-black uppercase tracking-[0.2em] py-8 shadow-xl shadow-brand-lime/10 hover:bg-white rounded-none text-xs"
+              >
+                Acessar Blueprint de Campanha <ChevronRight className="w-5 h-5 ml-4" />
+              </Button>
+            </>
+          )}
+          <p className="text-white/20 text-[8px] font-black uppercase tracking-widest mt-6 italic">
+            {isWebsitePlan ? "Tudo pronto por aqui!" : "Inicie o projeto agora mesmo"}
           </p>
-          <div className="mb-8 p-4 bg-brand-lime/5 border border-brand-lime/20">
-            <p className="text-brand-lime text-[10px] font-black uppercase tracking-widest">✅ Engine Ativa — Você já faz parte da Alexis Marketing!</p>
-          </div>
-          <Button
-            onClick={() => window.location.href = '/briefing'}
-            className="w-full bg-brand-lime text-black font-black uppercase tracking-[0.2em] py-8 shadow-xl shadow-brand-lime/10 hover:bg-white rounded-none text-xs"
-          >
-            Acessar Blueprint de Campanha <ChevronRight className="w-5 h-5 ml-4" />
-          </Button>
-          <p className="text-white/20 text-[8px] font-black uppercase tracking-widest mt-6 italic">Inicie o projeto agora mesmo</p>
         </motion.div>
       </div>
     );
