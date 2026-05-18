@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Users, FileText, Target, Search, LogOut, Shield, Globe, CreditCard } from "lucide-react";
+import { Users, FileText, Target, Search, LogOut, Shield, Globe, CreditCard, MonitorSmartphone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: "Briefings", path: "/admin-briefing", icon: Target },
   { label: "Cobrança", path: "/admin-billing", icon: CreditCard },
   { label: "SEO", path: "/admin-seo", icon: Search },
+  { label: "Sites", path: "/admin-website-briefing", icon: MonitorSmartphone },
   { label: "Pesquisa Sites", path: "/admin-pesquisa-sites", icon: Globe },
 ];
 
