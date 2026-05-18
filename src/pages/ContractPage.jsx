@@ -189,9 +189,9 @@ export default function ContractPage() {
           </h1>
           <p className="text-white/50 text-sm mb-10 leading-relaxed uppercase tracking-widest font-bold">
             {formData.payment_method === "pix" ? (
-              <>Realize o pagamento via PIX e <span className="text-white">envie o comprovante para o nosso WhatsApp</span>.</>
+              <>Realize o pagamento via PIX, envie o comprovante no WhatsApp e depois <span className="text-white">clique abaixo para iniciar o Briefing de Campanha</span>.</>
             ) : (
-              <>Seu contrato foi processado pela Engine da Alexis Dev. Próximo passo: <span className="text-white">Briefing de Campanha</span>.</>
+              <>Contrato processado! Próximo passo: <span className="text-white">iniciar o Briefing de Campanha</span>.</>
             )}
           </p>
 
@@ -206,16 +206,12 @@ export default function ContractPage() {
           
           <div className="space-y-4">
             <Button 
-              onClick={() => window.location.href = "/"} 
+              onClick={() => window.location.href = "/briefing"} 
               className="w-full bg-brand-lime hover:bg-brand-lime/90 text-black py-8 rounded-none text-sm font-black uppercase tracking-[0.2em] group"
             >
-              Voltar para o Início
+              Ir para o Briefing de Campanha
               <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
             </Button>
-            
-            <p className="text-white/20 text-[8px] uppercase tracking-[0.3em] font-bold mt-6">
-              Redirecionamento automático em andamento...
-            </p>
           </div>
         </motion.div>
       </div>
