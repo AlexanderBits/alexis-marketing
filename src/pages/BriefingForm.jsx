@@ -286,18 +286,18 @@ export default function BriefingForm() {
           {isWebsitePlan ? (
             <>
               <p className="text-white/40 mb-6 leading-relaxed text-sm font-medium uppercase tracking-widest">
-                Sua assinatura foi ativada com sucesso. Nosso time já recebeu o briefing do seu <strong className="text-white italic">Site Next-Gen</strong> gerado pelo assistente e estamos iniciando o desenvolvimento!
+                Sua assinatura foi ativada com sucesso. Agora, vamos conversar com nosso <strong className="text-white italic">Assistente de Briefing Inteligente</strong> para definir os detalhes do seu site!
               </p>
               <div className="mb-8 p-4 bg-brand-lime/5 border border-brand-lime/20">
                 <p className="text-brand-lime text-[10px] font-black uppercase tracking-widest">
-                  🚀 Status: Briefing Coletado & Desenvolvimento Iniciado
+                  💬 Status: Aguardando Briefing Conversacional
                 </p>
               </div>
               <Button
-                onClick={() => window.location.href = '/'}
-                className="w-full bg-brand-lime text-black font-black uppercase tracking-[0.2em] py-8 shadow-xl shadow-brand-lime/10 hover:bg-white rounded-none text-xs"
+                onClick={() => window.location.href = '/onboarding'}
+                className="w-full bg-brand-lime text-black font-black uppercase tracking-[0.2em] py-8 shadow-xl shadow-brand-lime/10 hover:bg-white rounded-none text-xs animate-bounce"
               >
-                Ir para a Página Inicial <ChevronRight className="w-5 h-5 ml-4" />
+                Iniciar Assistente de Briefing <ChevronRight className="w-5 h-5 ml-4" />
               </Button>
             </>
           ) : (

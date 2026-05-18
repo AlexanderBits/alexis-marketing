@@ -67,13 +67,13 @@ const ModernLanding = () => {
     icon: <Cpu className="w-6 h-6 text-brand-lime" />,
     title: "Sites Next-Gen",
     description: "Desenvolvimento com as tecnologias mais rápidas do mercado como React e Next.js.",
-    link: "/onboarding"
+    link: "/contrato"
   },
   {
     icon: <Layout className="w-6 h-6 text-brand-lime" />,
     title: "Landing Pages",
     description: "Páginas otimizadas para converter visitantes em clientes reais de forma automática.",
-    link: "/onboarding"
+    link: "/contrato"
   },
   {
     icon: <MapPin className="w-6 h-6 text-brand-lime" />,
