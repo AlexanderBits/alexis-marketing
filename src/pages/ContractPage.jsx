@@ -209,7 +209,7 @@ export default function ContractPage() {
               onClick={() => window.location.href = "/onboarding"} 
               className="w-full bg-brand-lime hover:bg-brand-lime/90 text-black py-8 rounded-none text-sm font-black uppercase tracking-[0.2em] group"
             >
-              Ir para o Briefing de Campanha
+              Clique aqui para terminar a etapa
               <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
             </Button>
           </div>
