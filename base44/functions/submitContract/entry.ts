@@ -88,8 +88,8 @@ Data de Aceite: ${new Date().toLocaleString('pt-BR')}
             ? (rawWhatsapp.startsWith('55') ? rawWhatsapp : `55${rawWhatsapp}`)
             : '55';
 
-        // Salvar contrato no banco de dados
-        const contract = await alexis.asServiceRole.entities.Contract.create({
+        // Salvar contrato no banco de dados (usar escopo do usuário para respeitar RLS created_by)
+        const contract = await alexis.entities.Contract.create({
             client_type,
             client_name,
             client_cpf,
