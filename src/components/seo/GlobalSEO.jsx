@@ -2,7 +2,7 @@ import React from 'react';
 import { JsonLd } from './JsonLd';
 
 export function GlobalSEO() {
-  const siteUrl = "https://alexisdev.com.br";
+  const siteUrl = "https://desenvolvimentodesites.dev.br";
 
   const schemas = [
     {
